@@ -1,5 +1,5 @@
 (function(){
-	angular.module('GradeBook', ['ui.router'])
+	angular.module('GradeBook', ['ui.router', 'ngMaterial'])
 		.config(function($stateProvider,$urlRouterProvider){
 			$stateProvider
 				.state('home', {
@@ -10,6 +10,7 @@
 				})
 
 			$urlRouterProvider.otherwise('/home')
+
 		})
 
 })()

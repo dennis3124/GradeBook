@@ -1,5 +1,5 @@
 (function(){
-	angular.module('GradeBook')
+	angular.module('home')
 		.controller('homeController', ['$mdDialog', function($mdDialog){}]);
 
 })()

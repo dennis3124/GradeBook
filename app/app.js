@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 (function(){
 	angular.module('GradeBook', ['ui.router', 'ngMaterial'])
 		.config(function($stateProvider,$urlRouterProvider){

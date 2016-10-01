@@ -21,8 +21,8 @@ module.exports = function(app) {
 	// Any routes to handle creating or deleting goes here?
 	
 	// Route to handle angular requests
-	app.get('*', function(req, res) {
-		res.sendfile('./Index.html');
-	});
+	// app.get('*', function(req, res) {
+	// 	res.sendfile('./Index.html');
+	// });
 
 };

@@ -5,7 +5,19 @@
 				<md-button class="md-icon-button" aria-label="Menu" ng-click="toolBarVM.openLeftSideNav()">
 					<md-icon md-svg-src="assets/img/icons/menu.svg"></md-icon>
 				</md-button>
-				<span> GradeBook</span>
+				<md-button ng-click="toolBarVM.goHome()" md-no-ink="true"> GradeBook</md-button>
+				<div flex></div>
+
+				<md-menu>
+					<md-button class="md-icon-button" aria-label="Open settings menu" ng-click="$mdOpenMenu($event)">
+							<md-icon md-svg-src="assets/img/icons/setting.svg">
+							</md-icon>
+					</md-button>
+					<md-menu-content>
+						<md-menu-item> Hi</md-menu-item>
+					</md-menu-content>
+				</md-menu>
+				
 			</div>
 		</md-toolbar>
 	</div>

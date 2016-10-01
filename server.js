@@ -24,7 +24,7 @@ var port = process.env.PORT || 27017;
 // var coursesSchema
 
 // Define API routes
-require('./app/routes')(app); // configure routes
+require('./routes')(app); // configure routes
 
 // Start app
 app.listen(port);

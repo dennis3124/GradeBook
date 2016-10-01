@@ -9,10 +9,15 @@
 		// 	}
 		// })
 
-		.controller('toolBarController', ['$mdSidenav' , function($mdSidenav) {
+		.controller('toolBarController', ['$mdSidenav', '$state' , function($mdSidenav,$state) {
 			var vm = this;
 			vm.openLeftSideNav = function(){
 				$mdSidenav('left').toggle();
+			};
+
+			vm.goHome = function() {
+				//console.log('hi');
+				$state.go('root.home');
 			}
 		}])
 

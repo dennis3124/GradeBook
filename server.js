@@ -9,10 +9,14 @@ var methodOverride = require('method-override');
 
 // Config
 mongoose.connect('mongodb://localhost/gradebook');
+// Set up static file location
 app.use(express.static(_dirname + "/"));
+// parse application/json
 app.use(bodyParser.json());
 app.use(methodOverride());
 
+// Set port
+var port = process.env.PORT || 8080;
 
 // Define schemas
 // var studentSchema
@@ -20,9 +24,10 @@ app.use(methodOverride());
 // var coursesSchema
 
 // Define API routes
-// General error handling
-function handleError(res, reason, message, code) {
-	console.log("Error: " + reason);
-	res.status(code || 500).json({"error": message});
-}
+require('./app/routes')(app); // configure routes
+
+// Start app
+app.listen(port);
+console.log("Listening on port:" + port);
+
 

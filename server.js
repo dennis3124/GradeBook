@@ -10,13 +10,13 @@ var methodOverride = require('method-override');
 // Config
 mongoose.connect('mongodb://localhost/gradebook');
 // Set up static file location
-app.use(express.static(_dirname + "/"));
+//app.use(express.static(__dirname + "/"));
 // parse application/json
 app.use(bodyParser.json());
 app.use(methodOverride());
 
 // Set port
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 27017;
 
 // Define schemas
 // var studentSchema

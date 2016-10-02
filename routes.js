@@ -18,6 +18,16 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/api/students', function(req, res) {
+		var student = new Student();
+		student.name = req.body.name;
+		student.save(function(err, students) {
+			if (err) // Error handling
+				res.send(err);
+			res.json({ message: "Student added." });
+		});
+	});
+
 	// Any routes to handle creating or deleting goes here?
 	
 	// Route to handle angular requests

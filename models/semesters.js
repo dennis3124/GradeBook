@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var semesters = new Schema( {
+	currentSemester: Boolean,
+	studentId: String,
 	name: String,
 	year: Number,
 	courses: [String]

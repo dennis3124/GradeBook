@@ -10,13 +10,21 @@
 					})
 				};
 
-			var getSemesters = function() {
-					return $http.get('http://localhost:27017/api/semesters').then(function(data) {
+			var getSemesters = function(studentId) {
+					return $http.get('http://localhost:27017/api/semesters/' + studentId).then(function(data) {
 						return data;
 					}).catch(function(err) {
 						console.log(err);
 					})
 				};	
+
+			var getCurrentSemester = function(studentId) {
+					return $http.get('http://localhost:27017/api/semesters/current/' + studentId).then(function(data) {
+						return data;
+					}).catch(function(err) {
+						console.log(err);
+					})
+				};		
 
 
 			var postStudents = function(studentObj) {
@@ -38,6 +46,7 @@
 			};
 
 				return {
+					getCurrentSemester: getCurrentSemester,
 					getStudents: getStudents,
 					postStudents: postStudents,
 					getSemesters: getSemesters,

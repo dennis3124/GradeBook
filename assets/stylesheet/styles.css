@@ -5,3 +5,11 @@ md-content.md-default-theme {
 .center {
 	margin:auto;
 }
+
+.dashboard-courses {
+	margin:30px;
+}
+
+md-card {
+	margin-top: 7em;
+}

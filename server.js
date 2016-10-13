@@ -35,6 +35,8 @@ mongoose.connect('mongodb://localhost/gradebook');
 // parse application/json
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
 // Set port
 var port = process.env.PORT || 27017;

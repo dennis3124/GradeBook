@@ -5,15 +5,17 @@
 			var vm = this;
 			vm.students = [];
 			vm.semesters = [];
+			vm.currentSemester ={};
 			vm.courses = [];
 			studentService.getStudents().then(function(data){
 				//vm.semesters = data.data.semesters;
 				//console.log(data.data);
 			})
 
-			studentService.getSemesters().then(function(data){
-				vm.semesters = data.data;
-				//console.log(vm.courses);
+			studentService.getCurrentSemester("0024466").then(function(data){
+				vm.currentSemester = data.data;
+				vm.currentSemester= vm.currentSemester[0];
+				console.log(vm.currentSemester);
 				
 			})
 
@@ -22,8 +24,10 @@
 							studentId: "00213334466"
 		 				};
 			var semester1 = {
-				name: 'Spring',
-				year: 2015,
+				currentSemester: false,
+				studentId: "0024466",
+				name: 'Fall',
+				year: 2016,
 				courses: ["CS250", "CS251", "CS252"]
 			}
 

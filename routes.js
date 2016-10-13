@@ -18,9 +18,23 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/api/semesters', function(req,res) {
-		// use mongoose to get all students in the database
-		Semesters.find({},function(err, students) {
+	app.get('/api/semesters/:studentId', function(req,res) {
+		// use mongoose to get all semester with the student ID
+		Semesters.find({
+			studentId: req.params.studentId
+		},function(err, students) {
+			if (err) // Error handling
+				res.send(err);
+			res.json(students); // return all students in JSON
+		});
+	});
+
+	app.get('/api/semesters/current/:studentId', function(req,res) {
+		// use mongoose to get current semester with the student ID
+		Semesters.find({
+			studentId: req.params.studentId,
+			currentSemester: true,
+		},function(err, students) {
 			if (err) // Error handling
 				res.send(err);
 			res.json(students); // return all students in JSON
@@ -31,6 +45,8 @@ module.exports = function(app) {
 	app.post('/api/semesters', function(req, res) {
 	
 		Semesters.create({
+			currentSemester: req.body.currentSemester,
+			studentId: req.body.studentId,
 			year: req.body.year,
 			name: req.body.name,
 			courses: req.body.courses

@@ -2,15 +2,15 @@
   	<div layout="row" layout-align="center center">
   		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
   			<md-card-content>
-           		<h3> Courses </h3>
-              <span flex> </span>
+           		<h3> Semesters </h3>
            		<md-list>
            			<md-item>
-           				<md-item-content ng-repeat="courses in homeVM.currentSemester.courses">
+           				<md-item-content ng-repeat="semester in semesterVM.semesters">
            					 	<div class="dashboard-courses">
-           					 		{{courses}}
+           					 		{{semester.name}}
+                        {{semester.year}}
            					 	</div>
-                    <md-divider  hide-sm ng-if="!$last"></md-divider>
+                      <md-divider  hide-sm ng-if="!$last"></md-divider>
            				</md-item-content>
            			
            			</md-item>

@@ -24,7 +24,7 @@
 							studentId: "00213334466"
 		 				};
 			var semester1 = {
-				currentSemester: false,
+				currentSemester: true,
 				studentId: "0024466",
 				name: 'Fall',
 				year: 2016,

@@ -8,7 +8,11 @@
            			<md-item>
            				<md-item-content ng-repeat="courses in homeVM.currentSemester.courses">
            					 	<div class="dashboard-courses">
+                      <md-menu-item>
+                      <md-button ng-click="">
            					 		{{courses}}
+                      </md-button>
+                      </md-menu-item>
            					 	</div>
                     <md-divider  hide-sm ng-if="!$last"></md-divider>
            				</md-item-content>

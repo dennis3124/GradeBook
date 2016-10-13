@@ -6,10 +6,14 @@
            		<md-list>
            			<md-item>
            				<md-item-content ng-repeat="semester in semesterVM.semesters">
+                  <md-menu-item>
+                  <md-button ng-click="">
            					 	<div class="dashboard-courses">
            					 		{{semester.name}}
                         {{semester.year}}
            					 	</div>
+                      </md-button>
+                      </md-menu-item>
                       <md-divider  hide-sm ng-if="!$last"></md-divider>
            				</md-item-content>
            			

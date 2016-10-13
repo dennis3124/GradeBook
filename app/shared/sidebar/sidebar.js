@@ -9,8 +9,14 @@
 		// 	}
 		// })
 
-		.controller('sideBarController',function(){
-			
-		})
+		.controller('sideBarController',['$state',function($state){
+			var vm = this;
+			vm.goToSem = function() {
+				$state.go('root.semester')
+			};
+			vm.goToHome = function() {
+				$state.go('root.home')
+			}
+		}])
 
 })()

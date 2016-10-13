@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require('method-override');
 
 app.use(function (req, res, next) {
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
 	if(req.headers.origin){
 		// Website you wish to allow to connect
    	 	res.setHeader('Access-Control-Allow-Origin', req.headers.origin);

@@ -8,7 +8,7 @@
            			<md-item>
            				<md-item-content ng-repeat="courses in homeVM.currentSemester.courses">
                     <md-menu-item>
-                      <md-button ng-click="">
+                      <md-button ng-click="homeVM.goToGrades(courses)">
            					  	<div class="dashboard-courses">
            					 		{{courses}}
            					 	</div>

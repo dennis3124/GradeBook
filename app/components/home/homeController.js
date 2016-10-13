@@ -1,6 +1,6 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('homeController', ['$mdDialog', 'studentService', '$cookies' ,function($mdDialog,studentService,$cookies){
+		.controller('homeController', ['$mdDialog', 'studentService', '$cookies', '$state' ,function($mdDialog,studentService,$cookies, $state){
 
 			var vm = this;
 			vm.students = [];

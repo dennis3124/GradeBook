@@ -45,7 +45,17 @@
 
 			};
 
+			var getCourses = function(semesterId) {
+					return $http.get('http://localhost:27017/api/courses/' + semesterId).then(function(data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+
+			};
+
 				return {
+					getCourses: getCourses,
 					getCurrentSemester: getCurrentSemester,
 					getStudents: getStudents,
 					postStudents: postStudents,

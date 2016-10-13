@@ -8,7 +8,6 @@ var semesters = new Schema( {
 	studentId: String,
 	name: String,
 	year: Number,
-	courses: [String]
 })
 // define student model
 // module.export allows us to pass this to other files when it is called.

@@ -1,13 +1,12 @@
-// app/models/student.js
+// app/models/semesters.js
 // grab mongoose module
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var schema = new Schema( {
-	name: String,
-	studentId: String
-});
-
+var courses = new Schema( {
+	courseName: String,
+	semesterId: String
+})
 // define student model
 // module.export allows us to pass this to other files when it is called.
-module.exports = mongoose.model('Student',schema);
+module.exports = mongoose.model('Courses', courses);

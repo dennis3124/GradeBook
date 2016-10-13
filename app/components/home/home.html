@@ -6,11 +6,11 @@
               <span flex> </span>
            		<md-list>
            			<md-item>
-           				<md-item-content ng-repeat="courses in homeVM.currentSemester.courses">
+           				<md-item-content ng-repeat="course in homeVM.courses">
                     <md-menu-item>
-                      <md-button ng-click="homeVM.goToGrades(courses)">
+                      <md-button ng-click="homeVM.goToGrades(course.courseName)">
            					  	<div class="dashboard-courses">
-           					 		{{courses}}
+           					 		{{course.courseName}}
            					 	</div>
                        </md-button>
                       </md-menu-item>

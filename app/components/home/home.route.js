@@ -1,15 +1,19 @@
 (function(){
-	angular.module('home', ['ui.router'])
+	angular.module('GradeBook')
 		.config(['$stateProvider','$urlRouterProvider', homeRouter]);
 
 		function homeRouter($stateProvider,$urlRouterProvider) {
 			$stateProvider
 				.state('root.home', {
 					 url: '/home',
-					 templateUrl: 'app/components/home/home.html',
-					 controller: 'homeController',
-					 controllerAs: 'homeVM'
+					 views: {
+					 	'content@': {
+					 		templateUrl: 'app/components/home/home.html',					 
+							controller: 'homeController',
+					 		controllerAs: 'homeVM'
+					 	}
+					 }
 				})
-			$urlRouterProvider.otherwise('/home');
+			
 		}
 })()

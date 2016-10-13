@@ -1,4 +1,21 @@
-<html>
-	<md-content flex>
-	</md-content>
-</html>
+  <md-content flex md-scroll-y layout-fill layout-padding>
+  	<div layout="row" layout-align="center center">
+  		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+  			<md-card-content>
+           		<h3> Courses </h3>
+           		<md-list>
+           			<md-item ng-repeat="semester in homeVM.semesters">
+           				<md-item-content>
+           					 	<div class="md-tile-content">
+           					 		{{semester.name}}
+           					 	</div>
+           				</md-item-content>
+           				<md-divider  hide-sm ng-if="!$last"></md-divider>
+           				<md-divider hide-gt-sm ng-if="!$last"></md-divider>
+           			</md-item>
+           		</md-list>
+     		</md-card-content>
+   		 </md-card>
+   	</div>
+  </md-content>
+    <md-button ng-click="homeVM.addItem2()">Test</md-button>

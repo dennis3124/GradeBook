@@ -17,8 +17,8 @@
 							controller: 'sideBarController',
 							controllerAs: 'sidebarVM'
 						}
-					}
-					
+					},
+					abstract: true
 				})
 		$urlRouterProvider.otherwise('/home');
 		}

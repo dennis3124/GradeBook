@@ -1,5 +1,5 @@
 
 (function(){
-	angular.module('GradeBook', ['home','ui.router', 'ngMaterial']);
+	angular.module('GradeBook', ['ui.router', 'ngMaterial']);
 
 })()

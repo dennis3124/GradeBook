@@ -1,6 +1,6 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('homeController', ['$mdDialog', 'studentService', '$http' ,function($mdDialog,studentService,$http){
+		.controller('homeController', ['$mdDialog', 'studentService', '$cookies' ,function($mdDialog,studentService,$cookies){
 
 			var vm = this;
 			vm.students = [];
@@ -37,7 +37,10 @@
 			vm.addItem2 = function() {
 				studentService.postSemesters(semester1);
 			};
-
+			vm.goToGrades = function(courseName) {
+				$cookies.put('course', courseName);
+				$state.go('root.grade');
+			}
 
 		}]);
 		

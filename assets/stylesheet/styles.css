@@ -13,3 +13,10 @@ md-content.md-default-theme {
 md-card {
 	margin-top: 7em;
 }
+.calculate-button{
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+}

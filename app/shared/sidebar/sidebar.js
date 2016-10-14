@@ -17,6 +17,9 @@
 			vm.goToHome = function() {
 				$state.go('root.home')
 			}
+			vm.goToCalc = function() {
+				$state.go('root.calculator')
+			}
 		}])
 
 })()

@@ -10,9 +10,9 @@
 				vm.semesterId = vm.semester._id;
 			studentService.getCourses(vm.semesterId).then(function(data) {
 				vm.courses = data.data;
-				console.log(vm.courses);
+				//console.log(vm.courses);
 			});	
-				console.log(vm.semesterId);
+				//console.log(vm.semesterId);
 			});
 
 			
@@ -39,9 +39,22 @@
 			vm.goToGrades = function(course) {
 				$cookies.put('courseUniqueId',course._id);
 				$state.go('root.grade');
-			}
+			};
+
+			vm.showAdvanced = function(ev) {
+			    $mdDialog.show({
+			      //controller: calculatorDialogController,
+			      //controllerAs: calculatorDialogVM,
+			      templateUrl: 'app/components/calculator/dialog/dialog.html',
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+			    })
+			  };
 
 		}])
+
 
 
 })()

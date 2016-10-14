@@ -22,7 +22,7 @@
 			}).then(function(data) {
 				studentService.getCourses(vm.semesterId).then(function(data) {
 					vm.courses = data.data;
-					console.log(vm.courses);
+					//console.log(vm.courses);
 				})
 			})
 

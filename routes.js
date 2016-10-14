@@ -109,7 +109,17 @@ module.exports = function(app) {
 		}
 	});
 
-
+	//get individual course
+	app.get('/api/course/:courseId', function(req,res){
+		Courses.find({
+			_id: req.params.courseId
+		},function(err,course){
+			if (err) 
+				res.send(err);
+			
+			res.json(course);
+		})
+	});
 
 	app.post('/api/students', function(req, res) {
 

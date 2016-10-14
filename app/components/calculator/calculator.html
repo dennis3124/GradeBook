@@ -13,7 +13,7 @@
                 <md-item  ng-repeat="course in calculatorVM.courses">
                   <md-item-content>
                     <md-menu-item>
-                      <md-button ng-click="calculatorVM.goToGrades(course)">
+                      <md-button ng-click="calculatorVM.showAdvanced($event)">
                         <div layout="column">
                         <h3>{{course.courseId}}: &nbsp
                         {{course.courseName}} </h3>

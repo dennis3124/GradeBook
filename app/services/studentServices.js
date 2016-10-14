@@ -69,8 +69,17 @@
 					})
 
 			};
+			//get specific course
+			var getCourse = function(courseId) {
+				return $http.get('http://localhost:27017/api/course/' + courseId).then(function(data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
 
 				return {
+					getCourse: getCourse,
 					postCourse: postCourse,
 					getSemester:getSemester,
 					getCourses: getCourses,

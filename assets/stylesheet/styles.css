@@ -24,3 +24,13 @@ md-card {
 .dialog-size{
 	width: 50em;
 }
+
+.md-button.md-fab {
+	line-height: 68px;
+}
+
+.activeTab {
+	color: rgb(255,255,255);
+    background-color: rgb(255,87,34);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+}

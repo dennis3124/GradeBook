@@ -20,6 +20,18 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/api/semester/:semesterId', function(req,res) {
+		//get the semester with the semesterID
+		Semesters.find({
+			_id: req.params.semesterId
+		}, function(err,semester){
+			if(err)
+					res.send(err)
+			res.json(semester);
+		});
+	});
+
+	//get all courses with the semesterID
 	app.get('/api/courses/:semesterId',function(req,res){
 		Courses.find({
 			semesterId: req.params.semesterId
@@ -53,10 +65,12 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/api/grades', function(req,res) {
+
+	app.post('/api/courses', function(req,res) {
 		Courses.create({
 			courseName: req.body.courseName,
-			semesterId: req.body.semesterId
+			courseId: req.body.courseId,
+			semesterId: req.body.semesterId,
 		},function(err,data) {
 			if (err)
 				res.send(err);

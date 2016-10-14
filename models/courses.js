@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var courses = new Schema( {
 	courseName: String,
+	courseId: String,
 	semesterId: String
 })
 // define student model

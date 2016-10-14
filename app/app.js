@@ -1,5 +1,5 @@
 
 (function(){
-	angular.module('GradeBook', ['ui.router', 'ngMaterial', 'ngCookies']);
+	angular.module('GradeBook', ['ngMdIcons','ui.router', 'ngMaterial', 'ngCookies']);
 
 })()

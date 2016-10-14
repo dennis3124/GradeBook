@@ -121,6 +121,53 @@ module.exports = function(app) {
 
 	});
 
+
+	app.post('/api/section', function(req, res) {
+
+		Section.create({
+			sectionName: req.body.sectionName,
+			courseId: req.body.courseId
+		},function(err,data){
+			if (err)
+				res.send(err);
+		});
+
+	});
+	app.post('/api/grade', function(req, res) {
+
+		Grade.create({
+			grade: req.body.grade,
+			sectionId: req.body.sectionId,
+			totalGrade: req.body.totalGrade
+		},function(err,data){
+			if (err)
+				res.send(err);
+		});
+
+	});
+
+	app.get('/api/grade/:sectionId', function(req,res) {
+		// use mongoose to get current grade with the section ID
+		Grade.find({
+			sectionId: req.params.studentId,
+		},function(err, grades) {
+			if (err) // Error handling
+				res.send(err);
+			res.json(grades); // return all students in JSON
+		});
+	});
+
+	app.get('/api/section/:courseId', function(req,res) {
+		// use mongoose to get sections with course ID
+		Section.find({
+			courseId: req.params.studentId,
+		},function(err, sections) {
+			if (err) // Error handling
+				res.send(err);
+			res.json(sections); // return all students in JSON
+		});
+	});
+
 	// Any routes to handle creating or deleting goes here?
 	
 	// Route to handle angular requests

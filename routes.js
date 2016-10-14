@@ -4,6 +4,8 @@
 var Student = require('./models/student');
 var Semesters = require('./models/semesters');
 var Courses = require('./models/courses');
+var Section = require('./models/section');
+var Grade = require('./models/grade');
 
 module.exports = function(app) {
 	// server routes

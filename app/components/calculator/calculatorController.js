@@ -12,7 +12,7 @@
 			    $mdDialog.show({
 			      //controller: calculatorDialogController,
 			      //controllerAs: calculatorDialogVM,
-			      templateUrl: 'app/components/calculator/dialog/dialog.html',
+			      templateUrl: 'app/components/calculator/popup.html',
 			      parent: angular.element(document.body),
 			      targetEvent: ev,
 			      clickOutsideToClose:true,

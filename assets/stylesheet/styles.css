@@ -20,3 +20,7 @@ md-card {
     left: 20px;
     position: absolute;
 }
+
+.dialog-size{
+	width: 50em;
+}

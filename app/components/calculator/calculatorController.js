@@ -7,8 +7,20 @@
 					alert("Hello")
 				}
 			}
+			
+		 	vm.showAdvanced = function(ev) {
+			    $mdDialog.show({
+			      //controller: calculatorDialogController,
+			      //controllerAs: calculatorDialogVM,
+			      templateUrl: 'app/components/calculator/dialog/dialog.html',
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+			    })
+			  };
+		}])
 
-		}]);
 
 })()
 

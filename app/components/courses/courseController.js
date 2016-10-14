@@ -8,7 +8,7 @@
 			//get the courses for this semester
 			studentService.getCourses(vm.semesterId).then(function(data) {
 				vm.courses = data.data;
-				console.log(vm.courses);
+				//console.log(vm.courses);
 			});
 
 			studentService.getSemester(vm.semesterId).then(function(data){
@@ -18,9 +18,8 @@
 			});
 
 			// go to the grades for this course 
-			vm.goToGrades = function(courseName) {
-				//console.log('test');
-				$cookies.put('course', courseName);
+			vm.goToGrades = function(course) {
+				$cookies.put('courseUniqueId',course._id);
 				$state.go('root.grade');
 			}
 
@@ -30,10 +29,15 @@
 				 		clickOutsideToClose:true,
 						templateUrl: 'app/components/courses/dialog/courseDialog.html',
 						controller: 'courseDialogController',
+						locals: {
+							semesterId: vm.semesterId
+						},
 						controllerAs: 'courseDialogVM'
-					}).then(function(data){
-						vm.newCourse = {courseName:data.courseName,semesterId:vm.semesterId,courseId:data.courseID};
-						studentService.postCourse(vm.newCourse);
+					}).then(function(){
+						studentService.getCourses(vm.semesterId).then(function(data) {
+							vm.courses = data.data;
+							//console.log(vm.courses);
+						});
 					})
 			}
 		}]);

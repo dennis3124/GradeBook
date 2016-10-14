@@ -9,10 +9,10 @@
            				<md-item-content ng-repeat="semester in semesterVM.semesters">
                   <md-menu-item>
                   <md-button ng-click="semesterVM.goToSemester(semester._id)">
-           					 	<div class="dashboard-courses">
-           					 		{{semester.name}}
-                        {{semester.year}}
-           					 	</div>
+           					 	<div layout="column">
+           					 		<h3>{{semester.name}} 
+                        {{semester.year}}</h3>
+           					 	</div> 
                       </md-button>
                       </md-menu-item>
                       <md-divider  hide-sm ng-if="!$last"></md-divider>

@@ -10,14 +10,14 @@
                 </h2>
               </div>
               <md-list>
-                <md-item>
-                  <md-item-content ng-repeat="course in courseVM.courses">
+                <md-item  ng-repeat="course in courseVM.courses">
+                  <md-item-content>
                     <md-menu-item>
-                      <md-button ng-click="courseVM.goToGrades(course.courseName)">
-                        <div class="dashboard-courses">
-                        {{course.courseName}}
-                        {{course.courseId}}
-                      </div>      
+                      <md-button ng-click="courseVM.goToGrades(course)">
+                        <div layout="column">
+                        <h3>{{course.courseId}}: &nbsp
+                        {{course.courseName}} </h3>
+                      </div>   
                        </md-button>
                       </md-menu-item>
                     <md-divider  hide-sm ng-if="!$last"></md-divider>

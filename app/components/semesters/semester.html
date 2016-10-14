@@ -1,13 +1,14 @@
+   
   <md-content flex md-scroll-y layout-fill layout-padding>
-  	<div layout="row" layout-align="center center">
-  		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+    <div layout="row" layout-align="center center">
+       <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
   			<md-card-content>
            		<h3> Semesters </h3>
            		<md-list>
            			<md-item>
            				<md-item-content ng-repeat="semester in semesterVM.semesters">
                   <md-menu-item>
-                  <md-button ng-click="">
+                  <md-button ng-click="semesterVM.goToSemester(semester._id)">
            					 	<div class="dashboard-courses">
            					 		{{semester.name}}
                         {{semester.year}}
@@ -16,11 +17,13 @@
                       </md-menu-item>
                       <md-divider  hide-sm ng-if="!$last"></md-divider>
            				</md-item-content>
-           			
            			</md-item>
            		</md-list>
      		</md-card-content>
    		 </md-card>
    	</div>
   </md-content>
-    <md-button ng-click="homeVM.addItem2()">Test</md-button>
+
+      <md-button aria-label="menu" class="md-fab md-primary md-raised md-fab-bottom-right">
+          <ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>
+      </md-button>

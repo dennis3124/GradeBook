@@ -9,6 +9,9 @@
 			vm.courses = [];
 			vm.semesterId;
 
+			//THIS IS HARDCODED TO TEST 
+			$cookies.put('studentId',"0027756773");
+
 			studentService.getCurrentSemester("0027756773").then(function(data){
 				vm.currentSemester = data.data;
 				vm.currentSemester= vm.currentSemester[0];

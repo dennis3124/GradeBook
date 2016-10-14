@@ -1,0 +1,42 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form name="SemesterForm" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add Semester</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content dialog-size">
+          <h2> Semester Name </h2>
+          <md-input-container flex class="md-block">
+             <input name="SemesterName"  placeholder="Enter Semester Name" ng-model="semesterDialogVM.semester.name" required >
+             <div ng-messages="SemesterForm.SemesterName.$error">
+               <div ng-message="required">This is required.</div>
+             </div>
+          </md-input-container>
+
+          <h2> Semester Year </h2>
+       <md-input-container>
+             <input type="number" ng-pattern="/^[0-9]{4}$/" name="SemesterYear" placeholder="Enter Semester Year" ng-model="semesterDialogVM.semester.year" required >
+             <div ng-messages="SemesterForm.SemesterYear.$error">
+               <div ng-message="required">This is required.</div>
+               <div ng-message="pattern">Format: #### </div>
+             </div>
+          </md-input-container>
+          <div flex></div>
+        <md-checkbox ng-model="semesterDialogVM.semester.currentSemester" aria-label="Finished?">
+            Current Semester
+        </md-checkbox>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="end end">
+      <span flex="100"></span>
+      <md-button ng-disabled="!SemesterForm.$valid" class="md-warn md-raised" md-align="center" ng-click="semesterDialogVM.submitSemester()">
+        Submit
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

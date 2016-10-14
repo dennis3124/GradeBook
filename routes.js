@@ -77,17 +77,34 @@ module.exports = function(app) {
 		})
 	})
 	app.post('/api/semesters', function(req, res) {
-	
-		Semesters.create({
-			currentSemester: req.body.currentSemester,
-			studentId: req.body.studentId,
-			year: req.body.year,
-			name: req.body.name,
-		},function(err,data){
-			if (err)
-				res.send(err);
-		});
+		if(req.body.currentSemester==true) {
+				Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
+					Semesters.create({
+				 	currentSemester: req.body.currentSemester,
+				 	studentId: req.body.studentId,
+				 	year: req.body.year,
+				 	name: req.body.name,
+				 },function(err,data){
+			 		if (err)
+		 				res.send(err);
+				 });
 
+				if(err) {
+					res.send(err);
+				}
+				})
+		}
+		else {
+		 Semesters.create({
+		 	currentSemester: req.body.currentSemester,
+		 	studentId: req.body.studentId,
+		 	year: req.body.year,
+		 	name: req.body.name,
+		 },function(err,data){
+		 	if (err)
+		 		res.send(err);
+		 });
+		}
 	});
 
 

@@ -14,6 +14,7 @@
 			vm.home = $state.is('root.home');
 			vm.semester = $state.is('root.semester');
 			vm.calculator = $state.is('root.calculator');
+			vm.gpa = $state.is('root.gpa');
 			vm.goToSem = function() {
 				$state.go('root.semester');
 				$mdSidenav('left').toggle();
@@ -28,6 +29,10 @@
 				$mdSidenav('left').toggle();
 
 			};
+			vm.goToGpa = function() {
+				$state.go('root.gpa')
+				$mdSidenav('left').toggle();
+			}
 	
 		}])
 

@@ -1,0 +1,31 @@
+  <md-content flex md-scroll-y layout-fill layout-padding>
+    <div layout="row" layout-align="center center">
+       <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+        <md-card-content>
+              <div> 
+              <span flex="100"></span>
+                <h2>
+                {{calculatorVM.semester.name}} 
+                {{calculatorVM.semester.year}}
+                </h2>
+              </div>
+              <md-list>
+                <md-item  ng-repeat="course in gpaVM.courses">
+                  <md-item-content>
+                    <md-menu-item>
+                      <md-button ng-click="gpaVM.showAdvanced($event)">
+                        <div layout="column">
+                        <h3>{{course.courseId}}: &nbsp
+                        {{course.courseName}} </h3>
+                      </div>   
+                       </md-button>
+                      </md-menu-item>
+                    <md-divider  hide-sm ng-if="!$last"></md-divider>
+                  </md-item-content>
+                
+                </md-item>
+              </md-list>
+        </md-card-content>
+       </md-card>
+    </div>
+    </md-content>

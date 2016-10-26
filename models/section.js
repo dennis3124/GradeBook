@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var section = new Schema( {
 	courseId: String,
-	sectionName: String
+	sectionName: String,
+	weight: String,
 })
 // define student model
 // module.export allows us to pass this to other files when it is called.

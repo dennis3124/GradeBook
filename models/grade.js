@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var grade = new Schema( {
 	sectionId: String,
+	name:String,
 	grade: String,
 	totalGrade: String
 })

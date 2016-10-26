@@ -27,7 +27,7 @@
 					}).then(function(){
 						studentService.getSemesters(vm.studentId).then(function(data) {
 						vm.semesters = data.data;
-						console.log(vm.semesters);
+						//console.log(vm.semesters);
 						});
 					})
 			}

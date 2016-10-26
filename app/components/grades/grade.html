@@ -1,9 +1,23 @@
   <md-content flex md-scroll-y layout-fill layout-padding>
   	<div layout="row" layout-align="center center">
-  		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+  		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding class="gradeClass">
   			<md-card-content>
            		<h3> {{gradeVM.course.courseName}} </h3>
      		</md-card-content>
+     		<md-tabs md-dynamic-height md-border-bottom>
+     			<md-tab label="overview">
+     				<md-content class="md-padding" layout="column">
+     					<h1 class="md-display-1">Overview</h1>
+     					<span flex></span>
+    					<div ng-repeat="section in gradeVM.section">
+    						{{section.sectionName}}
+    					</div>
+     				</md-content>
+     			</md-tab>
+     		</md-tabs> 
    		 </md-card>
    	</div>
   </md-content>
+  <md-button aria-label="menu" class="md-fab md-primary md-raised md-fab-bottom-right" ng-click="gradeVM.openDialog($event)">
+          <ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>
+      </md-button>

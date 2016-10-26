@@ -73,6 +73,8 @@ module.exports = function(app) {
 			courseName: req.body.courseName,
 			courseId: req.body.courseId,
 			semesterId: req.body.semesterId,
+			creditHour: req.body.creditHour,
+			letterGrade: req.body.letterGrade
 		},function(err,data) {
 			if (err)
 				res.send(err);
@@ -86,6 +88,7 @@ module.exports = function(app) {
 				 	studentId: req.body.studentId,
 				 	year: req.body.year,
 				 	name: req.body.name,
+				 	GPA: req.body.GPA,
 				 },function(err,data){
 			 		if (err)
 		 				res.send(err);
@@ -137,8 +140,9 @@ module.exports = function(app) {
 	app.post('/api/section', function(req, res) {
 
 		Section.create({
-			sectionName: req.body.sectionName,
-			courseId: req.body.courseId
+			sectionName: req.body.name,
+			courseId: req.body.courseId,
+			weight: req.body.weight,
 		},function(err,data){
 			if (err)
 				res.send(err);
@@ -150,7 +154,8 @@ module.exports = function(app) {
 		Grade.create({
 			grade: req.body.grade,
 			sectionId: req.body.sectionId,
-			totalGrade: req.body.totalGrade
+			totalGrade: req.body.totalGrade,
+			name: req.body.name,
 		},function(err,data){
 			if (err)
 				res.send(err);
@@ -161,7 +166,7 @@ module.exports = function(app) {
 	app.get('/api/grade/:sectionId', function(req,res) {
 		// use mongoose to get current grade with the section ID
 		Grade.find({
-			sectionId: req.params.studentId,
+			sectionId: req.params.sectionId,
 		},function(err, grades) {
 			if (err) // Error handling
 				res.send(err);
@@ -172,7 +177,7 @@ module.exports = function(app) {
 	app.get('/api/section/:courseId', function(req,res) {
 		// use mongoose to get sections with course ID
 		Section.find({
-			courseId: req.params.studentId,
+			courseId: req.params.courseId,
 		},function(err, sections) {
 			if (err) // Error handling
 				res.send(err);

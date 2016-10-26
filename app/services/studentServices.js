@@ -78,7 +78,25 @@
 					})
 			}
 
+			var postSection = function(sectionObj) {
+					return $http.post('http://localhost:27017/api/section', sectionObj).then(function(err,data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
+
+			var getSection = function(courseId) {
+					return $http.get('http://localhost:27017/api/section/' + courseId).then(function(data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
+
 				return {
+					getSection: getSection,
+					postSection:postSection,
 					getCourse: getCourse,
 					postCourse: postCourse,
 					getSemester:getSemester,

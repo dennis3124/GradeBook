@@ -34,3 +34,8 @@ md-card {
     background-color: rgb(255,87,34);
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 }
+
+.gradeClass {
+    min-height: 30em;
+
+}

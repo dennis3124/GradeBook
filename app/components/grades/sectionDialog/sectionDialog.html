@@ -1,0 +1,41 @@
+<md-dialog>
+  <form name="SectionForm" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add sections for this class</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content dialog-size">
+          <h2> Section Name </h2>
+          <md-input-container flex class="md-block">
+             <input name="SectionName"  placeholder="Enter Section Name e.g (Midterm 1)" ng-model="sectionDialogVM.section.name" required >
+             <div ng-messages="SectionForm.SectionName.$error">
+               <div ng-message="required">This is required.</div>
+             </div>
+          </md-input-container>
+
+          <h2> Weight </h2>
+       <md-input-container>
+             <input type="number" ng-pattern="/^[0-9]{2}$/" name="SectionWeight" placeholder="Enter Weightage" ng-model="sectionDialogVM.section.weight" required >
+             <div ng-messages="SectionForm.SectionWeight.$error">
+               <div ng-message="required">This is required.</div>
+               <div ng-message="pattern">Format: ## % </div>
+             </div>
+          </md-input-container>
+          <span>%</span>
+          <div flex></div>
+        
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="end end">
+      <span flex="100"></span>
+      <md-button ng-disabled="!SectionForm.$valid" class="md-warn md-raised" md-align="center" ng-click="sectionDialogVM.submitSection()">
+        Submit
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -4,7 +4,7 @@
   			<md-card-content>
            		<h3> {{gradeVM.course.courseName}} </h3>
      		</md-card-content>
-     		<md-tabs md-dynamic-height md-border-bottom>
+     		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom>
      			<md-tab label="overview">
      				<md-content class="md-padding" layout="column">
      					<h1 class="md-display-2">Overview</h1>
@@ -70,6 +70,6 @@
    		 </md-card>
    	</div>
   </md-content>
-  <md-button aria-label="menu" class="md-fab md-primary md-raised md-fab-bottom-right" ng-click="gradeVM.openDialog($event)">
+  <md-button aria-label="menu" ng-class="{ invisible: gradeVM.selectedTab !=0 }" class="md-fab md-primary md-raised md-fab-bottom-right" ng-click="gradeVM.openDialog($event)">
           <ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>
-      </md-button>
+  </md-button>

@@ -21,9 +21,6 @@
 					vm.section[i].showInput = false;
 					 vm.setGrades(vm.section[i]._id,i);
 				}
-				//console.log(vm.section);
-			}).then(function(){
-				console.log(vm.section);
 			})
 				
 		
@@ -56,14 +53,23 @@
 				vm.newGrade.sectionId = sectionObj._id;
 				studentService.postGrade(vm.newGrade);
 				vm.section[index].showInput = false;
-
+				studentService.getSection(vm.courseUniqueId).then(function(data){
+					vm.section = data.data;
+					//console.log(vm.section.length);
+					for(var i = 0; i < vm.section.length; i++) {
+						vm.section[i].showInput = false;
+						 vm.setGrades(vm.section[i]._id,i);
+					}
+				})
+				vm.newGrade = {};
 			}
 
 			vm.cancel = function(index) {
 				vm.newGrade = {};
 				vm.section[index].showInput = false;
 
-			}
+			};
+			vm.test = true;
 
 		}]);
 })() 	

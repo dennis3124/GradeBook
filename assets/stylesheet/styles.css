@@ -44,3 +44,25 @@ md-card {
     min-height: 30em;
 
 }
+div.ng-binding.ng-scope.layout-row {
+    padding:1em;
+}
+.md-button.md-fab.md-fab-bottom-right {
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed !important;
+}
+
+.invisible {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    transition: transform 0.3s linear;
+}
+
+/*.md-fab {
+    transform: scale(1);
+    transition: transform 0.3s linear;
+}*/

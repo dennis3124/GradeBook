@@ -7,6 +7,9 @@
 			vm.section = {};
 			vm.showInput = false;
 			//console.log(vm.courseUniqueId);
+
+
+
 			studentService.getCourse(vm.courseUniqueId).then(function(data){
 				vm.course = data.data;
 				vm.course = vm.course[0];
@@ -16,12 +19,20 @@
 				//console.log(vm.section.length);
 				for(var i = 0; i < vm.section.length; i++) {
 					vm.section[i].showInput = false;
-					//console.log(i);
+					 vm.setGrades(vm.section[i]._id,i);
 				}
 				//console.log(vm.section);
+			}).then(function(){
+				console.log(vm.section);
 			})
 				
-
+		
+			vm.setGrades = function(sectionId,i){
+				studentService.getGrade(sectionId).then(function(data){
+						vm.section[i].grades = data.data;
+				})
+				
+			}
 			vm.openDialog = function(event) {
 					var dialog = $mdDialog.show({
 						targetEvent:event,
@@ -44,6 +55,12 @@
 				//console.log(sectionObj);
 				vm.newGrade.sectionId = sectionObj._id;
 				studentService.postGrade(vm.newGrade);
+				vm.section[index].showInput = false;
+
+			}
+
+			vm.cancel = function(index) {
+				vm.newGrade = {};
 				vm.section[index].showInput = false;
 
 			}

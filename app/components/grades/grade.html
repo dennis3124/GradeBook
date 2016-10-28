@@ -15,12 +15,27 @@
     						({{section.weight}}%)
     						</h3>
     						<md-divider></md-divider>
+    							<div ng-repeat="grade in section.grades" layout="row">
+    								<span flex="5"></span>
+    								{{grade.name}}
+    								<span flex></span>
+    								{{grade.grade}} /
+    								{{grade.totalGrade}}
+    							</div>
     					</div>
      				</md-content>
      			</md-tab>
      			<md-tab ng-repeat="section in gradeVM.section" label="{{section.sectionName}}">
      					<md-content class="md-padding" layout="column">
-     					
+     					<div layout="row" ng-repeat="grade in section.grades" class="md-padding">
+     						<h3>{{grade.name}} </h3>
+     						<span flex></span>
+     						<h3> 
+    							{{grade.grade}} /
+    							{{grade.totalGrade}}
+    						</h3>	
+    						<md-divider ng-if="!$last"></md-divider>
+     					</div>
      					<form name="gradeForm">
      						<div layout="row" ng-if="section.showInput">
      							<md-input-container flex >
@@ -36,6 +51,9 @@
      							<md-button style="margin-top: 8px" aria-label="addGrade" class="md-icon-button" ng-click="gradeVM.submit(section, $index)">
         							<ng-md-icon  icon="done" size="30"></ng-md-icon>
       							</md-button>
+      							<md-button style="margin-top: 8px" aria-label="closeInput" class="md-icon-button" ng-click="gradeVM.cancel($index)">
+        							<ng-md-icon  icon="close" size="30"></ng-md-icon>
+      							</md-button> 
 
      						</div>
      						<div layout="row">

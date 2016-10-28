@@ -91,10 +91,27 @@
 						return data;
 					}).catch(function(err){
 						console.log(err);
-					})
+					})			
 			}
 
+			var postGrade = function(gradeObj) {
+				return $http.post('http://localhost:27017/api/grade', gradeObj).then(function(err,data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
+			var getGrade = function(sectionId) {
+					return $http.get('http://localhost:27017/api/grade/' + sectionId).then(function(data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})	
+			}
+				
 				return {
+					getGrade: getGrade,
+					postGrade: postGrade,
 					getSection: getSection,
 					postSection:postSection,
 					getCourse: getCourse,

@@ -24,6 +24,15 @@
                <div ng-message="required">This is required.</div>
              </div>
           </md-input-container>
+          <h2> Credit Hours </h2>
+          <md-input-container>
+            <label>Credit Hours</label>
+            <md-select ng-model="courseDialogVM.course.creditHours" required>
+            <md-option ng-repeat="cHour in courseDialogVM.hours" ng-value="cHour">
+              {{cHour}}
+            </md-option>
+          </md-select>
+        </md-input-container>
     </md-dialog-content>
 
     <md-dialog-actions layout="row" layout-align="end end">

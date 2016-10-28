@@ -73,7 +73,7 @@ module.exports = function(app) {
 			courseName: req.body.courseName,
 			courseId: req.body.courseId,
 			semesterId: req.body.semesterId,
-			creditHour: req.body.creditHour,
+			creditHours: req.body.creditHours,
 			letterGrade: req.body.letterGrade
 		},function(err,data) {
 			if (err)

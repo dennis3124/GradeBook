@@ -7,12 +7,46 @@
      		<md-tabs md-dynamic-height md-border-bottom>
      			<md-tab label="overview">
      				<md-content class="md-padding" layout="column">
-     					<h1 class="md-display-1">Overview</h1>
+     					<h1 class="md-display-2">Overview</h1>
      					<span flex></span>
     					<div ng-repeat="section in gradeVM.section">
+    						<h3>
     						{{section.sectionName}}
+    						({{section.weight}}%)
+    						</h3>
+    						<md-divider></md-divider>
     					</div>
      				</md-content>
+     			</md-tab>
+     			<md-tab ng-repeat="section in gradeVM.section" label="{{section.sectionName}}">
+     					<md-content class="md-padding" layout="column">
+     					
+     					<form name="gradeForm">
+     						<div layout="row" ng-if="section.showInput">
+     							<md-input-container flex >
+     								<input type="text" name="GradeName" placeholder="Enter Grade Name eg (Midterm 1)" ng-model="gradeVM.newGrade.name" required>
+     							</md-input-container>
+     								<span flex></span>
+     							<md-input-container>
+     								<input style="width:15em" type="number" name="GradeReceived" placeholder="Enter Grade Received eg (20)" ng-model="gradeVM.newGrade.grade" required>
+     							</md-input-container>
+     							<md-input-container>
+     								<input style="width:15em" type="number" name="GradeTotal" placeholder="Enter Grade Total eg (25)" ng-model="gradeVM.newGrade.totalGrade" required>
+     							</md-input-container>
+     							<md-button style="margin-top: 8px" aria-label="addGrade" class="md-icon-button" ng-click="gradeVM.submit(section, $index)">
+        							<ng-md-icon  icon="done" size="30"></ng-md-icon>
+      							</md-button>
+
+     						</div>
+     						<div layout="row">
+     							<h2>Add a Grade for {{section.sectionName}} </h2>
+     							<span flex></span>
+     							<md-button aria-label="addGrade" class="md-fab md-warn md-raised" ng-click="section.showInput = true">
+        							<ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>
+      							</md-button>
+      						</div>
+      						</form>
+     					</md-content>
      			</md-tab>
      		</md-tabs> 
    		 </md-card>

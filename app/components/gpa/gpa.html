@@ -13,10 +13,13 @@
                   <md-item-content>
                     <md-menu-item>
                       <md-button ng-click="gpaVM.showAdvanced($event)">
-                        <div layout="column">
-                        <h3>{{semester.name}}: &nbsp
-                        {{semester.year}} </h3>
-                      </div>   
+                        <div flex="100" class="semester">
+                          <h3 class="left">{{semester.name}}: &nbsp
+                          {{semester.year}} </h3>
+                        </div>  
+                        <div class="semester">
+                          <h3 class="right"> 3.00</h3>
+                        </div>
                        </md-button>
                       </md-menu-item>
                     <md-divider  hide-sm ng-if="!$last"></md-divider>
@@ -26,5 +29,8 @@
               </md-list>
         </md-card-content>
        </md-card>
+    </div>
+    <div layout="row" layout-align="center end">
+      <h3>Cumulative GPA: 3.00</h3>
     </div>
     </md-content>

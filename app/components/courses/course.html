@@ -2,14 +2,23 @@
     <div layout="row" layout-align="center center">
        <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
         <md-card-content>
-              <div> 
+          <div layout="row">
+              <div class="semester"> 
               <span flex="100"></span>
                 <h2>
                 {{courseVM.semester.name}} 
                 {{courseVM.semester.year}}
                 </h2>
               </div>
-              <md-list>
+              <span flex></span>
+              <div class="semester">
+                <h2>
+                  Total Credit Hours: {{courseVM.sum}}
+                </h2>
+              </div>
+          </div>
+          <div>
+              <md-list layout="column">
                 <md-item  ng-repeat="course in courseVM.courses">
                   <md-item-content>
                     <md-menu-item>
@@ -25,6 +34,7 @@
                 
                 </md-item>
               </md-list>
+          </div>
         </md-card-content>
        </md-card>
     </div>

@@ -6,28 +6,24 @@
 			vm.studentId = $cookies.get('studentId');
 			studentService.getSemesters(vm.studentId).then(function(data) {
 				vm.semesters = data.data;
-				console.log(vm.semesters);
+				//console.log(vm.semesters);
 			});
 
-			
 
-			vm.openDialog = function(event) {
-					var dialog = $mdDialog.show({
-						targetEvent:event,
-				 		clickOutsideToClose:true,
-						templateUrl: 'app/components/courses/dialog/courseDialog.html',
-						controller: 'courseDialogController',
-						locals: {
-							semesterId: vm.semesterId
-						},
-						controllerAs: 'courseDialogVM'
-					}).then(function(){
-						studentService.getCourses(vm.semesterId).then(function(data) {
-							vm.courses = data.data;
-							//console.log(vm.courses);
-						});
-					})
-			}
+			vm.showAdvanced = function(ev, semester) {
+			    $mdDialog.show({
+			      controller: "gpaDialogController",
+			      controllerAs: "gpaDialogVM",
+			      templateUrl: 'app/components/gpa/dialog/gpaDialog.html',
+			      parent: angular.element(document.body),
+			      locals: {
+			      		semester: semester
+			      },
+			      targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+			    })
+			  };
 
 		}])
 

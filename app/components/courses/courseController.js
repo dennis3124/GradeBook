@@ -9,7 +9,11 @@
 			//get the courses for this semester
 			studentService.getCourses(vm.semesterId).then(function(data) {
 				vm.courses = data.data;
-				//console.log(vm.courses);
+				console.log(vm.courses);
+				vm.sum = 0;
+				for (var i = 0; i < vm.courses.length; i++) {
+					vm.sum += parseInt(vm.courses[i].creditHours);				}
+					console.log("hi");
 			});
 
 			studentService.getSemester(vm.semesterId).then(function(data){

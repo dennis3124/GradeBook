@@ -66,3 +66,11 @@ div.ng-binding.ng-scope.layout-row {
     transform: scale(1);
     transition: transform 0.3s linear;
 }*/
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}

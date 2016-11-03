@@ -1,0 +1,45 @@
+<md-dialog aria-label="GPA Results">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Course Breakdown</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+              <div class="md-dialog-content dialog-size"> 
+                <h2>
+                {{gpaDialogVM.semester.name}} 
+                {{gpaDialogVM.semester.year}}
+                </h2>
+              <md-list>
+                <md-item  ng-repeat="course in gpaDialogVM.courses">
+                  <md-item-content>
+                    <md-menu-item>
+                      <md-button>
+                        <div flex="100" class="course">
+                        <h3 class="left">
+                        {{course.courseId}}: &nbsp
+                        {{course.courseName}} </h3>
+                      </div>   
+                      <div class="course">
+                        <h3 class="right">B</h3>
+                      </div>
+                       </md-button>
+                      </md-menu-item>
+                    <md-divider  hide-sm ng-if="!$last"></md-divider>
+                  </md-item-content>
+                
+                </md-item>
+              </md-list>
+
+              </div>
+
+    <md-dialog-actions layout="row" layout-align="end end">
+      <md-button href="http://mycourses.purdue.edu" target="_blank" md-accent md-align="right">
+        More on BlackBoard
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

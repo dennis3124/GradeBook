@@ -187,24 +187,42 @@ module.exports = function(app) {
 			})
 	})
 
-	app.delete('api/semester/:semesterId', function(req,res) {
+	app.delete('/api/semester/:semesterId', function(req,res) {
+
 		Semesters.remove({
 			_id: req.params.semesterId}, function(err, semester) {
-				if (err)
-					console.log(err);
-				Courses.remove({semesterId: semester._id}, function(err,courses) {
+				if(err)
+					console.log(err)
+		})
+		Courses.find({semesterId: req.params.semesterId}, function(err,courses) {
+			
+			if (err)
+				console.log(err)
+			for ( var i = 0; i < courses.length; i++) {
+				Section.find({courseId: courses[i]._id}, function(err, sections) {
 					if(err)
 						console.log(err)
-					Section.remove({courseId: courses._id}, function(err,section) {
-						if (err)
-							console.log(err)
-						Grade.remove({sectionId: section._id}, function(err, grades) {
+					for( var j = 0 ; j< sections.length; j++) {
+						Grade.remove({sectionId: sections[j]._id}, function(err,grades) {
 							if(err)
-								console.log(err)
+								console.log(err);
 						})
+					}
+				}) 
+				Section.remove({courseId: courses[i]._id}, function(err,sections) {
+					if(err)
+						console.log(err);
 				})
-			})
+				
+			}
+	
 		})
+		Courses.remove({semesterId: req.params.semesterId}, function(err,courses) {
+			if (err)
+				console.log(err);
+		})
+		
+		
 	});
 
 	app.get('/api/grade/:sectionId', function(req,res) {

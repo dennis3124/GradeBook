@@ -1,7 +1,7 @@
 (function(){
 	angular.module('GradeBook')
 		
-		.controller('courseController', ['$mdDialog', 'studentService','$cookies', '$state' ,function($mdDialog,studentService,$cookies,$state){
+		.controller('courseController', ['$mdDialog', 'studentService','$cookies', '$state' , '$timeout', function($mdDialog,studentService,$cookies,$state,$timeout){
 			var vm = this;
 			vm.courses = [];
 			vm.semesterId = $cookies.get('semesterId');
@@ -9,11 +9,11 @@
 			//get the courses for this semester
 			studentService.getCourses(vm.semesterId).then(function(data) {
 				vm.courses = data.data;
-				console.log(vm.courses);
+				//console.log(vm.courses);
 				vm.sum = 0;
 				for (var i = 0; i < vm.courses.length; i++) {
-					vm.sum += parseInt(vm.courses[i].creditHours);				}
-					console.log("hi");
+					vm.sum += parseInt(vm.courses[i].creditHours);
+				}
 			});
 
 			studentService.getSemester(vm.semesterId).then(function(data){
@@ -26,7 +26,17 @@
 			vm.goToGrades = function(course) {
 				$cookies.put('courseUniqueId',course._id);
 				$state.go('root.grade');
-			}
+			};
+
+
+			vm.deleteSemester = function() {
+				studentService.deleteSemester(vm.semesterId).then(function(data) {
+				}).then(
+					$timeout(function() {
+						$state.reload('root');
+						$state.go('root.semester')
+					}, 1000))
+				}
 
 			vm.openDialog = function(event) {
 					var dialog = $mdDialog.show({
@@ -41,13 +51,14 @@
 					}).then(function(){
 						studentService.getCourses(vm.semesterId).then(function(data) {
 							vm.courses = data.data;
+							vm.sum = 0;
+							for (var i = 0; i < vm.courses.length; i++) {
+								vm.sum += parseInt(vm.courses[i].creditHours);
+							}
 							//console.log(vm.courses);
 						});
 					})
-			}
+			};
 
-			vm.deleteSection = function() {
-				
-			}
 		}]);
 })() 	

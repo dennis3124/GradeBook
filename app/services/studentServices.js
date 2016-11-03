@@ -134,7 +134,7 @@
 			}
 			
 			var deleteSemester = function(semesterId) {
-				return $http.delete('http://localhost:27017/api/semester/' + sectionId).then(function(data) {
+				return $http.delete('http://localhost:27017/api/semester/' + semesterId).then(function(data) {
 					return data;
 				}).catch(function(err) {
 					console.log(err);
@@ -142,6 +142,7 @@
 			}
 				return {
 					deleteGrades: deleteGrades,
+					deleteSemester: deleteSemester,
 					deleteCourse: deleteCourse,
 					deleteSections: deleteSections,
 					getGrade: getGrade,

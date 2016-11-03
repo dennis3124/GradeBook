@@ -1,6 +1,6 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('gradeController', ['$mdDialog', 'studentService', '$cookies', '$state' ,function($mdDialog,studentService, $cookies, $state){
+		.controller('gradeController', ['$mdDialog', 'studentService', '$cookies', '$state', '$timeout' ,function($mdDialog,studentService, $cookies, $state, $timeout){
 			var vm = this;
 			vm.courseUniqueId = $cookies.get('courseUniqueId'); 
 			vm.course = {};
@@ -42,7 +42,12 @@
 					studentService.deleteSections(vm.courseUniqueId).then(function(data) {
 						console.log(data);
 					})
-					$state.go('root.semester');
+
+					$timeout(function(){
+						$state.reload('root');
+						$state.go('root.course')
+					}, 1000)
+					
 			}
 
 			vm.deleteGrades = function(sectionid) {
@@ -81,11 +86,13 @@
 						})
 					})
 			}
-
+			vm.flag = 0;
 			vm.submit = function(sectionObj, index) {
 				//console.log(sectionObj);
 				vm.newGrade.sectionId = sectionObj._id;
-				studentService.postGrade(vm.newGrade);
+				if (vm.flag == 0) {
+					studentService.postGrade(vm.newGrade).then(vm.flag = 1);
+				};
 				vm.section[index].showInput = false;
 				studentService.getSection(vm.courseUniqueId).then(function(data){
 					vm.section = data.data;
@@ -96,6 +103,7 @@
 					}
 				})
 				vm.newGrade = {};
+				vm.flag = 0;
 			}
 
 			vm.cancel = function(index) {

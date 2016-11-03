@@ -1,14 +1,20 @@
   <md-content flex md-scroll-y layout-fill layout-padding>
   	<div layout="row" layout-align="center center">
   		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding class="gradeClass">
-  			<md-card-content>
+  			<md-card-content layout="row">
            		<h3> {{gradeVM.course.courseName}} </h3>
+           		<span flex></span>
+           		<md-button class="md-icon-button" ng-click="gradeVM.deleteCourse()">
+     						<ng-md-icon icon="delete" size="30"></ng-md-icon>
+     			</md-button>
      		</md-card-content>
      		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom>
      			<md-tab label="overview">
      				<md-content class="md-padding" layout="column">
-     					<h1 class="md-display-2">Overview</h1>
-     					<span flex></span>
+     					
+     						<h1 class="md-display-2">Overview</h1>
+     						<span flex></span>		
+     					
     					<div ng-repeat="section in gradeVM.section">
     						<h3>
     						{{section.sectionName}}
@@ -22,19 +28,27 @@
     								{{grade.grade}} /
     								{{grade.totalGrade}}
     							</div>
+    						<div layout="row">
+    							<h3> Total </h3>
+    							<span flex> </span>
+    							<h3 ng-if="section.total > 0"> {{section.totalReceived}} / {{section.total}} </h3>
+    						</div>
     					</div>
      				</md-content>
      			</md-tab>
      			<md-tab ng-repeat="section in gradeVM.section" label="{{section.sectionName}}">
      					<md-content class="md-padding" layout="column">
-     					<div layout="row" ng-repeat="grade in section.grades" class="md-padding">
-     						<h3>{{grade.name}} </h3>
-     						<span flex></span>
-     						<h3> 
-    							{{grade.grade}} /
-    							{{grade.totalGrade}}
-    						</h3>	
-    						<md-divider ng-if="!$last"></md-divider>
+     					<div ng-repeat="grade in section.grades" class="md-padding">
+     						<div layout="row">
+     							<h3>{{grade.name}} </h3>
+     							<span flex></span>
+     							<h3> 
+    								{{grade.grade}} /
+    								{{grade.totalGrade}}
+    							</h3>	
+  							</div>
+  							<md-divider ng-if="!$last"></md-divider>
+
      					</div>
      					<form name="gradeForm">
      						<div layout="row" ng-if="section.showInput">

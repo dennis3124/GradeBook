@@ -2,12 +2,15 @@
     <div layout="row" layout-align="center center">
        <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
         <md-card-content>
-              <div> 
-              <span flex="100"></span>
+              <div layout="row"> 
                 <h2>
                 {{courseVM.semester.name}} 
                 {{courseVM.semester.year}}
                 </h2>
+                <span flex></span>
+           		<md-button class="md-icon-button" ng-click="courseVM.deleteSemester()">
+     						<ng-md-icon icon="delete" size="30"></ng-md-icon>
+     			</md-button>
               </div>
               <md-list>
                 <md-item  ng-repeat="course in courseVM.courses">

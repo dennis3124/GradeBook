@@ -3,6 +3,8 @@
 		.config(['$stateProvider','$urlRouterProvider',courseRouter]);
 
 		function courseRouter($stateProvider,$urlRouterProvider) {
+			var vm = this;
+
 			$stateProvider
 				.state('root.course', {
 					 url: '/courses',
@@ -13,6 +15,7 @@
 					 		controllerAs: 'courseVM'
 					 	}
 					 }
+
 				})
 			
 		}

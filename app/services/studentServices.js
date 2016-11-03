@@ -108,8 +108,42 @@
 						console.log(err);
 					})	
 			}
-				
+
+			var deleteCourse = function(courseId) {
+				return $http.delete('http://localhost:27017/api/course/' + courseId).then(function(data) {
+					return data;
+				}).catch(function(err) {
+					console.log(err);
+				})
+			}
+			
+			var deleteSections = function(courseId) {
+				return $http.delete('http://localhost:27017/api/section/' + courseId).then(function(data) {
+					return data;
+				}).catch(function(err) {
+					console.log(err);
+				})
+			}
+
+			var deleteGrades = function(sectionId) {
+				return $http.delete('http://localhost:27017/api/grade/' + sectionId).then(function(data) {
+					return data;
+				}).catch(function(err) {
+					console.log(err);
+				})
+			}
+			
+			var deleteSemester = function(semesterId) {
+				return $http.delete('http://localhost:27017/api/semester/' + sectionId).then(function(data) {
+					return data;
+				}).catch(function(err) {
+					console.log(err);
+				})
+			}
 				return {
+					deleteGrades: deleteGrades,
+					deleteCourse: deleteCourse,
+					deleteSections: deleteSections,
 					getGrade: getGrade,
 					postGrade: postGrade,
 					getSection: getSection,

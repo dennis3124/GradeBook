@@ -1,5 +1,6 @@
 (function(){
 	angular.module('GradeBook')
+		
 		.controller('courseController', ['$mdDialog', 'studentService','$cookies', '$state' ,function($mdDialog,studentService,$cookies,$state){
 			var vm = this;
 			vm.courses = [];
@@ -39,6 +40,10 @@
 							//console.log(vm.courses);
 						});
 					})
+			}
+
+			vm.deleteSection = function() {
+				
 			}
 		}]);
 })() 	

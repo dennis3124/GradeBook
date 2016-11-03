@@ -163,6 +163,50 @@ module.exports = function(app) {
 
 	});
 
+	app.delete('/api/course/:courseId', function(req,res) {
+			Courses.remove({
+				_id: req.params.courseId}, function(err) {
+						if(err) {
+							console.log(err);
+						}
+				})
+	});
+
+	app.delete('/api/section/:courseId',function(req,res) {
+		Section.remove({
+			courseId: req.params.courseId}, function(err) {
+				if(err)
+					console.log(err);
+			})
+	})
+	app.delete('/api/grade/:sectionId', function(req,res) {
+		Grade.remove({
+			sectionId: req.params.sectionId},function(err){
+				if(err)
+					console.log(err);
+			})
+	})
+
+	app.delete('api/semester/:semesterId', function(req,res) {
+		Semesters.remove({
+			_id: req.params.semesterId}, function(err, semester) {
+				if (err)
+					console.log(err);
+				Courses.remove({semesterId: semester._id}, function(err,courses) {
+					if(err)
+						console.log(err)
+					Section.remove({courseId: courses._id}, function(err,section) {
+						if (err)
+							console.log(err)
+						Grade.remove({sectionId: section._id}, function(err, grades) {
+							if(err)
+								console.log(err)
+						})
+				})
+			})
+		})
+	});
+
 	app.get('/api/grade/:sectionId', function(req,res) {
 		// use mongoose to get current grade with the section ID
 		Grade.find({

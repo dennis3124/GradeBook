@@ -1,12 +1,25 @@
   <md-content flex md-scroll-y layout-fill layout-padding>
   	<div layout="row" layout-align="center center">
   		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding class="gradeClass">
-  			<md-card-content layout="row">
-           		<h3> {{gradeVM.course.courseName}} </h3>
-           		<span flex></span>
-           		<md-button class="md-icon-button" ng-click="gradeVM.deleteCourse()">
-     						<ng-md-icon icon="delete" size="30"></ng-md-icon>
-     			</md-button>
+  			<md-card-content layout="column">
+          <div layout="row" flex>
+            <span flex></span>
+            <div class="course" layout-align="center start">
+              <h1> {{gradeVM.course.courseName}} </h1>
+            </div>
+            <span flex></span>
+          </div>
+          <div layout="row" flex>
+            <div class="course">
+              <h3>
+               Credit Hours : {{gradeVM.course.creditHours}} 
+              </h3>
+            </div>
+            <span flex></span>
+            <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()">
+              <ng-md-icon icon="delete" size="30"></ng-md-icon>
+            </md-button>
+          </div>
      		</md-card-content>
      		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom>
      			<md-tab label="overview">

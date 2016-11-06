@@ -9,17 +9,28 @@
 
     <md-dialog-content>
       <div class="md-dialog-content dialog-size">
-        <h2>Percent of Total Grade:</h2>
-        <p>
-          You are passing.
-        </p>
-
+        <h2>{{calculatorDialogVM.course.courseId}}: &nbsp
+            {{calculatorDialogVM.course.courseName}}</h2>
+        <div ng-repeat="section in calculatorDialogVM.section">
+          <h3>
+          {{section.sectionName}}
+          {{section.weight}}%
+          </h3>
+          <div ng-repeat="grade in section.grades" layout="row">
+          <span flex = "5"></span>
+          {{grade.name}}
+          <span flex></span>
+          {{grade.grade}} /
+          {{grade.totalGrade}}
+          </div>
+        </div>
+        <div align ="right">
+        <span flex></span>Total Points: {{calculatorDialogVM.totalOverallReceived}} / {{calculatorDialogVM.totalOverall}} &nbsp 
+        </div>
+        <h4><md-progress-linear md-mode="determinate" value="{{calculatorDialogVM.actualPoints}}"></md-progress-linear></h4>
+        <h4>Actual: {{calculatorDialogVM.actualPoints}} / {{calculatorDialogVM.totalSection}}</h4>
+        <h4>Letter Grade:</h4>
         <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="assets/img/icons/menu.svg">
-
-        <h2>Percent Grade:</h2>
-        <p>
-          Still passing.
-        </p>
       </div>
     </md-dialog-content>
 

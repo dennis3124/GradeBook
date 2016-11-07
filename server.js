@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bodyParser = require("body-parser");
 var methodOverride = require('method-override');
+//var passport = require('passport');
 
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -27,6 +28,9 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+//Use passpor package
+//app.use(passport.initialize());
 
 // Config
 mongoose.connect('mongodb://localhost/gradebook');

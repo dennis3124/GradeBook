@@ -32,6 +32,8 @@
 	//console.log(vm.totalSection);
 	vm.totalOverallReceived = 0;
 	vm.totalOverall = 0;
+	vm.calculated = 0;
+	vm.actualPoints = 0;
 	vm.setGrades = function(sectionId,i){
 		studentService.getGrade(sectionId).then(function(data){
 			vm.section[i].grades = data.data;
@@ -40,12 +42,23 @@
 			for(var j = 0; j < vm.section[i].grades.length; j++){
 				vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 				vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
+				//console.log(vm.section[i].total);
+				//console.log(vm.section[i].totalReceived);
+				//console.log(vm.section[i].weight);
+				vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
+				//console.log(vm.calculated);
+				//console.log(vm.actualPoints);
+				//vm.actualPoints = parseFloat(vm.actualPoints + vm.calculated).toFixed(2);
+				console.log(vm.actualPoints);
 			}
+			console.log(vm.actualPoints);
+			vm.calculated = parseFloat(vm.actualPoints).toFixed(2);
+			console.log(vm.calculated);	
 			vm.totalOverallReceived += parseInt(vm.section[i].totalReceived);
 			//console.log(vm.totalOverallReceived);
 			vm.totalOverall += parseInt(vm.section[i].total);
 			//console.log(vm.totalOverall);
-			vm.actualPoints = parseFloat(vm.totalOverallReceived/vm.totalOverall * vm.totalSection).toFixed(2);	
+			//vm.actualPoints = parseFloat(vm.totalOverallReceived/vm.totalOverall * vm.totalSection).toFixed(2);	
 			//vm.actualPoints.round(2);
 		})
 				

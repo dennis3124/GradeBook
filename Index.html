@@ -24,10 +24,6 @@
 
   		<!-- Angular ngCookies Library -->
   		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
-
-        <!-- Jquery -->
-        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-
   		<!-- Load Angular Module -->
 		<script src="app/app.js"></script>
 
@@ -57,21 +53,15 @@
 
       
       <!-- Load CSS Files -->
-        <script src="app/components/Login/loginController.js"></script>
-        <script src="app/components/Register/registerController.js"></script>
-        <script src="app/services/authenticationService.js"></script>
-        <script src="app/services/flashService.js"></script>
-        <script src="app/services/userService.js"></script>
-       <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
-
-  		<!-- Load CSS Files -->
   		<link rel="stylesheet" type="text/css" href="assets/stylesheet/styles.css">
 	</head>
 	<body>
-		<div ui-view="toolbar"></div>
-		<div ui-view="sidebar"></div>
-		<div ui-view="content"></div>
-        <div ui-view="login"></div>
-        <div ui-view="register"></div>
+    <div layout="row" layout-fill>
+      <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
+      <div layout="column" flex>
+          <div ui-view="toolbar"></div>
+          <md-content flex ui-view="content"></md-content>
+      </div>
+    </div>
 	</body>
 </html>

@@ -1,34 +1,47 @@
+
 <div layout="row">
-	<md-sidenav md-component-id="left" class="md-sidenav-left">
-	<md-menu-item>
-		<md-button ng-click="sidebarVM.goToHome()">
-		Homepage
+	<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" style="height:100%; width:15em">
+	<md-toolbar class="toolbarClass md-whiteframe-z1" md-scroll-shrink>
+		<div class="md-toolbar-tools" style="color: white;background-color: rgb(63,81,181)" >
+			Gradebook
+		</div>
+	</md-toolbar>
+	<md-divider></md-divider>
+	<md-menu-item style="padding-top: 3em">
+		<md-button class="sideBarButton" ng-click="sidebarVM.goToHome()">
+			<ng-md-icon class="sideBarIcon" icon="home" style="fill: white"></ng-md-icon>
+			&nbsp Home
 		</md-button>
 	</md-menu-item>
 	<md-menu-item>
-		<md-button ng-click="sidebarVM.goToSem()">
-		Semesters
+		<md-button class="sideBarButton" ng-click="sidebarVM.goToSem()">
+			<ng-md-icon class="sideBarIcon" icon="apps" style="fill: white"></ng-md-icon>
+			&nbsp Semesters
 		</md-button>
 	</md-menu-item>
 	<md-menu-item>
-		<md-button ng-click="sidebarVM.goToGpa()">
-		GPA
+		<md-button class="sideBarButton" ng-click="sidebarVM.goToGpa()">
+			<ng-md-icon class="sideBarIcon" icon="create" style="fill: white"></ng-md-icon>
+			&nbsp GPA
 		</md-button>
 	</md-menu-item>
 	<md-menu-item>
-		<md-button ng-click="sidebarVM.goToCalc()">
-		Grade Calculator
+		<md-button class="sideBarButton" ng-click="sidebarVM.goToCalc()">
+			<ng-md-icon class="sideBarIcon" icon="grade" style="fill: white"></ng-md-icon>
+			&nbsp Grade Calculator
 		</md-button>
-	</md-menu-item>
+	</md-menu-item style="padding-top: 3em">
 	<md-divider></md-divider>
 	<md-menu-item>
-		<md-button ng-click="">
-		Logout
+		<md-button class="sideBarButton" ng-click="">
+			<ng-md-icon class="sideBarIcon" icon="logout" style="fill: white"></ng-md-icon>
+			&nbsp Logout
 		</md-button>
 	</md-menu-item>
 		<md-menu-item>
-		<md-button ng-click="">
-		Settings
+		<md-button class="sideBarButton" ng-click="">
+			<ng-md-icon class="sideBarIcon" icon="settings" style="fill: white"></ng-md-icon>
+				&nbsp Settings
 		</md-button>
 	</md-menu-item>
 	</md-sidenav>

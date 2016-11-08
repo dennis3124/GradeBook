@@ -4,7 +4,7 @@
 
 		function gpaRouter($stateProvider,$urlRouterProvider) {
 			$stateProvider
-				.state('root.gpa', {
+				.state('root.GPA', {
 					 url: '/gpa',
 					 views: {
 					 	'content@': {

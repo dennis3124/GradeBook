@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100italic,100);
+
+body, html {
+  height: 100%;
+}
+
 md-content.md-default-theme {
   background-color: #eee;
 }
@@ -73,4 +79,45 @@ div.ng-binding.ng-scope.layout-row {
 
 .left {
     float: left;
+}
+
+.md-button.sideBarButton {
+    background-color: rgb(63,81,181);
+    color:white;
+}
+
+.md-button.sideBarButton:hover {
+    background-color: white !important;
+    color:black;
+
+}
+
+md-toolbar.toolbarClass { 
+    font-family: Roboto;
+    background-color: rgb(255,255,255) !important;
+    color: black;
+}
+md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
+    background-color: rgb(63,81,181);
+}
+md-divider {
+    display: block;
+    border-top-width: medium;
+    border-top-style: solid;
+    margin: 0;
+}
+
+ng-md-icon.sideBarIcon {
+  fill: currentColor;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+md-card {
+     margin-top: 7em; 
+}
+
+md-card.gradePage {
+     margin-top: 1em; 
 }

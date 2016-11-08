@@ -92,7 +92,8 @@
         }
 
         function ClearCredentials() {
-            $rootScope.globals = {};
+            console.log($rootScope.globals);
+            $rootScope.globals = null;
             $cookieStore.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
         }
@@ -115,7 +116,8 @@
             Update: Update,
             Delete: Delete,
             Login: Login,
-            SetCredentials: SetCredentials
+            SetCredentials: SetCredentials,
+            ClearCredentials: ClearCredentials
         }
     }
     var Base64 = {

@@ -10,7 +10,6 @@ var Section = require('./models/section');
 var Grade = require('./models/grade');
 
 module.exports = function(app) {
-<<<<<<< Updated upstream
 	// server routes
 	// handle api calls
 	// authentication routes
@@ -249,7 +248,7 @@ module.exports = function(app) {
 			res.json(sections); // return all students in JSON
 		});
 	});
-=======
+
     // server routes
     // handle api calls
     // authentication routes
@@ -377,7 +376,6 @@ module.exports = function(app) {
 
 
     app.post('/api/section', function(req, res) {
->>>>>>> Stashed changes
 
         Section.create({
             sectionName: req.body.sectionName,

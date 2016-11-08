@@ -9,17 +9,23 @@
 		// 	}
 		// })
 
-		.controller('toolBarController', ['$mdSidenav', '$state' , function($mdSidenav,$state) {
-			var vm = this;
-			vm.openLeftSideNav = function(){
-				$mdSidenav('left').toggle();
-			};
+		.controller('toolBarController', ['$mdSidenav', '$state', 'UserService',
+            function ($mdSidenav, $state, UserService) {
+			    var vm = this;
+			    vm.openLeftSideNav = function(){
+			    	$mdSidenav('left').toggle();
+			    };
+    
+			    vm.goHome = function() {
+			    	//console.log('hi');
+			    	$state.go('root.home');
+			    }
 
-			vm.goHome = function() {
-				//console.log('hi');
-				$state.go('root.home');
-			}
-		}])
+			    vm.Logout = function () {
+			        UserService.ClearCredentials();
+			        $state.go('login');
+			    }
+		    }])
 
 })()
 

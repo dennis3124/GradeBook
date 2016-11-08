@@ -53,6 +53,23 @@
      					<md-content class="md-padding" layout="column">
      					<div ng-repeat="grade in section.grades" class="md-padding">
      						<div layout="row">
+                  <md-menu>
+                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)">
+                     <md-icon md-svg-src="assets/img/icons/ellipsis.svg" size="30"></md-icon>
+                    </md-button>
+                    <md-menu-content>
+                      <md-menu-item>
+                      <md-button>
+                       Edit
+                      </md-button>
+                      </md-menu-item>
+                      <md-menu-item>
+                      <md-button>
+                       Delete
+                      </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
      							<h3>{{grade.name}} </h3>
      							<span flex></span>
      							<h3> 

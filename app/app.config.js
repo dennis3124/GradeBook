@@ -84,6 +84,9 @@
 		            $state.go('login', { ac: '' });
 		            //$location.path('/login');
 		        }
+		        else if (!restrictedPage && isUserLoggedIn) {
+		            $state.go('root.home');
+		        }
 		    });
 		}
      

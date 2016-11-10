@@ -24,7 +24,7 @@
 
             UserService.Login(vm.user)
                 .then(function (response) {
-                    console.log(response);
+                    
                     if (response.status == 200) {
                         UserService.SetCredentials(vm.user.username, vm.user.password);
                         $state.go('root.home');

@@ -73,7 +73,7 @@
 						//console.log(vm.actualPercentage);
 						console.log("total actual percentage earned is "+vm.actualPercentage);
 						if (vm.actualPercentage > 90) {
-							console.log("A")
+							vm.letterGrade = 'A'
 						}
 						if (vm.actualPercentage > 80 && vm.actualPercentage < 90) {
 							console.log("B")

@@ -139,6 +139,9 @@ md-card.gradePage {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('../img/2.jpg');
+    background-size: 100%;
+    color: white;
 }
 
 .welcomeMessage {
@@ -158,4 +161,10 @@ md-card.gradePage {
 .cardTextLargeAlt {
     color:#4CAF50;
     font-size:70px;
+}
+
+.sideBarClass {
+       background-image: url('../img/2.jpg');
+    background-size: 100%;
+    color: white;
 }

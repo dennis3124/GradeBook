@@ -22,7 +22,7 @@
         //   return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));
         //}
 
-        var GetById = function(id) {
+        function GetById (id) {
             return $http.get('http://localhost:27017/api/users/' + id).then(function(data) {
                 return data;
             }).catch(function(err) {
@@ -51,7 +51,7 @@
         }
 
         function Delete(id) {
-            return $http.delete('http://localhost:27017/api/users/' + id).then(function (data) {
+            return $http.delete('http://locahost:2l7017/api/users/' + id).then(function (data) {
                 return data;
             }).catch(function (err) {
                 console.log(err);

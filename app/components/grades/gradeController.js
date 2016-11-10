@@ -55,7 +55,7 @@
 				 	console.log(sectionid);
 				 })
 			}
-
+			vm.actualPercentage = 0;
 			vm.setGrades = function(sectionId,i){
 				studentService.getGrade(sectionId).then(function(data){
 						vm.section[i].grades = data.data;
@@ -65,6 +65,46 @@
 							vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 						}
+						console.log(vm.section)
+//						for(var i = 0; i < vm.section[i].grades.length; i++) {
+//
+						//}
+						vm.actualPercentage += parseFloat((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight);
+						//console.log(vm.actualPercentage);
+						console.log("total actual percentage earned is "+vm.actualPercentage);
+						if (vm.actualPercentage > 90) {
+							console.log("A")
+						}
+						if (vm.actualPercentage > 80 && vm.actualPercentage < 90) {
+							console.log("B")
+						}
+						if (vm.actualPercentage > 70 && vm.actualPercentage < 80) {
+							console.log("C")
+						}
+						if (vm.actualPercentage > 60 && vm.actualPercentage < 70) {
+							console.log("D")
+						}
+						if (vm.actualPercentage < 60) {
+							console.log("F")
+						}
+
+						//if (vm.actualPercentage )
+						 /*else if (actualPercentage >= 80 && <= 90) {
+							console.log("B")
+						} else if(actualPercentage >= 70 && < 80) {
+							console.log("C")
+						} */
+						//console.log(vm.section[0].totalReceived)
+						//console.log(vm.section[0].weight)
+						//console.log(vm.section[1].total)
+						//console.log(vm.section[1].totalReceived)
+						//console.log(vm.section[1].weight)
+						//for(var x = 0; x < vm.section[i].length; x++) {
+                           //console.log("hello")
+						//}
+						//var sectionReceived = (vm.section[0].totalReceived/vm.section[0].total) * parseInt(vm.section[0].weight);
+						//console.log(sectionReceived);
+
 				})
 				
 			}

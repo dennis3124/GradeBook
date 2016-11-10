@@ -100,7 +100,7 @@ md-toolbar.toolbarClass {
 md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
     background-color: rgb(63,81,181);
 }
-md-divider {
+md-divider.sideBarDivider {
     display: block;
     border-top-width: medium;
     border-top-style: solid;
@@ -115,9 +115,47 @@ ng-md-icon.sideBarIcon {
 }
 
 md-card {
-     margin-top: 7em; 
+     margin-top: 4em; 
 }
 
 md-card.gradePage {
      margin-top: 1em; 
+}
+
+.cardPadding {
+    padding-left:100px;
+    padding-right:100px;
+    text-align:center;
+}
+
+.specialBoxes {
+    display:flex;
+    justify-content: center;
+    perspective: 800px
+}
+
+.welcomeBox {
+    height:200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcomeMessage {
+    font-size:40px;
+}
+
+.cardTextLarge {
+    color:#2196F3;
+    font-size:70px;
+}
+
+.cardTextLargeAlert {
+    color:#C62828;
+    font-size:70px;
+}
+
+.cardTextLargeAlt {
+    color:#4CAF50;
+    font-size:70px;
 }

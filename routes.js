@@ -461,9 +461,9 @@ module.exports = function(app) {
         }, function (err, user) {
             if (err) throw err;
             console.log(user);
-            //if (!user) {
-            //    return res.status(403).send({ success: false, msg: 'Authentication failed. User not found.' });
-            //} else {
+            if (!user) {
+                return res.status(403).send({ success: false, msg: 'Authentication failed. User not found.' });
+            } else {
                 // check if password matches
                 user.comparePassword(req.body.password, function (err, isMatch) {
                     if (isMatch && !err) {
@@ -475,7 +475,7 @@ module.exports = function(app) {
                         return res.status(403).send({ success: false, msg: 'Authentication failed. Wrong password.' });
                     }
                 });
-            //}
+            }
         });
     });
 

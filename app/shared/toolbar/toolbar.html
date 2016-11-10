@@ -1,17 +1,15 @@
-<html>
-	<div layout="column" layout-fill>
-		<md-toolbar md-scroll-shrink>
-			<div class="md-toolbar-tools">
-				<md-button class="md-icon-button" aria-label="Menu" ng-click="toolBarVM.openLeftSideNav()">
-					<md-icon md-svg-src="assets/img/icons/menu.svg"></md-icon>
+<md-toolbar class="toolbarClass md-whiteframe-z1" md-scroll-shrink>
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" aria-label="Menu" ng-click="toolBarVM.openLeftSideNav()" hide-gt-md>
+					<ng-md-icon icon="menu"></ng-md-icon>
 				</md-button>
-				<md-button ng-click="toolBarVM.goHome()" md-no-ink="true"> GradeBook</md-button>
+				{{toolBarVM.dir}}
 				<div flex></div>
 
 				<md-menu>
 					<md-button class="md-icon-button" aria-label="Open settings menu" ng-click="$mdOpenMenu($event)">
-							<md-icon md-svg-src="assets/img/icons/setting.svg">
-							</md-icon>
+							<ng-md-icon icon="settings">
+							</ng-md-icon>
 					</md-button>
 					<md-menu-content>
 						<md-menu-item> Hi</md-menu-item>
@@ -19,8 +17,5 @@
 				</md-menu>
 				
 			</div>
-		</md-toolbar>
-	</div>
+</md-toolbar>
 	<!-- This adds a custom directive of sidebar inside toolbar  -->
-	
-</html>

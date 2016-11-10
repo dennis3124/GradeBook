@@ -1,6 +1,6 @@
   <md-content flex md-scroll-y layout-fill layout-padding>
   	<div layout="row" layout-align="center center">
-  		 <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding class="gradeClass">
+  		 <md-card class="gradePage" flex layout-padding>
   			<md-card-content layout="column">
           <div layout="row" flex>
             <span flex></span>
@@ -41,10 +41,10 @@
     								{{grade.grade}} /
     								{{grade.totalGrade}}
     							</div>
-    						<div layout="row">
+    						<div layout="row" ng-if="section.total > 0">
     							<h3> Total </h3>
     							<span flex> </span>
-    							<h3 ng-if="section.total > 0"> {{section.totalReceived}} / {{section.total}} </h3>
+    							<h3> {{section.totalReceived}} / {{section.total}} </h3>
     						</div>
     					</div>
      				</md-content>
@@ -53,6 +53,23 @@
      					<md-content class="md-padding" layout="column">
      					<div ng-repeat="grade in section.grades" class="md-padding">
      						<div layout="row">
+                  <md-menu>
+                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)">
+                     <md-icon md-svg-src="assets/img/icons/ellipsis.svg" size="30"></md-icon>
+                    </md-button>
+                    <md-menu-content>
+                      <md-menu-item>
+                      <md-button>
+                       Edit
+                      </md-button>
+                      </md-menu-item>
+                      <md-menu-item>
+                      <md-button>
+                       Delete
+                      </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
      							<h3>{{grade.name}} </h3>
      							<span flex></span>
      							<h3> 

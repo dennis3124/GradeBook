@@ -1,8 +1,11 @@
  (function(){
 	angular.module('GradeBook')
-		.config(['$stateProvider','$urlRouterProvider', routeAppConfig]);
+		.config(['$stateProvider','$urlRouterProvider', '$mdThemingProvider', routeAppConfig]);
 
-		function routeAppConfig ($stateProvider,$urlRouterProvider){
+		function routeAppConfig ($stateProvider,$urlRouterProvider,$mdThemingProvider){
+		$mdThemingProvider.theme('altTheme')
+    		.primaryPalette('purple') 
+    		
 		$stateProvider
 				.state('root', {
 					url: '',

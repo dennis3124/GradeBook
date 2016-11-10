@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100italic,100);
+
+body, html {
+  height: 100%;
+}
+
 md-content.md-default-theme {
   background-color: #eee;
 }
@@ -73,4 +79,83 @@ div.ng-binding.ng-scope.layout-row {
 
 .left {
     float: left;
+}
+
+.md-button.sideBarButton {
+    background-color: rgb(63,81,181);
+    color:white;
+}
+
+.md-button.sideBarButton:hover {
+    background-color: white !important;
+    color:black;
+
+}
+
+md-toolbar.toolbarClass { 
+    font-family: Roboto;
+    background-color: rgb(255,255,255) !important;
+    color: black;
+}
+md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
+    background-color: rgb(63,81,181);
+}
+md-divider.sideBarDivider {
+    display: block;
+    border-top-width: medium;
+    border-top-style: solid;
+    margin: 0;
+}
+
+ng-md-icon.sideBarIcon {
+  fill: currentColor;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+md-card {
+     margin-top: 4em; 
+}
+
+md-card.gradePage {
+     margin-top: 1em; 
+}
+
+.cardPadding {
+    padding-left:100px;
+    padding-right:100px;
+    text-align:center;
+}
+
+.specialBoxes {
+    display:flex;
+    justify-content: center;
+    perspective: 800px
+}
+
+.welcomeBox {
+    height:200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcomeMessage {
+    font-size:40px;
+}
+
+.cardTextLarge {
+    color:#2196F3;
+    font-size:70px;
+}
+
+.cardTextLargeAlert {
+    color:#C62828;
+    font-size:70px;
+}
+
+.cardTextLargeAlt {
+    color:#4CAF50;
+    font-size:70px;
 }

@@ -1,36 +1,40 @@
 (function(){
 	angular.module('GradeBook')
-		// .directive('sideBar', function(){
-		// 	return {
-		// 		restrict:'E',
-		// 		templateUrl:'app/shared/sidebar/sidebar.html',
-		// 		controller:'sideBarController',
-		// 		controllerAs:'sideVm'
-		// 	}
-		// })
 
-		.controller('sideBarController',['$state', '$mdSidenav' ,function($state,$mdSidenav){
+		.controller('sideBarController',['$state', '$mdSidenav', '$timeout' ,function($state,$mdSidenav,$timeout){
 			var vm = this;
 			vm.home = $state.is('root.home');
 			vm.semester = $state.is('root.semester');
 			vm.calculator = $state.is('root.calculator');
-			vm.gpa = $state.is('root.gpa');
+			vm.gpa = $state.is('root.GPA');
 			vm.goToSem = function() {
-				$state.go('root.semester');
+				$state.reload('root');	
+				$timeout(function() {			
+					$state.go('root.semester')
+				}, 50)
 				$mdSidenav('left').toggle();
 			};
 
 			vm.goToHome = function() {
-				$state.go('root.home')
+				$state.reload('root');				
+				$timeout(function() {
+					$state.go('root.home')
+				},50) 
 				$mdSidenav('left').toggle();
 			};
 			vm.goToCalc = function() {
-				$state.go('root.calculator')
+				$state.reload('root');				
+				$timeout(function() {
+					$state.go('root.calculator')
+				}, 50)
 				$mdSidenav('left').toggle();
 
 			};
 			vm.goToGpa = function() {
-				$state.go('root.gpa')
+				$state.reload('root');				
+				$timeout(function() {
+					$state.go('root.GPA');
+				}, 50)
 				$mdSidenav('left').toggle();
 			}
 	

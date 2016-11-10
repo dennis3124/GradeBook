@@ -37,7 +37,7 @@
 					vm.dir = 'Semester  >  Course';
 				}
 				else if (vm.dir == 'Grade') {
-					vm.dir = "Semester  >  Course \t>  Grade";
+					vm.dir = 'Semester  >  Course  >  Grade';
 				}
 			}
          	vm.dir = $state.current.name;

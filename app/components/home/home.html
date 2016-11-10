@@ -26,13 +26,13 @@
    	</div>
   </md-content>
 -->
-<div class="md-whiteframe-z2 welcomeBox">
+<div md-colors="{background: 'blue-500'}" class="md-whiteframe-z2 welcomeBox">
   <div class="welcomeMessage"> Welcome Back, Dennis! </div>
 </div>
 
 <div class="specialBoxes">
   <div class='cardPadding' layout="row" layout-wrap>
-   <md-card style="width: 300px; height:200px">
+   <md-card style="width: 350px; height:200px">
     <md-card-header>
       <md-card-header-text>
         <span class="md-title"> Total Credit Hours </span>
@@ -45,7 +45,7 @@
     </md-card-content>
   </md-card>
   <div id="card">
-  <md-card style="width: 300px; height:200px" ng-if="!homeVM.flipped">
+  <md-card style="width: 350px; height:200px" ng-if="!homeVM.flipped">
     <md-card-header>
       <md-card-header-text>
         <span class="md-title"> Requires Attention </span>
@@ -61,7 +61,7 @@
     </div>
   </md-card>
 
-  <md-card style="width: 300px; height:200px" ng-if="homeVM.flipped">
+  <md-card style="width: 350px; height:200px" ng-if="homeVM.flipped">
     <md-card-header>
       <md-card-header-text>
         <span class="md-title"> Requires Attention </span>
@@ -80,7 +80,7 @@
     </div>
   </md-card>
   </div> 
-  <md-card style="width: 300px; height:200px">
+  <md-card style="width: 350px; height:200px">
     <md-card-header>
       <md-card-header-text>
         <span class="md-title"> Number of Courses </span>

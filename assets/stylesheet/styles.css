@@ -21,9 +21,6 @@ md-content.md-default-theme {
 
 }
 
-md-card {
-	margin-top: 7em;
-}
 .calculate-button{
     top: auto;
     right: auto;
@@ -118,6 +115,10 @@ md-card {
      margin-top: 4em; 
 }
 
+md-card.semesterPage {
+    margin-top:1em;
+}
+
 md-card.gradePage {
      margin-top: 1em; 
 }
@@ -139,6 +140,9 @@ md-card.gradePage {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('../img/img/mdesign.png');
+    background-size:100%;
+    color:white;
 }
 
 .welcomeMessage {
@@ -158,4 +162,16 @@ md-card.gradePage {
 .cardTextLargeAlt {
     color:#4CAF50;
     font-size:70px;
+}
+
+.directory {
+    font-size: 20px;
+}
+
+.semesterTitle {
+    font-size:40px;
+     align-items: center;
+    justify-content: center;
+    height:150px;
+    border-style: 1px black;
 }

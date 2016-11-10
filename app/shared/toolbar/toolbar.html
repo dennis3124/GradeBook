@@ -3,7 +3,9 @@
 			<md-button class="md-icon-button" aria-label="Menu" ng-click="toolBarVM.openLeftSideNav()" hide-gt-md>
 					<ng-md-icon icon="menu"></ng-md-icon>
 				</md-button>
-				{{toolBarVM.dir}}
+				<span class="directory">
+					{{toolBarVM.dir}}
+				</span>
 				<div flex></div>
 
 				<md-menu>

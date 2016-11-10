@@ -16,7 +16,14 @@
 			vm.fliiped = false;
 
 			//THIS IS HARDCODED TO TEST 
-			//$cookies.put('studentId',"0027756773");
+			$cookies.put('studentId', $rootScope.globals.currentUser.username);
+
+
+			UserService.GetById($rootScope.globals.currentUser.username).then(function(data) {
+				$rootScope.globals.studentName = data.data[0].name;
+				vm.students.name = data.data[0].name;
+
+			})
 
 			studentService.getCurrentSemester($rootScope.globals.currentUser.username).then(function(data){
 				vm.currentSemester = data.data;

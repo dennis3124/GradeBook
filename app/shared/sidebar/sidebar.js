@@ -37,6 +37,11 @@
 				}, 50)
 				$mdSidenav('left').toggle();
 			}
+
+			vm.Logout = function () {
+			    UserService.ClearCredentials();
+			    $state.go('login');
+			}
 	
 		}])
 

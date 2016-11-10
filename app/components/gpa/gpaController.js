@@ -25,6 +25,10 @@
 			    })
 			  };
 
+			vm.getGPA = function(ev, semester) {
+				
+			}
+
 		}])
 
 

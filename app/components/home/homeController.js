@@ -4,7 +4,8 @@
             function ($mdDialog, studentService, UserService,$cookies, $state, $rootScope) {
 
 			var vm = this;
-			vm.students = [];
+			vm.students = $rootScope.globals.currentUser;
+			console.log(vm.students);
 			vm.semesters = [];
 			vm.currentSemester ={};
 			vm.courses = [];

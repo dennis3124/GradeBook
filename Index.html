@@ -66,10 +66,18 @@
   		<link rel="stylesheet" type="text/css" href="assets/stylesheet/styles.css">
 	</head>
 	<body>
-		<div ui-view="toolbar"></div>
-		<div ui-view="sidebar"></div>
-		<div ui-view="content"></div>
+
+
+
         <div ui-view="login"></div>
         <div ui-view="register"></div>
+	<div layout="row" layout-fill>
+      <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
+      <div layout="column" flex>
+          <div ui-view="toolbar"></div>
+          <md-content flex ui-view="content"></md-content>
+      </div>
+    </div>
+
 	</body>
 </html>

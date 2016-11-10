@@ -1,6 +1,6 @@
 (function(){
   angular.module('GradeBook')
-    .controller('calculatorDialogController', ['$mdDialog', 'studentService', '$cookies', '$scope', function($mdDialog, studentService, $cookies, $scope){
+    .controller('calculatorDialogController', ['$mdBottomSheet', '$mdDialog', 'studentService', '$cookies', '$scope', function($mdBottomSheet, $mdDialog, studentService, $cookies, $scope){
       var vm = this;
       //console.log(2);
       vm.courseUniqueId = $cookies.get('courseId');
@@ -12,6 +12,116 @@
 		vm.course = data.data;
 		vm.course = vm.course[0];
 	  })
+
+      // Letter Grades
+      vm.lettergrades = [
+      	"A",
+      	"B",
+      	"C",
+      	"D"
+      ];
+      //var percentage = element(by.binding('estimateGrade.percentage'));
+      vm.estimateGrade = {
+      	percentage: 0
+      };
+      vm.gradeScale1 = [
+      	{
+      		letter: 'A+/A',
+      		score: '93-100'
+      	}, 
+      	{
+      		letter: 'A-',
+      		score: '90-92'
+      	},
+      	{
+      		letter: 'B+',
+      		score: '87-89'
+      	},
+      	{
+      		letter: 'B',
+      		score: '83-86'
+      	},
+      ];
+      vm.gradeScale2 = [
+      	{
+      		letter: 'B-',
+      		score: '80-82'
+      	},
+      	{
+      		letter: 'C+',
+      		score: '77-79'
+      	},
+      	{
+      		letter: 'C',
+      		score: '73-76'
+      	}, 
+      	{
+      		letter: 'C-',
+      		score: '70-72'
+      	}, 
+      ];
+      vm.gradeScale3 = [
+        {
+      		letter: 'D+',
+      		score: '67-69'
+      	},
+      	{
+      		letter: 'D',
+      		score: '63-66'
+      	},
+      	{
+      		letter: 'D-',
+      		score: '60-62'
+      	},
+      	{
+      		letter: 'F',
+      		score: '0-59'
+      	},
+      ]
+      //console.log(vm.estimateGrade.percentage);
+      vm.estimate = 0;
+      vm.lettergradescore = 0;
+      vm.results = '';
+      vm.estimated = function(lettergrade, currentgrade, totalsection, percentage) {
+      	//console.log(percentage);
+      	if (lettergrade === "A"){
+      		//console.log("95");
+      		vm.lettergradescore = 95;
+      		//console.log(vm.lettergradescore);
+      	} else if (lettergrade === "B") {
+      		//console.log("85");
+      		vm.lettergradescore = 85;
+      		console.log(vm.lettergradescore);
+      	} else if (lettergrade === "C") {
+      		//console.log("75");
+      		vm.lettergradescore = 75;
+      		console.log(vm.lettergradescore);
+      	} else if (lettergrade === "D") {
+      		//console.log("65");
+      		vm.lettergradescore = 65;
+      		console.log(vm.lettergradescore);
+      	}
+      	// lettergradescore = (currentgrade * total section) + (finalgrade * percentage)
+      	//console.log(vm.lettergradescore);
+      	//console.log(currentgrade);
+      	//console.log(totalsection);
+      	//console.log(percentage);
+      	// Condition to check if there are inputs
+
+      	vm.estimate = parseFloat((vm.lettergradescore - (currentgrade * (totalsection/100)))/(percentage/100)).toFixed(2);
+      	vm.maxPossibleScore = parseFloat((currentgrade * (totalsection/100)) + (100 * percentage/100));
+      	console.log(vm.maxPossibleScore);
+      	if (isNaN(vm.estimate) | vm.lettergradescore === 0) {
+      		vm.results = "Please choose a letter grade and type in the percentage of the finals.*"
+      	} else if (vm.estimate > 100) {
+      		vm.results = "Sorry! You will need at least " + vm.estimate + "% in your finals. Extra credit maybe? Maximum possible course grade obtained " + vm.maxPossibleScore.toFixed(2) + "%";
+      	} else if (vm.estimate <= 100) {
+      		vm.results = "You will need " + vm.estimate + "% in your finals to get an " + lettergrade;
+      	}
+      	console.log(vm.results);
+      	//console.log(vm.estimate);
+      }
+      
 
       vm.section = {};
       vm.totalSection = 0;
@@ -25,41 +135,75 @@
 		for (var i = 0; i < vm.section.length; i++) {
 			vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
 		}
+		//console.log(vm.section[i].grades.length);
 	  })
 
 	//console.log(vm.section);
-
 	//console.log(vm.totalSection);
 	vm.totalOverallReceived = 0;
 	vm.totalOverall = 0;
 	vm.calculated = 0;
 	vm.actualPoints = 0;
+	vm.estimatedLetterGrade = '';
 	vm.setGrades = function(sectionId,i){
 		studentService.getGrade(sectionId).then(function(data){
 			vm.section[i].grades = data.data;
 			vm.section[i].total = 0;
 			vm.section[i].totalReceived = 0;
+			//onsole.log(vm.section[i].grades.length);
 			for(var j = 0; j < vm.section[i].grades.length; j++){
 				vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 				vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 				//console.log(vm.section[i].total);
 				//console.log(vm.section[i].totalReceived);
 				//console.log(vm.section[i].weight);
-				vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
+				//vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
 				//console.log(vm.calculated);
 				//console.log(vm.actualPoints);
 				//vm.actualPoints = parseFloat(vm.actualPoints + vm.calculated).toFixed(2);
-				console.log(vm.actualPoints);
+				//console.log(vm.actualPoints);
 			}
-			console.log(vm.actualPoints);
+			//for (var n = 0; n < vm.section[i].grades.length; n++) {
+			vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
+			//}
+			//console.log(vm.actualPoints);
 			vm.calculated = parseFloat(vm.actualPoints).toFixed(2);
-			console.log(vm.calculated);	
+			//console.log(vm.calculated);	
 			vm.totalOverallReceived += parseInt(vm.section[i].totalReceived);
 			//console.log(vm.totalOverallReceived);
 			vm.totalOverall += parseInt(vm.section[i].total);
 			//console.log(vm.totalOverall);
 			//vm.actualPoints = parseFloat(vm.totalOverallReceived/vm.totalOverall * vm.totalSection).toFixed(2);	
 			//vm.actualPoints.round(2);
+			vm.estimatedGrade = parseFloat(vm.actualPoints/vm.totalSection*100);
+			vm.estimatedLetterGrade = "-";
+			if (vm.estimatedGrade >= 98 & vm.estimatedGrade <= 100 ) {
+				vm.estimatedLetterGrade = "A+";
+			} else if (vm.estimatedGrade >= 93 & vm.estimatedGrade <= 97) {
+				vm.estimatedLetterGrade = "A";
+			} else if (vm.estimatedGrade >= 90 & vm.estimatedGrade <= 92) {
+				vm.estimatedLetterGrade = "A-";
+			} else if (vm.estimatedGrade >= 87 & vm.estimatedGrade <= 89) {
+				vm.estimatedLetterGrade = "B+";
+			} else if (vm.estimatedGrade >= 83 & vm.estimatedGrade <= 86) {
+				vm.estimatedLetterGrade = "B";
+			} else if (vm.estimatedGrade >= 80 & vm.estimatedGrade <= 82) {
+				vm.estimatedLetterGrade = "B-";
+			} else if (vm.estimatedGrade >= 77 & vm.estimatedGrade <= 79) {
+				vm.estimatedLetterGrade = "C+";
+			} else if (vm.estimatedGrade >= 73 & vm.estimaterGrade <= 76) {
+				vm.estimatedLetterGrade = "C";
+			} else if (vm.estimatedGrade >= 70 & vm.estimatedGrade <= 72) {
+				vm.estimatedLetterGrade = "C-";
+			} else if (vm.estimatedGrade >= 67 & vm.estimatedGrade <= 69) {
+				vm.estimatedLetterGrade = "D+";
+			} else if (vm.estimatedGrade >= 63 & vm.estimatedGrade <= 66) {
+				vm.estimatedLetterGrade = "D";
+			} else if (vm.estimatedGrade >= 60 & vm.estimatedGrade <= 62) {
+				vm.estimatedLetterGrade = "D-";
+			} else if (vm.estimatedGrade <= 59) {
+				vm.estimatedLetterGrade = "F";
+			}
 		})
 				
 	}			

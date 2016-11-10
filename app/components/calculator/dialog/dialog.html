@@ -6,7 +6,6 @@
         <span flex></span>
       </div>
     </md-toolbar>
-
     <md-dialog-content>
       <div class="md-dialog-content dialog-size">
         <h2>{{calculatorDialogVM.course.courseId}}: &nbsp
@@ -25,15 +24,83 @@
           </div>
         </div>
         <div align ="right">
-        <span flex></span>Total Points: {{calculatorDialogVM.totalOverallReceived}} / {{calculatorDialogVM.totalOverall}} &nbsp 
+        Total Points: {{calculatorDialogVM.totalOverallReceived}} / {{calculatorDialogVM.totalOverall}}
         </div>
+        <div layout="column" style="margin-top: 5px;">
+        <md-card style="margin-top: 1px;">
+        <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Grading Scale</span>
+        <md-list flex>
+         <div layout="row">
+         <div flex="30">
+          <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale1">
+            <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+          </md-list-item>
+          </div>
+          <div flex="30">
+          <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale2">
+            <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+          </md-list-item>
+          </div>
+          <div flex="30">
+          <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale3">
+            <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+          </md-list-item>
+          </div>
+          </div>
+        </md-list>
+        </md-card-title-text>
+        </md-card-title>
+        </md-card>
+        </div>
+        <div class="dont-like-this-padding" style="margin-top: 1cm;">
+        <div layout="row" layout-wrap>
+        <div flex="50">
+          <md-card style="margin-top: 5px;">
+          <img src="assets/img/icons/star.png" alt="some_text" style="width:50px;height:50px;align-self: center; margin-top: 10px;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Grade:</span>
+              
+
         <h4><md-progress-linear md-mode="determinate" value="{{calculatorDialogVM.calculated}}"></md-progress-linear></h4>
-        <h4>Actual: {{calculatorDialogVM.calculated}} / {{calculatorDialogVM.totalSection}}</h4>
-        <h4>Letter Grade:</h4>
-        <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="assets/img/icons/menu.svg">
+        <h4>Total Score: {{calculatorDialogVM.calculated}} / {{calculatorDialogVM.totalSection}}</h4>
+        <h4>Estimated Letter Grade: {{calculatorDialogVM.estimatedLetterGrade}}</h4>
+
+        </md-card-title-text>
+        </md-card-title>
+        </md-card>
+        </div>
+        <div flex>
+          <md-card style="margin-top: 1px;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">What do I need on my finals if I want a(n) __ in this course?</span>
+                <h5>Finals has to be a seperate section and not entered yet.</h5>
+                <div layout = "row"><div flex="50">
+                  <md-input-container>
+                    <label>Letter Grade</label>
+                      <md-select ng-model="lettergrade">
+                        <md-option ng-repeat="lettergrade in calculatorDialogVM.lettergrades" value = "{{lettergrade}}">{{lettergrade}}</md-option>
+                      </md-select>
+                  </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+            <label>Finals worth (%)</label>
+            <input name="percentage" ng-model="estimateGrade.percentage" placeholder="20" required ng-pattern="/^[0-9]*$/">
+          </md-input-container>
+          </div>
+          <md-button class="md-raised md-primary" ng-click="calculatorDialogVM.estimated(lettergrade, calculatorDialogVM.calculated, calculatorDialogVM.totalSection, estimateGrade.percentage)">Estimate!</md-button>
+          <h4>{{calculatorDialogVM.results}}</h4>
+          </md-card-title-text>
+          </md-card-title>
+          </md-card>
+        </div>
+        </div>
+      </div>
       </div>
     </md-dialog-content>
-
     <md-dialog-actions layout="row" layout-align="end end">
       <md-button href="http://mycourses.purdue.edu" target="_blank" md-accent md-align="right">
         More on BlackBoard

@@ -1,6 +1,7 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('homeController', ['$mdDialog', 'studentService', '$cookies', '$state' ,function($mdDialog,studentService,$cookies, $state){
+		.controller('homeController', ['$mdDialog', 'studentService', 'UserService', '$cookies', '$state', '$rootScope',
+            function ($mdDialog, studentService, UserService,$cookies, $state, $rootScope) {
 
 			var vm = this;
 			vm.students = [];
@@ -14,9 +15,9 @@
 			vm.fliiped = false;
 
 			//THIS IS HARDCODED TO TEST 
-			$cookies.put('studentId',"0027756773");
+			//$cookies.put('studentId',"0027756773");
 
-			studentService.getCurrentSemester("0027756773").then(function(data){
+			studentService.getCurrentSemester($rootScope.globals.currentUser.username).then(function(data){
 				vm.currentSemester = data.data;
 				vm.currentSemester= vm.currentSemester[0];
 				//console.log(vm.currentSemester);

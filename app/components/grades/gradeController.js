@@ -144,6 +144,8 @@
 							vm.actualGrade = "F"
 						}
 						vm.course.letterGrade = vm.actualGrade;
+						studentService.updateCourse(vm.course);
+
 				})
 				
 			}
@@ -193,7 +195,8 @@
 
 			vm.submitEdit = function (grade) {
 				studentService.updateGrade(grade).then(function() {
-						studentService.getSection(vm.courseUniqueId).then(function(data){
+						$timeout(function() {
+								studentService.getSection(vm.courseUniqueId).then(function(data){
 								vm.section = data.data;
 								//console.log(vm.section.length);
 								for(var i = 0; i < vm.section.length; i++) {
@@ -201,11 +204,11 @@
 										 vm.setGrades(vm.section[i]._id,i);
 								}
 						})	
+						},500)		
 				});
 				grade.showInput = false;
 				$timeout(function(){
 						$state.reload('root');
-						//studentService.updateCourse(vm.course);
 
 				},500);
 				console.log(vm.course);

@@ -19,6 +19,9 @@
 				vm.section = data.data;
 				//console.log(vm.section.length);
 				// console.log(vm.totalWeight);
+				for(var k = 0; k < vm.section.length; k++) {
+								vm.totalWeight+= parseInt(vm.section[k].weight);
+				}
 				for(var i = 0; i < vm.section.length; i++) {
 					vm.section[i].showInput = false;
 					vm.setGrades(vm.section[i]._id,i);
@@ -86,17 +89,10 @@
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 						}
 
-						for(var k = 0; k < vm.section.length; k++) {
-							if(vm.section[k].total > 0) {
-								vm.totalWeight+= parseInt(vm.section[i].weight);
-							}
-						}
 						//console.log(vm.section)
 //						for(var i = 0; i < vm.section[i].grades.length; i++) {
 //
 						//}
-						if(vm.section[i].totalReceived > 0) {
-
 
 						vm.actualPercentage += parseFloat(((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight) / vm.totalWeight * 100);
 						 //console.log(vm.actualPercentage);
@@ -153,7 +149,7 @@
 								// console.log("F")
 							vm.actualGrade = "F"
 						}
-					}
+					
 
 				})
 				

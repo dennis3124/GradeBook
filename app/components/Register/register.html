@@ -1,71 +1,80 @@
-﻿<div class="col-md-6 col-md-offset-3">
-    <h2>Register</h2>
-    <form name="form" ng-submit="registerVM.register()" role="form">
-        <div layout="row">
-            <md-input-container flex="50">
-                <label>First Name</label>
-                <input md-maxlength="15" required ng-model="registerVM.user.firstName" />
-                <div ng-messages="form.firstName.$error">
-                    <div ng-message="required">First name is required.</div>
-                    <div ng-message="md-maxlength">First name must be less than 15 characters.</div>
-                    <div ng-message="pattern">First name must only contain letters.</div>
-                </div>
-            </md-input-container>
-            
-            <!--<label for="username">First name</label>
+﻿<div layout="row" class="ng-scope layout-row" ui-view="root">
+    <div class="full-image-background login-register-img layout-fill ng-scope layout-row" layout="row" layout-fill="">
+        <div class="animate-wrapper layout-column flex" flex="" layout="column">
+            <!-- uiView: -->
+            <div id="ui-login" class="login-frame ng-scope layout-align-center-center layout-column flex" layout="column" layout-align="center center">
+                <md-card class="ng-scope _md md-cyan-theme">
+                    <md-toolbar class="padding-20 text-center _md-toolbar-transitions" layout-align="center center" style="background-color: #3eddea; color: black">
+                        <img ng-src="assets/img/Picture1.png" style="width:100px; height: 100px;" align="middle" />
+                        <h1 class="md-headline ng-scope">Sign Up</h1>
+                    </md-toolbar>
+
+                    <md-content class="md-padding _md ">
+                        <form name="form" ng-submit="registerVM.register()" role="form" style="background-color:white">
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>First Name</label>
+                                    <input md-maxlength="15" required ng-model="registerVM.user.firstName" />
+                                    <div ng-messages="form.firstName.$error">
+                                        <div ng-message="required">First name is required.</div>
+                                        <div ng-message="md-maxlength">First name must be less than 15 characters.</div>
+                                        <div ng-message="pattern">First name must only contain letters.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <!--<label for="username">First name</label>
             <input type="text" name="firstName" id="firstName" class="form-control" ng-model="registerVM.user.firstName" required />
             <span ng-show="form.firstName.$dirty && form.firstName.$error.required" class="help-block">First name is required</span>-->
-        </div>
-        <div layout="row">
-            <md-input-container flex="50">
-                <label>Last Name</label>
-                <input md-maxlength="15" required ng-model="registerVM.user.lastName" />
-                <div ng-messages="form.lastName.$error" md-auto-hide="true">
-                    <div ng-message="required">Last name is required.</div>
-                    <div ng-message="md-maxlength">Last name must be less than 15 characters.</div>
-                    <div ng-message="pattern">Last name must only contain letters.</div>
-                </div>
-            </md-input-container>
-            
-            <!--<label for="username">Last name</label>
+                            </div>
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>Last Name</label>
+                                    <input md-maxlength="15" required ng-model="registerVM.user.lastName" />
+                                    <div ng-messages="form.lastName.$error" md-auto-hide="true">
+                                        <div ng-message="required">Last name is required.</div>
+                                        <div ng-message="md-maxlength">Last name must be less than 15 characters.</div>
+                                        <div ng-message="pattern">Last name must only contain letters.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <!--<label for="username">Last name</label>
             <input type="text" name="lastName" id="Text1" class="form-control" ng-model="registerVM.user.lastName" required />
             <span ng-show="form.lastName.$dirty && form.lastName.$error.required" class="help-block">Last name is required</span>-->
-        </div>
-        <div layout="row">
-            <md-input-container flex="50">
-                <label>Email</label>
-                <!--ng-pattern="/^.+@.+\..+$/"-->
-                <input required  ng-model="registerVM.user.id" />
-                <div ng-messages="form.id.$error" md-auto-hide="true">
-                    <div ng-message="required">Email is required.</div>
-                    <!--<div ng-message="pattern">Must be a valid email address.</div>-->
-                </div>
-            </md-input-container>
-            
-            <!--<label for="username">Username</label>
+                            </div>
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>Email</label>
+                                    <input required ng-model="registerVM.user.id" ng-pattern="/^.+@.+\..+$/" />
+                                    <div ng-messages="form.id.$error" md-auto-hide="true">
+                                        <div ng-message="required">Email is required.</div>
+                                        <div ng-message="pattern">Must be a valid email address.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <!--<label for="username">Username</label>
             <input type="text" name="username" id="username" class="form-control" ng-model="registerVM.user.id" required />
             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>-->
-        </div>
-        <div layout="row">
-            <md-input-container flex="50">
-                <label>Password</label>
-                <input required ng-model="registerVM.user.password" />
-                <div ng-messages="form.id.$error" md-auto-hide="true">
-                    <div ng-message="required">Password is required.</div>
-                </div>
-            </md-input-container>
-            
-            <!--<label for="password">Password</label>
+                            </div>
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100">
+                                    <label>Password</label>
+                                    <input required ng-model="registerVM.user.password" />
+                                    <div ng-messages="form.id.$error" md-auto-hide="true">
+                                        <div ng-message="required">Password is required.</div>
+                                    </div>
+                                </md-input-container>
+
+                                <!--<label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="registerVM.user.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>-->
+                            </div>
+                            
+                            <button class="md-raised full-width md-button sign-up margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 ng-scope md-ink-ripple" type="submit" ng-disabled="form.$invalid || registerVM.dataLoading" aria-label="Sign Up" disabled="disabled">Sign Up</button>
+                            <a class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 md-button ng-scope md-ink-ripple" href="#/login" aria-label="Already have an account? Login here." style="color: #3eddea">Already have an account? Login here.</a>
+                        </form>
+                    </md-content>
+                </md-card>
+            </div>
         </div>
-        <div class="form-actions">
-            <md-button type="submit" ng-disabled="form.$invalid || registerVM.dataLoading" class="btn btn-primary">Register</md-button>
-            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a href="#/login" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
-    <div ng-if ="registerVM.duplicateId">
-        Aw Hell No
     </div>
 </div>

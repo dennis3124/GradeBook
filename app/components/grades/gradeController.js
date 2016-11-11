@@ -18,9 +18,6 @@
 			studentService.getSection(vm.courseUniqueId).then(function(data){
 				vm.section = data.data;
 				//console.log(vm.section.length);
-				for(var i = 0; i < vm.section.length; i++) {
-					vm.totalWeight+= parseInt(vm.section[i].weight);
-				}
 				// console.log(vm.totalWeight);
 				for(var i = 0; i < vm.section.length; i++) {
 					vm.section[i].showInput = false;
@@ -56,14 +53,25 @@
 			vm.deleteGrade = function(gradeId) {
 				//console.log(gradeId);
 				studentService.deleteGrade(gradeId).then(function(data) {
-					console.log(gradeId);
+					studentService.getSection(vm.courseUniqueId).then(function(data){
+					vm.section = data.data;
+					//console.log(vm.section.length);
+					for(var i = 0; i < vm.section.length; i++) {
+						vm.section[i].showInput = false;
+						 vm.setGrades(vm.section[i]._id,i);
+					}
+				}).then(function() {
+					vm.course.letterGrade = vm.actualGrade;
+					studentService.updateCourse(vm.course);
+				});
 				})
 			}
 
 			vm.deleteGrades = function(sectionid) {
 				console.log(sectionid);
 				 studentService.deleteGrades(sectionid).then(function(data) {
-				 	console.log(sectionid);
+				 }).then(function() {
+
 				 })
 			}
 			vm.actualPercentage = 0;
@@ -77,14 +85,22 @@
 							vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 						}
+
+						for(var k = 0; k < vm.section.length; k++) {
+							if(vm.section[k].total > 0) {
+								vm.totalWeight+= parseInt(vm.section[i].weight);
+							}
+						}
 						//console.log(vm.section)
 //						for(var i = 0; i < vm.section[i].grades.length; i++) {
 //
 						//}
+						if(vm.section[i].totalReceived > 0) {
+
 
 						vm.actualPercentage += parseFloat(((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight) / vm.totalWeight * 100);
-						// console.log(vm.actualPercentage);
-						// console.log("total actual percentage earned is "+vm.actualPercentage);
+						 //console.log(vm.actualPercentage);
+						 console.log("total actual percentage earned is "+vm.actualPercentage);
 						if (vm.actualPercentage >= 98 && vm.actualPercentage <= 100) {
 								// console.log("A+")
 							vm.actualGrade = "A+";
@@ -137,6 +153,7 @@
 								// console.log("F")
 							vm.actualGrade = "F"
 						}
+					}
 
 				})
 				

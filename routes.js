@@ -71,47 +71,70 @@ module.exports = function(app) {
 
 
 	app.post('/api/courses', function(req,res) {
-		Courses.create({
+		//console.log("hi");
+		Courses.find({ 
+			semesterId: req.body.semesterId,
 			courseName: req.body.courseName,
 			courseId: req.body.courseId,
-			semesterId: req.body.semesterId,
 			creditHours: req.body.creditHours,
-			letterGrade: req.body.letterGrade
 		},function(err,data) {
-			if (err)
-				res.send(err);
+			if (data.length != 0){}
+			else {
+				Courses.create({
+					courseName: req.body.courseName,
+					courseId: req.body.courseId,
+					semesterId: req.body.semesterId,
+					creditHours: req.body.creditHours,
+					letterGrade: req.body.letterGrade
+				},function(err,data) {
+				if (err)
+					res.send(err);
+				})
+			}
 		})
 	})
+
 	app.post('/api/semesters', function(req, res) {
-		if(req.body.currentSemester==true) {
-				Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
-					Semesters.create({
+		Semesters.find({
+			studentId: req.body.studentId,
+		 	year: req.body.year,
+		 	name: req.body.name,
+		 	GPA: req.body.GPA,
+		}, function(err,data) {
+			if (data.length != 0){}
+			else {
+				if(req.body.currentSemester==true) {
+						Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
+							Semesters.create({
+						 	currentSemester: req.body.currentSemester,
+						 	studentId: req.body.studentId,
+						 	year: req.body.year,
+						 	name: req.body.name,
+						 	GPA: req.body.GPA,
+						 },function(err,data){
+					 		if (err)
+				 				res.send(err);
+						 });
+
+						if(err) {
+							res.send(err);
+						}
+						})
+				}
+				else {
+				 Semesters.create({
 				 	currentSemester: req.body.currentSemester,
 				 	studentId: req.body.studentId,
 				 	year: req.body.year,
 				 	name: req.body.name,
-				 	GPA: req.body.GPA,
 				 },function(err,data){
-			 		if (err)
-		 				res.send(err);
+				 	if (err)
+				 		res.send(err);
 				 });
-
-				if(err) {
-					res.send(err);
 				}
-				})
-		}
-		else {
-		 Semesters.create({
-		 	currentSemester: req.body.currentSemester,
-		 	studentId: req.body.studentId,
-		 	year: req.body.year,
-		 	name: req.body.name,
-		 },function(err,data){
-		 	if (err)
-		 		res.send(err);
-		 });
-		}
+			}
+		})
+				
 	});
 
 	app.post('/api/grade/update', function(req,res) {
@@ -124,6 +147,22 @@ module.exports = function(app) {
 			})
 
     });
+
+	app.post('/api/course/update', function(req,res) {
+    	Courses.update({ _id: req.body._id}, {$set: 
+    		{
+			courseName: req.body.courseName,
+			courseId: req.body.courseId,
+			creditHours: req.body.creditHours,
+			letterGrade: req.body.letterGrade
+    		}}, function(err, data) {
+				if(err)
+					res.send(err);
+			})
+
+    });
+
+
 	//get individual course
 	app.get('/api/course/:courseId', function(req,res){
 		Courses.find({
@@ -150,29 +189,46 @@ module.exports = function(app) {
 
 
 	app.post('/api/section', function(req, res) {
-
-		Section.create({
+		Section.find({
 			sectionName: req.body.name,
 			courseId: req.body.courseId,
 			weight: req.body.weight,
-		},function(err,data){
-			if (err)
-				res.send(err);
-		});
-
+		},function(err,data) {
+			if(data.length != 0) {}
+			else {
+				Section.create({
+					sectionName: req.body.name,
+					courseId: req.body.courseId,
+					weight: req.body.weight,
+				},function(err,data){
+					if (err)
+						res.send(err);
+				});
+			}
+		})
 	});
-	app.post('/api/grade', function(req, res) {
 
-		Grade.create({
+
+	app.post('/api/grade', function(req, res) {
+		Grade.find({
 			grade: req.body.grade,
 			sectionId: req.body.sectionId,
 			totalGrade: req.body.totalGrade,
 			name: req.body.name,
-		},function(err,data){
-			if (err)
-				res.send(err);
-		});
-
+		},function(err, data) {
+			if (data.length != 0) {}
+			else {
+				Grade.create({
+					grade: req.body.grade,
+					sectionId: req.body.sectionId,
+					totalGrade: req.body.totalGrade,
+					name: req.body.name,
+				},function(err,data){
+					if (err)
+						res.send(err);
+				});
+			}
+		})
 	});
 
 	app.delete('/api/course/:courseId', function(req,res) {
@@ -319,95 +375,95 @@ module.exports = function(app) {
     });
 
 
-    app.post('/api/courses', function(req,res) {
-        Courses.create({
-            courseName: req.body.courseName,
-            courseId: req.body.courseId,
-            semesterId: req.body.semesterId,
-        },function(err,data) {
-            if (err)
-                res.send(err);
-        })
-    })
-    app.post('/api/semesters', function(req, res) {
-        if(req.body.currentSemester==true) {
-            Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
-                Semesters.create({
-                    currentSemester: req.body.currentSemester,
-                    studentId: req.body.studentId,
-                    year: req.body.year,
-                    name: req.body.name,
-                },function(err,data){
-                    if (err)
-                        res.send(err);
-                });
+    // app.post('/api/courses', function(req,res) {
+    //     Courses.create({
+    //         courseName: req.body.courseName,
+    //         courseId: req.body.courseId,
+    //         semesterId: req.body.semesterId,
+    //     },function(err,data) {
+    //         if (err)
+    //             res.send(err);
+    //     })
+    // })
+    // app.post('/api/semesters', function(req, res) {
+    //     if(req.body.currentSemester==true) {
+    //         Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
+    //             Semesters.create({
+    //                 currentSemester: req.body.currentSemester,
+    //                 studentId: req.body.studentId,
+    //                 year: req.body.year,
+    //                 name: req.body.name,
+    //             },function(err,data){
+    //                 if (err)
+    //                     res.send(err);
+    //             });
 
-                if(err) {
-                    res.send(err);
-                }
-            })
-        }
-        else {
-            Semesters.create({
-                currentSemester: req.body.currentSemester,
-                studentId: req.body.studentId,
-                year: req.body.year,
-                name: req.body.name,
-            },function(err,data){
-                if (err)
-                    res.send(err);
-            });
-        }
-    });
+    //             if(err) {
+    //                 res.send(err);
+    //             }
+    //         })
+    //     }
+    //     else {
+    //         Semesters.create({
+    //             currentSemester: req.body.currentSemester,
+    //             studentId: req.body.studentId,
+    //             year: req.body.year,
+    //             name: req.body.name,
+    //         },function(err,data){
+    //             if (err)
+    //                 res.send(err);
+    //         });
+    //     }
+    // });
 
     //get individual course
-    app.get('/api/course/:courseId', function(req,res){
-        Courses.find({
-            _id: req.params.courseId
-        },function(err,course){
-            if (err) 
-                res.send(err);
+    // app.get('/api/course/:courseId', function(req,res){
+    //     Courses.find({
+    //         _id: req.params.courseId
+    //     },function(err,course){
+    //         if (err) 
+    //             res.send(err);
 			
-            res.json(course);
-        })
-    });
+    //         res.json(course);
+    //     })
+    // });
 
-    app.post('/api/students', function(req, res) {
+    // app.post('/api/students', function(req, res) {
 
-        Student.create({
-            name: req.body.name,
-            studentId: req.body.studentId
-        },function(err,data){
-            if (err)
-                res.send(err);
-        });
+    //     Student.create({
+    //         name: req.body.name,
+    //         studentId: req.body.studentId
+    //     },function(err,data){
+    //         if (err)
+    //             res.send(err);
+    //     });
 
-    });
+    // });
 
 
-    app.post('/api/section', function(req, res) {
+    // app.post('/api/section', function(req, res) {
 
-        Section.create({
-            sectionName: req.body.sectionName,
-            courseId: req.body.courseId
-        },function(err,data){
-            if (err)
-                res.send(err);
-        });
+    //     Section.create({
+    //         sectionName: req.body.sectionName,
+    //         courseId: req.body.courseId
+    //     },function(err,data){
+    //         if (err)
+    //             res.send(err);
+    //     });
 
-    });
-    app.post('/api/grade', function(req, res) {
+    // });
+    // app.post('/api/grade', function(req, res) {
 
-        Grade.create({
-            grade: req.body.grade,
-            sectionId: req.body.sectionId,
-            totalGrade: req.body.totalGrade
-        },function(err,data){
-            if (err)
-                res.send(err);
-        });
+    //     Grade.create({
+    //         grade: req.body.grade,
+    //         sectionId: req.body.sectionId,
+    //         totalGrade: req.body.totalGrade
+    //     },function(err,data){
+    //         if (err)
+    //             res.send(err);
+    //     });
 
-    });
+    // });
 
 
     app.get('/api/grade/:sectionId', function(req,res) {

@@ -125,16 +125,24 @@
 
       vm.section = {};
       vm.totalSection = 0;
+      //i = 0;
+      //vm.section[i].grades.length = 0;
 	  studentService.getSection(vm.courseUniqueId).then(function(data){
 	  	vm.section = data.data;
 		//console.log(vm.section);
+
 		for(var i = 0; i < vm.section.length; i++) {
 			vm.section[i].showInput = false;
 			vm.setGrades(vm.section[i]._id,i);
 		}
-		for (var i = 0; i < vm.section.length; i++) {
-			vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
-		}
+            
+
+		//for (var i = 0; i < vm.section.length; i++) {
+             //     if (vm.section[i].grades.length != 0) {
+		//	   vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
+             //     }
+		//}
+            //console.log(vm.totalSection);
 		//console.log(vm.section[i].grades.length);
 	  })
 
@@ -146,11 +154,15 @@
 	vm.actualPoints = 0;
 	vm.estimatedLetterGrade = '';
 	vm.setGrades = function(sectionId,i){
-		studentService.getGrade(sectionId).then(function(data){
+		//console.log(vm.section.length);
+            studentService.getGrade(sectionId).then(function(data){
 			vm.section[i].grades = data.data;
 			vm.section[i].total = 0;
 			vm.section[i].totalReceived = 0;
 			//onsole.log(vm.section[i].grades.length);
+            //console.log(vm.section.length);
+
+           // console.log(vm.totalSection);
 			for(var j = 0; j < vm.section[i].grades.length; j++){
 				vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 				vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
@@ -163,10 +175,19 @@
 				//vm.actualPoints = parseFloat(vm.actualPoints + vm.calculated).toFixed(2);
 				//console.log(vm.actualPoints);
 			}
+                  for (var k = 0; k < vm.section.length; k++) {
+                  if (vm.section[k].grades.length != 0) {
+                     vm.totalSection = vm.totalSection + parseInt(vm.section[k].weight);
+                  }
+
+                  }
 			//for (var n = 0; n < vm.section[i].grades.length; n++) {
 			vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
 			//}
 			console.log(vm.actualPoints);
+                  if (isNaN(vm.actualPoints)) {
+                        vm.actualPoints = 0;
+                  }
 			vm.calculated = parseFloat(vm.actualPoints).toFixed(2);
 			//console.log(vm.calculated);	
 			vm.totalOverallReceived += parseInt(vm.section[i].totalReceived);

@@ -26,9 +26,9 @@
 					vm.section[i].showInput = false;
 					vm.setGrades(vm.section[i]._id,i);
 				}
-			})				
+			})
 
-		
+
 			vm.deleteCourse = function() {
 					for( var i = 0; i < vm.section.length; i++) {
 							//console.log(vm.section[i]._id);
@@ -87,12 +87,7 @@
 						for(var j = 0; j < vm.section[i].grades.length; j++){
 							vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
-						}
-
-						//console.log(vm.section)
-//						for(var i = 0; i < vm.section[i].grades.length; i++) {
-//
-						//}
+						} 
 
 						vm.actualPercentage += parseFloat(((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight) / vm.totalWeight * 100);
 						 //console.log(vm.actualPercentage);
@@ -131,7 +126,6 @@
 						}
 						if (vm.actualPercentage >= 70 && vm.actualPercentage < 73) {
 								// console.log("C-")
-							vm.actualGrade = "C-";
 						}
 						if (vm.actualPercentage >= 67 && vm.actualPercentage < 70) {
 								// console.log("D+")
@@ -149,8 +143,7 @@
 								// console.log("F")
 							vm.actualGrade = "F"
 						}
-					
-
+						vm.course.letterGrade = vm.actualGrade;
 				})
 				
 			}
@@ -180,20 +173,18 @@
 				vm.newGrade.sectionId = sectionObj._id;
 				
 				studentService.postGrade(vm.newGrade).then(function() {
-						$timeout(function(){
-							$state.reload('root');
-						},1000);
-				});
-				vm.section[index].showInput = false;
-				studentService.getSection(vm.courseUniqueId).then(function(data){
+					vm.section[index].showInput = false;
+					studentService.getSection(vm.courseUniqueId).then(function(data){
 					vm.section = data.data;
 					//console.log(vm.section.length);
 					for(var i = 0; i < vm.section.length; i++) {
 						vm.section[i].showInput = false;
 						 vm.setGrades(vm.section[i]._id,i);
 					}
-				}).then(function() {
-					vm.course.letterGrade = vm.actualGrade;
+				})
+					$timeout(function(){
+						$state.reload('root');
+					},500);
 					studentService.updateCourse(vm.course);
 				});
 				vm.newGrade = {};
@@ -202,22 +193,23 @@
 
 			vm.submitEdit = function (grade) {
 				studentService.updateGrade(grade).then(function() {
-						$timeout(function(){
-							$state.reload('root');
-						},1000);
+						studentService.getSection(vm.courseUniqueId).then(function(data){
+								vm.section = data.data;
+								//console.log(vm.section.length);
+								for(var i = 0; i < vm.section.length; i++) {
+										vm.section[i].showInput = false;
+										 vm.setGrades(vm.section[i]._id,i);
+								}
+						})	
 				});
 				grade.showInput = false;
-				studentService.getSection(vm.courseUniqueId).then(function(data){
-					vm.section = data.data;
-					//console.log(vm.section.length);
-					for(var i = 0; i < vm.section.length; i++) {
-						vm.section[i].showInput = false;
-						 vm.setGrades(vm.section[i]._id,i);
-					}
-				}).then(function() {
-					vm.course.letterGrade = vm.actualGrade;
-					studentService.updateCourse(vm.course);
-				})
+				$timeout(function(){
+						$state.reload('root');
+						//studentService.updateCourse(vm.course);
+
+				},500);
+				console.log(vm.course);
+
 			}
 
 

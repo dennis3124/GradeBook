@@ -65,28 +65,28 @@
 							vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 						}
-						console.log(vm.section)
+						//console.log(vm.section)
 //						for(var i = 0; i < vm.section[i].grades.length; i++) {
 //
 						//}
-						vm.actualPercentage += parseFloat((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight);
-						//console.log(vm.actualPercentage);
-						console.log("total actual percentage earned is "+vm.actualPercentage);
-						if (vm.actualPercentage > 90) {
-							vm.letterGrade = 'A'
-						}
-						if (vm.actualPercentage > 80 && vm.actualPercentage < 90) {
-							console.log("B")
-						}
-						if (vm.actualPercentage > 70 && vm.actualPercentage < 80) {
-							console.log("C")
-						}
-						if (vm.actualPercentage > 60 && vm.actualPercentage < 70) {
-							console.log("D")
-						}
-						if (vm.actualPercentage < 60) {
-							console.log("F")
-						}
+						// vm.actualPercentage += parseFloat((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight);
+						// //console.log(vm.actualPercentage);
+						// console.log("total actual percentage earned is "+vm.actualPercentage);
+						// if (vm.actualPercentage > 90) {
+						// 	vm.letterGrade = 'A'
+						// }
+						// if (vm.actualPercentage > 80 && vm.actualPercentage < 90) {
+						// 	console.log("B")
+						// }
+						// if (vm.actualPercentage > 70 && vm.actualPercentage < 80) {
+						// 	console.log("C")
+						// }
+						// if (vm.actualPercentage > 60 && vm.actualPercentage < 70) {
+						// 	console.log("D")
+						// }
+						// if (vm.actualPercentage < 60) {
+						// 	console.log("F")
+						// }
 
 						//if (vm.actualPercentage )
 						 /*else if (actualPercentage >= 80 && <= 90) {
@@ -129,17 +129,15 @@
 						})
 					})
 			}
-			vm.flag = 0;
 			vm.submit = function(sectionObj, index) {
 				//console.log(sectionObj);
 				vm.newGrade.sectionId = sectionObj._id;
-				if (vm.flag == 0) {
-					studentService.postGrade(vm.newGrade).then(vm.flag = 1).then(function() {
+				
+				studentService.postGrade(vm.newGrade).then(function() {
 						$timeout(function(){
 							$state.reload('root');
 						},1000);
-					});
-				};
+				});
 				vm.section[index].showInput = false;
 				studentService.getSection(vm.courseUniqueId).then(function(data){
 					vm.section = data.data;
@@ -148,11 +146,36 @@
 						vm.section[i].showInput = false;
 						 vm.setGrades(vm.section[i]._id,i);
 					}
-				})
+				});
 				vm.newGrade = {};
-				vm.flag = 0;
 			}
 
+
+			vm.submitEdit = function (grade) {
+				studentService.updateGrade(grade).then(function() {
+						$timeout(function(){
+							$state.reload('root');
+						},1000);
+				});
+				grade.showInput = false;
+				studentService.getSection(vm.courseUniqueId).then(function(data){
+					vm.section = data.data;
+					//console.log(vm.section.length);
+					for(var i = 0; i < vm.section.length; i++) {
+						vm.section[i].showInput = false;
+						 vm.setGrades(vm.section[i]._id,i);
+					}
+				})
+
+			}
+
+
+			vm.editGrade = function(grade) {
+				grade.showInput = true;
+				grade.grade = parseInt(grade.grade);
+				grade.totalGrade= parseInt(grade.totalGrade)
+
+			}
 			vm.cancel = function(index) {
 				vm.newGrade = {};
 				vm.section[index].showInput = false;

@@ -114,6 +114,16 @@ module.exports = function(app) {
 		}
 	});
 
+	app.post('/api/grade/update', function(req,res) {
+    	Grade.update({ _id: req.body._id}, {$set: 
+    		{grade: req.body.grade,
+			totalGrade: req.body.totalGrade,
+			name: req.body.name,}}, function(err, data) {
+				if(err)
+					res.send(err);
+			})
+
+    });
 	//get individual course
 	app.get('/api/course/:courseId', function(req,res){
 		Courses.find({
@@ -398,6 +408,7 @@ module.exports = function(app) {
         });
 
     });
+
 
     app.get('/api/grade/:sectionId', function(req,res) {
         // use mongoose to get current grade with the section ID

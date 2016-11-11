@@ -132,6 +132,14 @@
 					console.log(err);
 				})
 			}
+
+			var updateGrade = function(gradeObj) {
+				return $http.post('http://localhost:27017/api/grade/update', gradeObj).then(function(err,data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
 			
 			var deleteSemester = function(semesterId) {
 				return $http.delete('http://localhost:27017/api/semester/' + semesterId).then(function(data) {
@@ -141,6 +149,7 @@
 				})
 			}
 				return {
+					updateGrade: updateGrade,
 					deleteGrades: deleteGrades,
 					deleteSemester: deleteSemester,
 					deleteCourse: deleteCourse,

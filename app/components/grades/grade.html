@@ -16,7 +16,7 @@
               </h3>
             </div>
             <span flex></span>
-            <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()">
+            <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()" aria-label="delete">
               <ng-md-icon icon="delete" size="30"></ng-md-icon>
             </md-button>
           </div>
@@ -51,20 +51,20 @@
      			</md-tab>
      			<md-tab ng-repeat="section in gradeVM.section" label="{{section.sectionName}}">
      					<md-content class="md-padding" layout="column">
-     					<div ng-repeat="grade in section.grades" class="md-padding">
+     					<div ng-repeat="grade in section.grades" class="md-padding" ng-if="!grade.showInput">
      						<div layout="row">
                   <md-menu>
-                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)">
+                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)" aria-label="more options button">
                      <md-icon md-svg-src="assets/img/icons/ellipsis.svg" size="30"></md-icon>
                     </md-button>
                     <md-menu-content>
                       <md-menu-item>
-                      <md-button>
+                      <md-button ng-click="gradeVM.editGrade(grade)" aria-label="edit button">
                        Edit
                       </md-button>
                       </md-menu-item>
                       <md-menu-item>
-                      <md-button>
+                      <md-button aria-label="delete button">
                        Delete
                       </md-button>
                       </md-menu-item>
@@ -80,6 +80,27 @@
   							<md-divider ng-if="!$last"></md-divider>
 
      					</div>
+               <form name="gradeEditForm">
+                <div layout="row" ng-repeat="grade in section.grades" ng-if="grade.showInput">
+                  <md-input-container flex >
+                    <input type="text" name="GradeName" placeholder="Enter Grade Name eg (Midterm 1)" ng-model="grade.name" required>
+                  </md-input-container>
+                    <span flex></span>
+                  <md-input-container>
+                    <input style="width:15em" type="number" name="GradeReceived" placeholder="Enter Grade Received eg (20)" ng-model="grade.grade" required>
+                  </md-input-container>
+                  <md-input-container>
+                    <input style="width:15em" type="number" name="GradeTotal" placeholder="Enter Grade Total eg (25)" ng-model="grade.totalGrade" required>
+                  </md-input-container>
+                  <md-button style="margin-top: 8px" aria-label="addGrade" class="md-icon-button" ng-click="gradeVM.submitEdit(grade)">
+                      <ng-md-icon  icon="done" size="30"></ng-md-icon>
+                    </md-button>
+                    <md-button style="margin-top: 8px" aria-label="closeInput" class="md-icon-button" ng-click="grade.showInput = false">
+                      <ng-md-icon  icon="close" size="30"></ng-md-icon>
+                    </md-button> 
+                </div>
+              </form>
+
      					<form name="gradeForm">
      						<div layout="row" ng-if="section.showInput">
      							<md-input-container flex >
@@ -98,8 +119,11 @@
       							<md-button style="margin-top: 8px" aria-label="closeInput" class="md-icon-button" ng-click="gradeVM.cancel($index)">
         							<ng-md-icon  icon="close" size="30"></ng-md-icon>
       							</md-button> 
-
      						</div>
+              </form>
+
+             
+
      						<div layout="row">
      							<h2>Add a Grade for {{section.sectionName}} </h2>
      							<span flex></span>

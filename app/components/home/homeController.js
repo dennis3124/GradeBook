@@ -28,7 +28,7 @@
 			studentService.getCurrentSemester($rootScope.globals.currentUser.username).then(function(data){
 				vm.currentSemester = data.data;
 				vm.currentSemester= vm.currentSemester[0];
-				//console.log(vm.currentSemester);
+				console.log(vm.currentSemester);
 				vm.semesterId = vm.currentSemester._id;
 				//console.log(vm.semesterId);
 

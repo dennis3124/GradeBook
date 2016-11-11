@@ -71,13 +71,14 @@ module.exports = function(app) {
 
 
 	app.post('/api/courses', function(req,res) {
+		console.log("hi");
 		Courses.find({ 
 			semesterId: req.body.semesterId,
 			courseName: req.body.courseName,
 			courseId: req.body.courseId,
 			creditHours: req.body.creditHours,
 		},function(err,data) {
-			if (data != null){}
+			if (data.length != 0){}
 			else {
 				Courses.create({
 					courseName: req.body.courseName,
@@ -91,16 +92,17 @@ module.exports = function(app) {
 				})
 			}
 		})
-		
 	})
+
 	app.post('/api/semesters', function(req, res) {
+		console.log("hi");
 		Semesters.find({
 			studentId: req.body.studentId,
 		 	year: req.body.year,
 		 	name: req.body.name,
 		 	GPA: req.body.GPA,
 		}, function(err,data) {
-			if (data != null){}
+			if (data.length != 0){}
 			else {
 				if(req.body.currentSemester==true) {
 						Semesters.update({currentSemester: true}, {currentSemester: false}, {multi: true },function(err,res) {
@@ -167,7 +169,7 @@ module.exports = function(app) {
 			courseId: req.body.courseId,
 			weight: req.body.weight,
 		},function(err,data) {
-			if(data != null) {}
+			if(data.length != 0) {}
 			else {
 				Section.create({
 					sectionName: req.body.name,
@@ -189,7 +191,7 @@ module.exports = function(app) {
 			totalGrade: req.body.totalGrade,
 			name: req.body.name,
 		},function(err, data) {
-			if (data != null) {}
+			if (data.length != 0) {}
 			else {
 				Grade.create({
 					grade: req.body.grade,

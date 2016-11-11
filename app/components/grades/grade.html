@@ -27,7 +27,7 @@
      					  <div layout="row">
      						<span class="md-display-2">Overview</span>
      						<span flex></span>		
-                <span class="md-display-3">{{gradeVM.actualGrade}}</span>
+                <span ng-if="gradeVM.actualGrade != 0" class="md-display-3">{{gradeVM.actualGrade}}</span>
                 </div>
      					
     					<div ng-repeat="section in gradeVM.section">

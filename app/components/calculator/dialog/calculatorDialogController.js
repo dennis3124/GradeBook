@@ -166,7 +166,7 @@
 			//for (var n = 0; n < vm.section[i].grades.length; n++) {
 			vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
 			//}
-			//console.log(vm.actualPoints);
+			console.log(vm.actualPoints);
 			vm.calculated = parseFloat(vm.actualPoints).toFixed(2);
 			//console.log(vm.calculated);	
 			vm.totalOverallReceived += parseInt(vm.section[i].totalReceived);

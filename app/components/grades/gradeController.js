@@ -48,6 +48,12 @@
 					}, 1000)
 					
 			}
+			vm.deleteGrade = function(gradeId) {
+				//console.log(gradeId);
+				studentService.deleteGrade(gradeId).then(function(data) {
+					console.log(gradeId);
+				})
+			}
 
 			vm.deleteGrades = function(sectionid) {
 				console.log(sectionid);

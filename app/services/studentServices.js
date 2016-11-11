@@ -133,6 +133,15 @@
 				})
 			}
 			
+			var deleteGrade = function(gradeId) {
+				//console.log(gradeId);
+				return $http.delete('http://localhost:27017/api/single/grade/' + gradeId).then(function(data) {
+					return data;
+				}).catch(function(err) {
+					console.log(err);
+				})
+			}
+
 			var deleteSemester = function(semesterId) {
 				return $http.delete('http://localhost:27017/api/semester/' + semesterId).then(function(data) {
 					return data;
@@ -141,6 +150,7 @@
 				})
 			}
 				return {
+					deleteGrade: deleteGrade,
 					deleteGrades: deleteGrades,
 					deleteSemester: deleteSemester,
 					deleteCourse: deleteCourse,

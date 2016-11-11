@@ -189,7 +189,7 @@ module.exports = function(app) {
 			grade: req.body.grade,
 			sectionId: req.body.sectionId,
 			totalGrade: req.body.totalGrade,
-			name: req.body.name,
+			name: req.body.name
 		},function(err, data) {
 			if (data.length != 0) {}
 			else {
@@ -197,7 +197,7 @@ module.exports = function(app) {
 					grade: req.body.grade,
 					sectionId: req.body.sectionId,
 					totalGrade: req.body.totalGrade,
-					name: req.body.name,
+					name: req.body.name
 				},function(err,data){
 					if (err)
 						res.send(err);
@@ -229,7 +229,14 @@ module.exports = function(app) {
 					console.log(err);
 			})
 	})
-
+	app.delete('/api/single/grade/:_id', function(req,res) {
+		Grade.remove({
+			_id: req.params._id},function(err,data){
+				if (err)
+					console.log(err);
+				res.send(req.params_id);
+			})
+	})
 	app.delete('/api/semester/:semesterId', function(req,res) {
 
 		Semesters.remove({

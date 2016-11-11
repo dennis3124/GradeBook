@@ -102,7 +102,7 @@ md-toolbar.toolbarClass {
     color: black;
 }
 md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
-    background-color: #3eddea;
+    background-color: rgb(63,81,181);
 }
 md-divider.sideBarDivider {
     display: block;

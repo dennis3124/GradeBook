@@ -56,6 +56,7 @@
 				 })
 			}
 			vm.actualPercentage = 0;
+			vm.actualGrade = 0;
 			vm.setGrades = function(sectionId,i){
 				studentService.getGrade(sectionId).then(function(data){
 						vm.section[i].grades = data.data;
@@ -72,20 +73,54 @@
 						vm.actualPercentage += parseFloat((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight);
 						//console.log(vm.actualPercentage);
 						console.log("total actual percentage earned is "+vm.actualPercentage);
-						if (vm.actualPercentage > 90) {
-							vm.letterGrade = 'A'
+						if (vm.actualPercentage >= 93 && vm.actualPercentage <= 100) {
+							console.log("A+/A")
+							vm.actualGrade = "A+/A";
+
 						}
-						if (vm.actualPercentage > 80 && vm.actualPercentage < 90) {
+						if (vm.actualPercentage >= 90 && vm.actualPercentage < 93) {
+							console.log("A-")
+							vm.actualGrade = "A-";
+						}
+						if (vm.actualPercentage >= 87 && vm.actualPercentage < 90) {
+							console.log("B+")
+							vm.actualGrade = "B+";
+						}
+						if (vm.actualPercentage >= 83 && vm.actualPercentage < 87) {
 							console.log("B")
+							vm.actualGrade = "B";
 						}
-						if (vm.actualPercentage > 70 && vm.actualPercentage < 80) {
+						if (vm.actualPercentage >= 80 && vm.actualPercentage < 83) {
+							console.log("B-")
+							vm.actualGrade = "B-";
+						}
+						if (vm.actualPercentage >= 77 && vm.actualPercentage < 80) {
+							console.log("C+")
+							vm.actualGrade = "C+";
+						}
+						if (vm.actualPercentage >= 73 && vm.actualPercentage < 77) {
 							console.log("C")
+							vm.actualGrade = "C";
 						}
-						if (vm.actualPercentage > 60 && vm.actualPercentage < 70) {
+						if (vm.actualPercentage >= 70 && vm.actualPercentage < 73) {
+							console.log("C-")
+							vm.actualGrade = "C-";
+						}
+						if (vm.actualPercentage >= 67 && vm.actualPercentage < 70) {
+							console.log("D+")
+							vm.actualGrade = "D+";
+						}
+						if (vm.actualPercentage >= 63 && vm.actualPercentage < 67) {
 							console.log("D")
+							vm.actualGrade = "D";
+						}
+						if (vm.actualPercentage >= 60 && vm.actualPercentage < 63) {
+							console.log("D-")
+							vm.actualGrade = "D-";
 						}
 						if (vm.actualPercentage < 60) {
 							console.log("F")
+							vm.actualGrade = "F"
 						}
 
 						//if (vm.actualPercentage )

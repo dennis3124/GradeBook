@@ -132,7 +132,15 @@
 					console.log(err);
 				})
 			}
-			
+
+			var updateGrade = function(gradeObj) {
+				return $http.post('http://localhost:27017/api/grade/update', gradeObj).then(function(err,data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
+
 			var deleteGrade = function(gradeId) {
 				//console.log(gradeId);
 				return $http.delete('http://localhost:27017/api/single/grade/' + gradeId).then(function(data) {
@@ -141,7 +149,13 @@
 					console.log(err);
 				})
 			}
-
+			var updateCourse = function(courseObj) {
+				return $http.post('http://localhost:27017/api/course/update', courseObj).then(function(err,data){
+						return data;
+					}).catch(function(err){
+						console.log(err);
+					})
+			}
 			var deleteSemester = function(semesterId) {
 				return $http.delete('http://localhost:27017/api/semester/' + semesterId).then(function(data) {
 					return data;
@@ -151,6 +165,8 @@
 			}
 				return {
 					deleteGrade: deleteGrade,
+					updateCourse: updateCourse,
+					updateGrade: updateGrade,
 					deleteGrades: deleteGrades,
 					deleteSemester: deleteSemester,
 					deleteCourse: deleteCourse,

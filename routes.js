@@ -71,7 +71,7 @@ module.exports = function(app) {
 
 
 	app.post('/api/courses', function(req,res) {
-		console.log("hi");
+		//console.log("hi");
 		Courses.find({ 
 			semesterId: req.body.semesterId,
 			courseName: req.body.courseName,
@@ -95,7 +95,6 @@ module.exports = function(app) {
 	})
 
 	app.post('/api/semesters', function(req, res) {
-		console.log("hi");
 		Semesters.find({
 			studentId: req.body.studentId,
 		 	year: req.body.year,
@@ -137,6 +136,32 @@ module.exports = function(app) {
 		})
 				
 	});
+
+	app.post('/api/grade/update', function(req,res) {
+    	Grade.update({ _id: req.body._id}, {$set: 
+    		{grade: req.body.grade,
+			totalGrade: req.body.totalGrade,
+			name: req.body.name,}}, function(err, data) {
+				if(err)
+					res.send(err);
+			})
+
+    });
+
+	app.post('/api/course/update', function(req,res) {
+    	Courses.update({ _id: req.body._id}, {$set: 
+    		{
+			courseName: req.body.courseName,
+			courseId: req.body.courseId,
+			creditHours: req.body.creditHours,
+			letterGrade: req.body.letterGrade
+    		}}, function(err, data) {
+				if(err)
+					res.send(err);
+			})
+
+    });
+
 
 	//get individual course
 	app.get('/api/course/:courseId', function(req,res){
@@ -446,6 +471,7 @@ module.exports = function(app) {
     //     });
 
     // });
+
 
     app.get('/api/grade/:sectionId', function(req,res) {
         // use mongoose to get current grade with the section ID

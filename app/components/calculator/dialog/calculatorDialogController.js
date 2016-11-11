@@ -108,12 +108,17 @@
       	//console.log(percentage);
       	// Condition to check if there are inputs
 
-      	vm.estimate = parseFloat((vm.lettergradescore - (currentgrade * (totalsection/100)))/(percentage/100)).toFixed(2);
-      	vm.maxPossibleScore = parseFloat((currentgrade * (totalsection/100)) + (100 * percentage/100));
+      	//vm.estimate = parseFloat((vm.lettergradescore - (currentgrade * (totalsection/100)))/(percentage/100)).toFixed(2);
+      	vm.estimate = parseFloat((vm.lettergradescore - (currentgrade/totalsection * totalsection))/percentage*100).toFixed(2);
+            vm.maxPossibleScore = parseFloat((currentgrade/totalsection * totalsection) + (100 * percentage/100));
       	//console.log(vm.maxPossibleScore);
+            vm.test = parseFloat(percentage) + parseFloat(totalsection);
+            console.log(vm.test);
       	if (isNaN(vm.estimate) | vm.lettergradescore === 0) {
       		vm.results = "Please choose a letter grade and type in the percentage of the finals.*"
-      	} else if (vm.estimate > 100) {
+      	} else if (vm.test != 100) {
+                  vm.results = "Total percentage of section does not equal 100. Estimation not accurate. You will need at least " + vm.estimate + "% in your finals. Enter other sections to obtain a more accurate estimation."
+            } else if (vm.estimate > 100) {
       		vm.results = "Sorry! You will need at least " + vm.estimate + "% in your finals. Extra credit maybe? Maximum possible course grade obtained " + vm.maxPossibleScore.toFixed(2) + "%";
       	} else if (vm.estimate <= 100) {
       		vm.results = "You will need " + vm.estimate + "% in your finals to get an " + lettergrade;
@@ -132,18 +137,9 @@
 		//console.log(vm.section);
 
 		for(var i = 0; i < vm.section.length; i++) {
-			vm.section[i].showInput = false;
+                  vm.section[i].showInput = false;
 			vm.setGrades(vm.section[i]._id,i);
 		}
-            
-
-		//for (var i = 0; i < vm.section.length; i++) {
-             //     if (vm.section[i].grades.length != 0) {
-		//	   vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
-             //     }
-		//}
-            //console.log(vm.totalSection);
-		//console.log(vm.section[i].grades.length);
 	  })
 
 	//console.log(vm.section);
@@ -159,11 +155,13 @@
 			vm.section[i].grades = data.data;
 			vm.section[i].total = 0;
 			vm.section[i].totalReceived = 0;
+                  //svm.section
 			//onsole.log(vm.section[i].grades.length);
             //console.log(vm.section.length);
 
            // console.log(vm.totalSection);
-			for(var j = 0; j < vm.section[i].grades.length; j++){
+                  if (vm.section[i].grades.length != 0) {
+			   for(var j = 0; j < vm.section[i].grades.length; j++){
 				vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 				vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 				//console.log(vm.section[i].total);
@@ -174,14 +172,19 @@
 				//console.log(vm.actualPoints);
 				//vm.actualPoints = parseFloat(vm.actualPoints + vm.calculated).toFixed(2);
 				//console.log(vm.actualPoints);
-			}
-                  for (var k = 0; k < vm.section.length; k++) {
-                  if (vm.section[k].grades.length != 0) {
-                     vm.totalSection = vm.totalSection + parseInt(vm.section[k].weight);
-                  }
+			   }
+                  //console.log(vm.section[i].totalReceived);
+                  //console.log(vm.section[i].total);
+                  //console.log(vm.section[i].weight);
+                  //for (var k = 0; k < vm.section.length; k++) {
+                        //if (vm.section[i].grades.length != 0) {
+                              //console.log(vm.section[k].weight);
+                              vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
+                        //}
+                  //}
 
-                  }
 			//for (var n = 0; n < vm.section[i].grades.length; n++) {
+
 			vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
 			//}
 			console.log(vm.actualPoints);
@@ -201,8 +204,10 @@
 			vm.estimatedGrade = parseFloat(vm.actualPoints/vm.totalSection*100);
 			vm.estimatedGrade = parseInt(vm.estimatedGrade);
 			//console.log(vm.estimatedGrade);
-			vm.estimatedLetterGrade = "-";
-			if (vm.estimatedGrade >= 98 & vm.estimatedGrade <= 100 ) {
+			}
+                  vm.estimatedLetterGrade = "-";
+			
+                  if (vm.estimatedGrade >= 98 & vm.estimatedGrade <= 100 ) {
 				vm.estimatedLetterGrade = "A+";
 			} else if (vm.estimatedGrade >= 93 & vm.estimatedGrade <= 97) {
 				vm.estimatedLetterGrade = "A";

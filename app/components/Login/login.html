@@ -1,24 +1,47 @@
-﻿<div class="col-md-6 col-md-offset-3">
-    <h2>Login</h2>
-    <form name="form" ng-submit="loginVM.login()" role="form">
-        <div layout="row">
-                <md-input-container flex="50">
-                    <label>Username</label>
-                    <input ng-model="loginVM.user.username" required />
-                    <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
-                </md-input-container>
+﻿<div layout="row" class="ng-scope layout-row" ui-view="root">
+    <div class="full-image-background login-register-img layout-fill ng-scope layout-row" layout="row" layout-fill="">
+        <div class="animate-wrapper layout-column flex" flex="" layout="column">
+            <!-- uiView: -->
+            <div id="ui-login" class="login-frame ng-scope layout-align-center-center layout-column flex" layout="column" layout-align="center center">
+                <md-card class="ng-scope _md md-cyan-theme">
+                    <md-toolbar class="padding-20 text-center _md-toolbar-transitions" layout-align="center center" style="background-color: #3eddea; color: black">
+                        <img ng-src="assets/img/Picture1.png" style="width:100px; height: 100px;" align="middle" />
+                        <h1 class="md-headline ng-scope">Sign Up</h1>
+                    </md-toolbar>
+
+                    <md-content class="md-padding _md ">
+                        
+                            <form name="form" ng-submit="loginVM.login()" role="form" style="background-color:white">
+                                <div layout="row">
+                                    <md-input-container flex="100">
+                                        <label>Email</label>
+                                        <input ng-model="loginVM.user.username" required ng-pattern="/^.+@.+\..+$/" />
+
+                                        <div ng-messages="form.username.$error">
+                                            <div ng-message="require">Email is required</div>
+                                            <div ng-message="pattern">Must submit a valid Email</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row">
+                                    <md-input-container flex="100">
+                                        <label>Password</label>
+                                        <input ng-model="loginVM.user.password" required />
+                                        <div ng-messages="form.username.$error">
+                                            <div ng-message="require">Password is required</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <h4 class="error" ng-show="error" style="color:red">Invalid Email or Password</h4>
+
+                                
+                                <button class="md-raised full-width md-button sign-up margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 ng-scope md-ink-ripple" type="submit" ng-disabled="form.$invalid || vm.dataLoading" aria-label="Sign In" disabled="disabled">Sign Up</button>
+                                <a class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 md-button ng-scope md-ink-ripple" href="#/register" aria-label="Create an account? Register here." style="color: #3eddea">Create an account? Register here.</a>
+                            </form>
+</md-content>
+                </md-card>
+            </div>
         </div>
-        <div layout="row">
-            <md-input-container flex="50">
-                <label>Password</label>
-                <input ng-model="loginVM.user.password" required />
-                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
-            </md-input-container>
-        </div>
-        <div class="form-actions">
-            <md-button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</md-button>
-            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a href="#/register" class="btn btn-link">Register</a>
-        </div>
-    </form>
+    </div>
 </div>

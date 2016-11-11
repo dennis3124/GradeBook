@@ -536,7 +536,7 @@ module.exports = function(app) {
             if (err) throw err;
             console.log(user);
             if (!user) {
-                return res.status(403).send({ success: false, msg: 'Authentication failed. User not found.' });
+                return res.status(403).send({ success: false, msg: 'Authentication failed. User not found.', error: 'Email' });
             } else {
                 // check if password matches
                 user.comparePassword(req.body.password, function (err, isMatch) {
@@ -546,7 +546,9 @@ module.exports = function(app) {
                         // return the information including token as JSON
                         res.json({ success: true });
                     } else {
-                        return res.status(403).send({ success: false, msg: 'Authentication failed. Wrong password.' });
+                        res.status(403).send({ success: false, msg: 'Authentication failed. Wrong password.', error: 'Password'});
+                        res.error = 'Authentication failed. Wrong password.';
+                        return res;
                     }
                 });
             }

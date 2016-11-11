@@ -172,11 +172,16 @@
 			}
 			vm.submit = function(sectionObj, index) {
 				//console.log(sectionObj);
+					//console.log(sectionObj);
 				vm.newGrade.sectionId = sectionObj._id;
 				
 				studentService.postGrade(vm.newGrade).then(function() {
-					vm.section[index].showInput = false;
-					studentService.getSection(vm.courseUniqueId).then(function(data){
+						$timeout(function(){
+							$state.reload('root');
+						},1000);
+				});
+				vm.section[index].showInput = false;
+				studentService.getSection(vm.courseUniqueId).then(function(data){
 					vm.section = data.data;
 					//console.log(vm.section.length);
 					for(var i = 0; i < vm.section.length; i++) {
@@ -184,12 +189,8 @@
 						 vm.setGrades(vm.section[i]._id,i);
 					}
 				})
-					$timeout(function(){
-						$state.reload('root');
-					},500);
-					studentService.updateCourse(vm.course);
-				});
 				vm.newGrade = {};
+
 			}
 
 

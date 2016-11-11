@@ -110,7 +110,7 @@
 
       	vm.estimate = parseFloat((vm.lettergradescore - (currentgrade * (totalsection/100)))/(percentage/100)).toFixed(2);
       	vm.maxPossibleScore = parseFloat((currentgrade * (totalsection/100)) + (100 * percentage/100));
-      	console.log(vm.maxPossibleScore);
+      	//console.log(vm.maxPossibleScore);
       	if (isNaN(vm.estimate) | vm.lettergradescore === 0) {
       		vm.results = "Please choose a letter grade and type in the percentage of the finals.*"
       	} else if (vm.estimate > 100) {
@@ -118,7 +118,7 @@
       	} else if (vm.estimate <= 100) {
       		vm.results = "You will need " + vm.estimate + "% in your finals to get an " + lettergrade;
       	}
-      	console.log(vm.results);
+      	//console.log(vm.results);
       	//console.log(vm.estimate);
       }
       
@@ -175,7 +175,11 @@
 			//console.log(vm.totalOverall);
 			//vm.actualPoints = parseFloat(vm.totalOverallReceived/vm.totalOverall * vm.totalSection).toFixed(2);	
 			//vm.actualPoints.round(2);
+			//console.log(vm.actualPoints);
+			//console.log(vm.totalSection);
 			vm.estimatedGrade = parseFloat(vm.actualPoints/vm.totalSection*100);
+			vm.estimatedGrade = parseInt(vm.estimatedGrade);
+			//console.log(vm.estimatedGrade);
 			vm.estimatedLetterGrade = "-";
 			if (vm.estimatedGrade >= 98 & vm.estimatedGrade <= 100 ) {
 				vm.estimatedLetterGrade = "A+";
@@ -201,9 +205,11 @@
 				vm.estimatedLetterGrade = "D";
 			} else if (vm.estimatedGrade >= 60 & vm.estimatedGrade <= 62) {
 				vm.estimatedLetterGrade = "D-";
-			} else if (vm.estimatedGrade <= 59) {
+			} else if (vm.estimatedGrade <= 59 & vm.estimatedGrade >= 0) {
+				//console.log("Goesin");
 				vm.estimatedLetterGrade = "F";
 			}
+			//console.log(vm.estimatedLetterGrade);
 		})
 				
 	}			

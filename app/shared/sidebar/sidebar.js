@@ -1,7 +1,7 @@
 (function(){
 	angular.module('GradeBook')
 
-		.controller('sideBarController',['$state', '$mdSidenav', '$timeout' ,function($state,$mdSidenav,$timeout){
+		.controller('sideBarController',['UserService', '$state', '$mdSidenav', '$timeout' ,function(UserService, $state,$mdSidenav,$timeout){
 			var vm = this;
 			vm.home = $state.is('root.home');
 			vm.semester = $state.is('root.semester');

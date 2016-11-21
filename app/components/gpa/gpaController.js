@@ -4,7 +4,10 @@
 			var vm = this;
 			vm.semesters = [];
 			vm.gpa = [];
+			vm.cHours = [];
 			vm.index = 0;
+			vm.cumGpa = 0;
+			vm.cumSum = 0;
 			vm.studentId = $cookies.get('studentId');
 			studentService.getSemesters(vm.studentId).then(function(data) {
 				vm.semesters = data.data;
@@ -18,9 +21,6 @@
 				}
 				// console.log(vm.semesters);
 			});
-
-			console.log(vm.gpa);
-
 
 			vm.showAdvanced = function(ev, semester) {
 			    $mdDialog.show({
@@ -39,6 +39,7 @@
 
 			vm.getGPA = function(courses, i) {
 				var sum = 0;
+				vm.hours = 0;
 				var creditHours = 0;
 				for (var j = 0; j < courses.length; j++) {
 					var grade = courses[j].letterGrade;
@@ -59,14 +60,28 @@
 					sum += courses[j].creditHours * weight;
 					creditHours += parseInt(courses[j].creditHours);
 				}
-				var gpa = sum / creditHours;
-				vm.gpa[vm.index++]= gpa;
-				console.log(gpa);
-				console.log(sum);
-				console.log(creditHours);
+				var gpa = (sum / creditHours).toPrecision(3);
+				if (creditHours == 0) {
+					gpa = 0;
+				}
+				vm.gpa[vm.index] = gpa;
+				vm.cHours[vm.index++] = creditHours;
+				var cumHours = 0;
+				for (var k = 0; k < vm.cHours.length; k++) {
+					cumHours += vm.cHours[k];
+				}
+				vm.cumSum += sum;
+				// for (var k = 0; k < vm.gpa.length; k++) {
+				// 	cumSum += vm.gpa[k];
+				// }
+				vm.cumGpa = (vm.cumSum/cumHours).toPrecision(3);
+				if (cumHours == 0) {
+					vm.cumGpa = 0;
+				}
 				//vm.semesters[j].gpa = gpa;
-				console.log(vm.semesters);
-				console.log(i);
+				console.log(vm.cumSum);
+				console.log(cumHours);
+				console.log(vm.cumGpa);
 			}
 
 		}])

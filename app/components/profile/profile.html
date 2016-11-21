@@ -1,0 +1,26 @@
+<md-content flex md-scroll-y layout-fill layout-padding>
+    <div layout="row" layout-align="center center">
+       <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+  			<md-card-content>
+				<h1>{{profileVM.students.name}}</h1>
+				<md-divider></md-divider>
+				<div>
+					<h2>Profile Picture: </h2>
+				</div>
+				<div>
+					<h2>Name: </h2>
+					<md-input-container flex>
+						<input type="text" name="Name" placeholder="Enter Full Name">
+					</md-input-container>
+					<h2>Email: </h2>
+					<md-input-container flex>
+						<input type="text" name="Email" placeholder="Email Address">
+				</div>
+				<div>
+					<md-button class="btn btn-primary">Submit</md-button>
+					<md-button ng-click="profileVM.goHome()" class="btn btn-primary">Cancel</md-button>
+				</div>
+     		</md-card-content>
+   		 </md-card>
+   	</div>
+</md-content>

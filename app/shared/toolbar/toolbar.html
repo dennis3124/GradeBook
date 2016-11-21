@@ -4,18 +4,17 @@
 					<ng-md-icon icon="menu"></ng-md-icon>
 				</md-button>
 				{{toolBarVM.dir}}
-				<div flex></div>
+				<span flex></span>
 
 				<md-menu>
 					<md-button class="md-icon-button" aria-label="Open settings menu" ng-click="$mdOpenMenu($event)">
-							<ng-md-icon icon="settings">
-							</ng-md-icon>
+							{{toolBarVM.students.name}}
 					</md-button>
 					<md-menu-content>
+						<md-button ng-click="toolBarVM.userProfile()" class="btn btn-primary">Profile</md-button>
 						<md-button ng-click="toolBarVM.Logout()" class="btn btn-primary">Logout</md-button>
 					</md-menu-content> 
-				</md-menu>
-				
-			</div>
+				</md-menu>		
+		</div>
 </md-toolbar>
 	<!-- This adds a custom directive of sidebar inside toolbar  -->

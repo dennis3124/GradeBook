@@ -12,10 +12,17 @@
 		.controller('toolBarController', ['$mdSidenav', '$state', 'UserService', '$rootScope',
             function ($mdSidenav, $state, UserService, $rootScope) {
 			    var vm = this;
+			    vm.students = $rootScope.globals.currentUser;
+			    // vm.student.name = data.data[0].name;
 			    vm.openLeftSideNav = function(){ 
 			    	$mdSidenav('left').toggle();
 			    };
-    
+   
+			    UserService.GetById($rootScope.globals.currentUser.username).then(function(data) {
+			    	$rootScope.globals.studentName = data.data[0].name;
+			    	vm.students.name = data.data[0].name;
+			    })
+
 			    vm.goHome = function() {
 			    	//console.log('hi');
 			    	$state.go('root.home');
@@ -39,12 +46,20 @@
 				else if (vm.dir == 'Grade') {
 					vm.dir = 'Semester  >  Course  >  Grade';
 				}
+				else if(vm.dir == 'Profile') {
+					vm.dir = 'Edit Profile';
+				}
 			}
          	vm.dir = $state.current.name;
 			vm.checkdir(vm.dir);
 			vm.goHome = function() {
 				//console.log('hi');
 				$state.go('root.home');
+			}
+
+			vm.userProfile = function() {
+				console.log('sup');
+				$state.go('root.profile');
 			}
 
 			vm.Logout = function () {

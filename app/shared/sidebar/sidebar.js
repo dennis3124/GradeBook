@@ -7,6 +7,7 @@
 			vm.semester = $state.is('root.semester');
 			vm.calculator = $state.is('root.calculator');
 			vm.gpa = $state.is('root.GPA');
+			vm.help = $state.is('root.help');
 			vm.goToSem = function() {
 				$state.reload('root');	
 				$timeout(function() {			
@@ -34,6 +35,13 @@
 				$state.reload('root');				
 				$timeout(function() {
 					$state.go('root.GPA');
+				}, 50)
+				$mdSidenav('left').toggle();
+			}
+			vm.goToHelp = function() {
+				$state.reload('root');
+				$timeout(function() {
+					$state.go('root.help');
 				}, 50)
 				$mdSidenav('left').toggle();
 			}

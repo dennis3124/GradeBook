@@ -1,24 +1,34 @@
 <md-content flex md-scroll-y layout-fill layout-padding>
     <div layout="row" layout-align="center center">
-       <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding>
+       <md-card flex-gt-sm="90" flex-gt-md="40" layout-padding>
   			<md-card-content>
-				<h1>{{profileVM.students.name}}</h1>
+				<h1>Edit Profile</h1>
 				<md-divider></md-divider>
 				<div>
 					<h2>Profile Picture: </h2>
 				</div>
-				<div>
-					<h2>Name: </h2>
-					<md-input-container flex>
-						<input type="text" name="Name" placeholder="Enter Full Name">
+				<div layout="row">
+					<h2 flex="15">Name:</h2>
+					<md-input-container flex="35">
+						<input type="text" name="Name" placeholder="John Smith">
 					</md-input-container>
-					<h2>Email: </h2>
-					<md-input-container flex>
-						<input type="text" name="Email" placeholder="Email Address">
 				</div>
-				<div>
-					<md-button class="btn btn-primary">Submit</md-button>
+				<div layout="row">
+					<h2 flex="15">E-mail:</h2>
+					<md-input-container flex="35">
+						<input type="text" name="Email" placeholder="john.smith@gmail.com">
+					</md-input-container>
+				</div>
+				<div layout="row">
+					<h2 flex="20">Password:</h2>
+					<md-input-container flex="35">
+						<input type="password" name="Password" placeholder="********">
+					</md-input-container>
+				</div>
+				<div layout="row">
 					<md-button ng-click="profileVM.goHome()" class="btn btn-primary">Cancel</md-button>
+					<span flex></span>
+					<md-button class="btn btn-primary">Submit</md-button>
 				</div>
      		</md-card-content>
    		 </md-card>

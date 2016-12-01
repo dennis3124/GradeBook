@@ -529,6 +529,18 @@ module.exports = function(app) {
         })
     });
 
+    app.put('/api/users/:id', function(req, res) {
+    	Student.update({
+    		name: req.body.name,
+    	}, function (err, data) {
+    		console.log(data);
+    		if (err) {
+    			res.send(err);
+    		}
+    		res.json(data);
+    	})
+    });
+
     app.post('/api/authenticate', function (req, res) {
         Student.findOne({
             studentId: req.body.username

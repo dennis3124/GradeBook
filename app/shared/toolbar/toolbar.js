@@ -58,7 +58,6 @@
 			}
 
 			vm.userProfile = function() {
-				console.log('sup');
 				$state.go('root.profile');
 			}
 

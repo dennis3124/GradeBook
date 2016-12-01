@@ -8,7 +8,7 @@
 					 url: '/help',
 					 views: {
 					 	'content@': {
-					 		templateUrl: 'app/components/help/help.html',					 
+					 		templateUrl: 'app/components/help/helpp.html',					 
 							controller: 'helpController',
 					 		controllerAs: 'helpVM'
 					 	}

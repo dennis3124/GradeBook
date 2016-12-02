@@ -1,11 +1,11 @@
 (function(){
 	angular.module('GradeBook')
 		.controller('homeController', ['$mdDialog', 'studentService', 'UserService', '$cookies', '$state', '$rootScope',
-            function ($mdDialog, studentService, UserService,$cookies, $state, $rootScope) {
+            function ($mdDialog, studentService, UserService, $cookies, $state, $rootScope) {
 
 			var vm = this;
 			vm.students = $rootScope.globals.currentUser;
-			console.log(vm.students);
+			// console.log(vm.students);
 			vm.semesters = [];
 			vm.currentSemester ={};
 			vm.courses = [];

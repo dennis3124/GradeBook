@@ -3,7 +3,7 @@
 	<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" style="height:100%; width:15em">
 		<md-toolbar class="toolbarClass md-whiteframe-z1" md-scroll-shrink>
 			<div class="md-toolbar-tools" style="color: white; background-color: rgb(63,81,181)" >
-				Gradebook
+				GradeBook
 			</div>
 		</md-toolbar>
 		<md-divider></md-divider>
@@ -36,6 +36,12 @@
 			<md-button class="sideBarButton" ng-click="">
 				<ng-md-icon class="sideBarIcon" icon="settings" style="fill: white"></ng-md-icon>
 				&nbsp Settings
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button class="sideBarButton" ng-click="sidebarVM.goToHelp()">
+				<ng-md-icon class="sideBarIcon" icon="help" style="fill: white"></ng-md-icon>
+				&nbsp Help
 			</md-button>
 		</md-menu-item>
 		<md-menu-item>

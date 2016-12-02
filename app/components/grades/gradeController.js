@@ -149,6 +149,28 @@
 				})
 				
 			}
+
+			vm.openEditDialog = function(event) {
+				var dialog = $mdDialog.show({
+						targetEvent:event,
+				 		clickOutsideToClose:true,
+						templateUrl: 'app/components/grades/sectionDialog/editDialog.html',
+						controller: 'editDialogController',
+						controllerAs: 'editDialogVM',
+						locals: {
+							courseUniqueId: vm.courseUniqueId
+						}
+					}).then(function(){
+						studentService.getSection(vm.courseUniqueId).then(function(data){
+							vm.section = data.data;
+							for(var i = 0; i < vm.section.length; i++) {
+								vm.section[i].showInput = false;
+								vm.setGrades(vm.section[i]._id,i);
+							}
+							//console.log(vm.section);
+						})
+					})
+			}
 			vm.openDialog = function(event) {
 					var dialog = $mdDialog.show({
 						targetEvent:event,

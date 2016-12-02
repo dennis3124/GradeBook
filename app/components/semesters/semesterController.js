@@ -6,7 +6,7 @@
 			vm.studentId = $cookies.get('studentId');
 			studentService.getSemesters(vm.studentId).then(function(data) {
 				vm.semesters = data.data;
-				//console.log(vm.semesters);
+				console.log(vm.semesters);
 			});
 
 			vm.goToSemester = function(semesterId) {

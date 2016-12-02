@@ -67,7 +67,6 @@
         //}
 
         function Login(user) {
-            console.log(user);
             return $http.post('http://localhost:27017/api/authenticate', user).then(function (data) {
                 console.log(data);
                 return data;

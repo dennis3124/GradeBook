@@ -16,9 +16,26 @@
               </h3>
             </div>
             <span flex></span>
-            <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()" aria-label="delete">
+            <md-menu>
+                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)" aria-label="more options button">
+                     <ng-md-icon icon="more_vert" size="30"></md-icon>
+                    </md-button>
+                    <md-menu-content>
+                      <md-menu-item>
+                      <md-button  ng-click="gradeVM.openEditDialog($event)" aria-label="edit button">
+                       Edit
+                      </md-button>
+                      </md-menu-item>
+                      <md-menu-item>
+                      <md-button aria-label="delete button" ng-click="gradeVM.deleteCourse">
+                        Delete
+                      </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+           <!--  <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()" aria-label="delete">
               <ng-md-icon icon="delete" size="30"></ng-md-icon>
-            </md-button>
+            </md-button> -->
           </div>
      		</md-card-content>
      		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom>

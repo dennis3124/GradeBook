@@ -314,3 +314,13 @@ element.style {
 .md-button {
     letter-spacing: .01em;
 }
+
+.semesterBox {
+    height:200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50;      
+    background-size: 100%;
+    color: white;
+}

@@ -112,12 +112,14 @@
       	vm.estimate = parseFloat((vm.lettergradescore - (currentgrade/totalsection * totalsection))/percentage*100).toFixed(2);
             vm.maxPossibleScore = parseFloat((currentgrade/totalsection * totalsection) + (100 * percentage/100));
       	//console.log(vm.maxPossibleScore);
+            console.log(percentage);
+            console.log(totalsection);
             vm.test = parseFloat(percentage) + parseFloat(totalsection);
             console.log(vm.test);
       	if (isNaN(vm.estimate) | vm.lettergradescore === 0) {
       		vm.results = "Please choose a letter grade and type in the percentage of the finals.*"
       	} else if (vm.test != 100) {
-                  vm.results = "Total percentage of section does not equal 100. Estimation not accurate. You will need at least " + vm.estimate + "% in your finals. Enter other sections to obtain a more accurate estimation."
+                  vm.results = "Total percentage of section does not equal 100. Estimation not accurate. You will need at least " + vm.estimate + "% in your finals. Enter other sections to obtain a more accurate estimation or you may have a section that requires grade entry."
             } else if (vm.estimate > 100) {
       		vm.results = "Sorry! You will need at least " + vm.estimate + "% in your finals. Extra credit maybe? Maximum possible course grade obtained " + vm.maxPossibleScore.toFixed(2) + "%";
       	} else if (vm.estimate <= 100) {

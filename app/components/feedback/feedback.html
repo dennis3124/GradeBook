@@ -1,0 +1,56 @@
+ <form name = "feedbackForm"> 
+  <div>
+  <h3 align="center">Your feedback is valuable to us. If further troubleshooting is necessary, we will contact you.</h4>
+  </div>
+    <div layout ="row" layout-align="center center" layout-padding flex>
+      <md-input-container flex="50">
+        <label>Name</label>
+        <input ng-model="user.name">
+      </md-input-container>
+
+      <md-input-container flex="50">
+        <label>Email</label>
+        <input ng-model="user.email" type="email">
+      </md-input-container>
+    </div>
+    <h3 align = "center">Please rate your experience. ("5" being excellent; "1" being poor)</h4>
+    <div layout-padding flex layout="row">
+    <div flex>
+    <label align="center">Layout</label>
+    </div>
+    <div flex>
+    <md-radio-group layout-align="space-between center" layout="row" ng-model="user.layout" span="50">
+      
+      <md-radio-button value="5" class="md-primary">5</md-radio-button>
+      <md-radio-button value="4"> 4 </md-radio-button>
+      <md-radio-button value="3">3</md-radio-button>
+      <md-radio-button value="2">2</md-radio-button>
+      <md-radio-button value="1">1</md-radio-button>
+    </md-radio-group>
+    </div>
+    </div>
+    <div layout-padding flex layout = "row">
+    <div flex>
+    <label>Ease of use</label>
+    </div>
+    <div flex>
+    <md-radio-group layout-align = "space-between center" layout="row" ng-model="user.easeofuse" span="50">
+      
+      <md-radio-button value="5" class="md-primary">5</md-radio-button>
+      <md-radio-button value="4"> 4 </md-radio-button>
+      <md-radio-button value="3">3</md-radio-button>
+      <md-radio-button value="2">2</md-radio-button>
+      <md-radio-button value="1">1</md-radio-button>
+    </md-radio-group>
+  </div>
+  </div>
+   <div layout-padding>
+   <md-input-container class="md-block">
+          <label>Additional Comments (Optional)</label>
+          <textarea ng-model="user.comments" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+    </div>
+    </form>
+  <div layout="row" layout-align="end" flex>
+      <md-button ng-click="feedbackVM.submit(user)" class="md-primary">Submit</md-button>
+    </div>

@@ -1,6 +1,6 @@
 (function(){
   angular.module('GradeBook')
-    .controller('feedbackController', ['$mdDialog', 'studentService', '$state','$cookies' ,function($scope){
+    .controller('feedbackController', ['$mdDialog', 'studentService', '$state','$cookies',function($scope){
         var vm = this;
         vm.user = {
         	name: 'John Doe',

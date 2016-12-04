@@ -2,34 +2,47 @@
     <div layout="row" layout-align="center center">
        <md-card flex-gt-sm="90" flex-gt-md="40" layout-padding>
   			<md-card-content>
-				<h1>Edit Profile</h1>
+				<span class="md-display-2"><b>Edit Profile</b></span>
 				<md-divider></md-divider>
 				<span flex></span>
-				<form name="form" ng-submit="profileVM.update()" role="form">
-					<div layout="row">
-						<h2 flex="20">Name:</h2>
-						<md-input-container flex="35">
-							<input type="text" name="First Name" placeholder="John Smith" ng-model="profileVM.user.name">
-						</md-input-container>
-					</div>
-					<div layout="row">
-						<h2 flex="20">E-mail:</h2>
-						<md-input-container flex="35">
-							<input type="text" name="Email" placeholder="john.smith@email.com" ng-model="profileVM.user.id">
-						</md-input-container>
-					</div>
-					<div layout="row">
-						<h2 flex="20">Password:</h2>
-						<md-input-container flex="35">
-							<input type="password" name="Password" placeholder="********" ng-model="profileVM.user.password">
-						</md-input-container>
-					</div>
-					<div layout="row">
-						<md-button ng-click="profileVM.goHome()" class="btn btn-primary">Cancel</md-button>
-						<span flex></span>
-						<md-button type="submit" ng-disabled="form.$invalid || profileVM.dataLoading" ng-click="profileVM.update()" class="btn btn-primary">Submit</md-button>
-					</div>
-				</form>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="name">
+						<form name="form" ng-submit="profileVM.update()" role="form">
+							<div layout="row">
+								<h2 flex="20">Name:</h2>
+								<md-input-container flex="35">
+									<input type="text" name="First Name" placeholder="John Smith" ng-model="profileVM.user.name">
+								</md-input-container>
+							</div>
+							<div layout="row">
+								<md-button ng-click="profileVM.goHome()" class="btn btn-primary">Cancel</md-button>
+								<span flex></span>
+								<md-button type="submit" ng-click="profileVM.updateName()" class="btn btn-primary">Submit</md-button>
+							</div>
+						</form>
+					</md-tab>
+					<md-tab label="password">
+						<form name="form" ng-submit="profileVM.update()" role="form">
+							<div layout="row">
+								<h2 flex="30">Old Password:</h2>
+								<md-input-container flex="35">
+									<input type="password" name="Old Password" required placeholder="********" ng-model="profileVM.user.oldPassword">
+								</md-input-container>
+							</div>
+							<div layout="row">
+								<h2 flex="30">Password:</h2>
+								<md-input-container flex="35">
+									<input type="password" name="Password" required placeholder="********" ng-model="profileVM.user.newPassword">
+								</md-input-container>
+							</div>
+							<div layout="row">
+								<md-button ng-click="profileVM.goHome()" class="btn btn-primary">Cancel</md-button>
+								<span flex></span>
+								<md-button type="submit" ng-click="profileVM.updatePassword()" class="btn btn-primary">Submit</md-button>
+							</div>
+						</form>
+					</md-tab>
+				</md-tabs>
      		</md-card-content>
    		 </md-card>
    	</div>

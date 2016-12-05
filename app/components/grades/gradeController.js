@@ -79,18 +79,35 @@
 			}
 			vm.actualPercentage = 0;
 			vm.actualGrade = 0;
+			vm.totalSection = 0;
+			vm.calculated = 0;
+			vm.totalOverallReceived = 0;
+			vm.totalOverall = 0;
+			vm.actualPoints = 0;
 			vm.setGrades = function(sectionId,i){
 				studentService.getGrade(sectionId).then(function(data){
 						vm.section[i].grades = data.data;
 						vm.section[i].total = 0;
 						vm.section[i].totalReceived = 0;
+						if (vm.section[i].grades.length != 0) {
 						for(var j = 0; j < vm.section[i].grades.length; j++){
 							vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
 							vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
 						} 
-
-						vm.actualPercentage += parseFloat(((vm.section[i].totalReceived/vm.section[i].total)*vm.section[i].weight) / vm.totalWeight * 100);
+					
+						vm.totalSection = vm.totalSection + parseInt(vm.section[i].weight);
+						vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total * vm.section[i].weight);
+						console.log(vm.actualPoints);
+						if (isNaN(vm.actualPoints)) {
+							vm.actualPoints = 0;
+						}
+						vm.calculated = parseFloat(vm.actualPoints).toFixed(2);
+						vm.totalOverallReceived += parseInt(vm.section[i].totalReceived);
+						vm.totalOverall += parseInt(vm.section[i].total);
+						vm.actualPercentage = parseFloat(vm.actualPoints/vm.totalSection*100);
+						vm.actualPercentage = parseInt(vm.actualPercentage);
 						 //console.log(vm.actualPercentage);
+						 }
 						 console.log("total actual percentage earned is "+vm.actualPercentage);
 						if (vm.actualPercentage >= 98 && vm.actualPercentage <= 100) {
 								// console.log("A+")

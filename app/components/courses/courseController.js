@@ -1,7 +1,7 @@
 (function(){
 	angular.module('GradeBook')
 		
-		.controller('courseController', ['$mdDialog', 'studentService','$cookies', '$state' , '$timeout', '$window', function($mdDialog,studentService,$cookies,$state,$timeout,$window){
+		.controller('courseController', ['$mdDialog', 'studentService','$cookies', '$state' , '$timeout', function($mdDialog,studentService,$cookies,$state,$timeout){
 			var vm = this;
 			vm.courses = [];
 			vm.semesterId = $cookies.get('semesterId');
@@ -49,16 +49,14 @@
 						},
 						controllerAs: 'courseDialogVM'
 					}).then(function(){
-							$window.location.reload();
-						// studentService.getCourses(vm.semesterId).then(function(data) {
-						// 	vm.courses = data.data;
-						// 	vm.sum = 0;
-						// 	for (var i = 0; i < vm.courses.length; i++) {
-						// 		vm.sum += parseInt(vm.courses[i].creditHours);
-						// 	}
-						// 	//console.log(vm.courses);
-						// });
-
+						studentService.getCourses(vm.semesterId).then(function(data) {
+							vm.courses = data.data;
+							vm.sum = 0;
+							for (var i = 0; i < vm.courses.length; i++) {
+								vm.sum += parseInt(vm.courses[i].creditHours);
+							}
+							//console.log(vm.courses);
+						});
 					})
 			};
 

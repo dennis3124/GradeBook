@@ -22,8 +22,7 @@
 			UserService.GetById($rootScope.globals.currentUser.username).then(function(data) {
 				if(data.data.length != 0) {
 						$rootScope.globals.studentName = data.data[0].name;
-						vm.students.name = vm.checkLetterCase(data.data[0].name);
-
+						vm.students.name = data.data[0].name;
 				}
 			})
 
@@ -49,9 +48,7 @@
 				})
 			})
 
-			vm.checkLetterCase = function(str) {
-			    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-			}	
+
 			vm.goToGrades = function(course) {
 				$cookies.put('courseUniqueId',course._id);
 				$state.go('root.grade');

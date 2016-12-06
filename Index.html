@@ -1,13 +1,14 @@
 
 <!doctype html>
 <html ng-app="GradeBook">
+
 <head>
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <!-- Load Angular with CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <!-- Loads UiRouter -->
@@ -16,35 +17,26 @@
 
   <!-- Load Up Angular Material Style Sheet-->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+  <!-- Load up Angular ng-upload for file uploading -->
   <!-- Angular Material requires Angular.js Libraries -->	
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/		angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script> 
-      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.0.js"></script>
-    
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Angular ngCookies Library -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
 
-  <!-- D3js -->
-  <script src="node_modules/d3-3.1.5/d3.js"></script>
-  <script src="node_modules/nvd3/build/nv.d3.js"></script>
-  <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
-  <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css"/>
-
-  <!-- Angular-chart.js -->
-  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script> 
-
-
   <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+  <!-- Chartjs -->
+  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 
   <!-- Load Angular Module -->
   <script src="app/app.js"></script>
@@ -59,6 +51,7 @@
   <script src="app/components/grades/grade.route.js"></script>
   <script src="app/components/grades/gradeController.js"></script>
   <script src="app/components/grades/sectionDialog/sectionDialogController.js"></script>
+  <script src="app/components/grades/sectionDialog/editDialogController.js"></script>
   <script src="app/components/profile/profileController.js"></script>
   <script src="app/components/profile/profile.routes.js"></script>
   <script src="app/shared/toolbar/toolbar.js"></script>
@@ -69,10 +62,10 @@
   <script src="app/components/calculator/calculatorController.js"></script>
   <script src="app/components/courses/dialog/courseDialogController.js"></script>
   <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
+
   <script src="app/components/gpa/gpa.route.js"></script>
   <script src="app/components/calculator/dialog/calculatorDialogController.js"</script> 
     <script src="app/components/calculator/dialog/calculatorDialog.route.js"</script>
-
       <script src="app/components/gpa/gpaController.js"></script>
       <script src="app/components/gpa/dialog/gpaDialogController.js"></script>
       <script src="app/components/help/helpController.js"></script>
@@ -91,19 +84,17 @@
       <!-- Load CSS Files -->
       <link rel="stylesheet" type="text/css" href="assets/stylesheet/styles.css">
     </head>
-    <body>
-
-
-
+    <body style="height:100%">
       <div ui-view="login"></div>
       <div ui-view="register"></div>
-      <div layout="row" layout-fill>
-        <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
-        <div layout="column" flex>
-          <div ui-view="toolbar"></div>
-          <md-content flex ui-view="content"></md-content>
+      <div layout="column">
+        <div layout="row" flex>
+          <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
+          <div layout="column" flex>
+            <div ui-view="toolbar"></div>
+            <md-content flex ui-view="content"></md-content>
+          </div>
         </div>
       </div>
-
     </body>
-    </html>
+</html>

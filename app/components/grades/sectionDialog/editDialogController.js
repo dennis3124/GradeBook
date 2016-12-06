@@ -7,8 +7,8 @@
 				console.log(vm.sections)
 			})
 			vm.submitSection = function(){
-				console.log(vm.sections);
-				studentService.editSections(vm.sections);
+				//console.log(vm.semester);
+					studentService.postSection(vm.section)
 				$mdDialog.hide();
 				
 			};

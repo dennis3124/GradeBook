@@ -1,5 +1,5 @@
 
-<div layout="row">
+<div layout="row" style="height:100vh">
 	<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" style="height:100%; width:15em">
 		<md-toolbar class="toolbarClass md-whiteframe-z1" md-scroll-shrink>
 			<div class="md-toolbar-tools" style="color: white; background-color: rgb(63,81,181)" >
@@ -7,7 +7,7 @@
 			</div>
 		</md-toolbar>
 		<md-divider></md-divider>
-		<md-menu-item style="padding-top: 3em">
+		<md-menu-item>
 			<md-button class="sideBarButton" ng-click="sidebarVM.goToHome()">
 				<ng-md-icon class="sideBarIcon" icon="home" style="fill: white"></ng-md-icon>
 				&nbsp Home
@@ -32,12 +32,6 @@
 			</md-button>
 		</md-menu-item style="padding-top: 3em">
 		<md-divider class="sideBarDivider"></md-divider>
-		<md-menu-item>
-			<md-button class="sideBarButton" ng-click="">
-				<ng-md-icon class="sideBarIcon" icon="settings" style="fill: white"></ng-md-icon>
-				&nbsp Settings
-			</md-button>
-		</md-menu-item>
 		<md-menu-item>
 			<md-button class="sideBarButton" ng-click="sidebarVM.goToHelp()">
 				<ng-md-icon class="sideBarIcon" icon="help" style="fill: white"></ng-md-icon>

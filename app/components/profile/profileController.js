@@ -34,8 +34,20 @@
 				}
 				else {
 					//STILL HAVE TO CHANGE API AND CREATE TOAST FOR FAILURE
+					vm.user.password = vm.user.newPassword;
 					UserService.SetCredentials(vm.students.username, vm.user.newPassword);
+					UserService.Update(vm.user)
+								.then(function(response) {
+									if (resonse.status == 200) {
+										FlashService.Success('Update Successful', true);
+										$location.path('/home');
+									}
+									else {
+										FlashService.Error(response.message);
+									}
+								});
 					console.log('success');
+					location.reload();
 					$state.go('root.home');
 				}
 			}

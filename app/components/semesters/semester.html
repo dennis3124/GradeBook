@@ -23,12 +23,77 @@
    		 </md-card>
    	</div>
   </md-content>
-
- <!--  <md-content flex md-scroll-y layout-fill layout-padding>
-    <div style="height:300px" class="md-whiteframe-z2" md-colors="{background: 'blue'}"">
-        <div class="welcomeMessage">Semesters</div>
-    </div>
-  </md-content>
+<md-content flex md-scroll-y layout-fill layout-padding layout="column" ng-cloak>
+  <div layout="row" layout-align="center center">
+    <md-card flex-gt-sm="90" flex-gt-md="80" layout-padding class="semesterCard">
+      <md-card-content layout="column">
+        <div layout="row">
+          <span flex></span>
+          <h1> Semesters </h1>
+          <span flex></span>
+        </div>
+        <md-divider></md-divider>
+        <div layout="row">
+          <div flex>
+            <md-item>
+              <md-item-content layout="column">
+                <div layout="row">
+                  <span flex></span>
+                  <h3 style="padding-top:10px"> Current Semester</h3>
+                  <span flex></span>
+                </div>
+                <div layout="row">
+                  <span flex></span>
+                  <span class="semesterName">{{semesterVM.currentSemester.name}} &nbsp {{semesterVM.currentSemester.year}}</span>
+                  <span flex></span>
+                </div>
+              </md-item-content>
+            </md-item>
+          </div>
+          <md-divider></md-divider>
+          <div flex>
+            <md-item>
+              <md-item-content layout="column">
+                <div layout="row">
+                  <span flex></span>
+                  <h3 style="padding-top:10px"> Number of Semesters</h3>
+                  <span flex></span>
+                </div>
+                <div layout="row">
+                  <span flex></span>
+                  <span class="semesterCount">{{semesterVM.semesters.length}}</span>
+                  <span flex></span>
+                </div>
+              </md-item-content>
+            </md-item>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+  <div layout="row" layout-wrap flex-offset="5">
+    <md-card  flex="30" layout-padding ng-repeat="semester in semesterVM.semesters" >
+      <md-card-header layout="column">
+          <div layout="row">
+          <span flex></span>
+          <h1 ng-class="semester.color"> {{semester.year}} </h1>
+          <span flex></span>
+        </div>
+      </md-card-header>
+      <md-divider></md-divider>
+      <md-card-content layout="column">
+        <div layout="row">
+          <span flex></span>
+          <h1 ng-class="semester.color"> {{semester.name}} </h1>
+          <span flex></span>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="semesterVM.goToSemester(semester._id)">View More</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-content>
 
       <md-button aria-label="menu" class="md-fab md-primary md-raised md-fab-bottom-right" ng-click="semesterVM.openDialog($event)">
           <ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>

@@ -113,7 +113,7 @@
 								// console.log("A+")
 							vm.actualGrade = "A+";
 						}
-						if (vm.actualPercentage >= 93 && vm.actualPercentage <= 97) {
+						if (vm.actualPercentage >= 93 && vm.actualPercentage < 98) {
 								// console.log("A")
 							vm.actualGrade = "A";
 						}
@@ -143,6 +143,7 @@
 						}
 						if (vm.actualPercentage >= 70 && vm.actualPercentage < 73) {
 								// console.log("C-")
+							vm.actualGrade = "C-";
 						}
 						if (vm.actualPercentage >= 67 && vm.actualPercentage < 70) {
 								// console.log("D+")

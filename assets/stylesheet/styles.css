@@ -21,6 +21,21 @@ md-content.md-default-theme {
 
 }
 
+.semesterCount {
+    font-size:75px;
+    color: rgb(0, 150, 136);
+
+}
+
+.semesterName {
+     font-size:60px;
+    color: rgb(63, 81, 181);
+}
+
+.semesterCard {
+    min-height: 200px;
+}
+
 md-card {
 	margin-top: 7em;
 }

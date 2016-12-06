@@ -1,6 +1,6 @@
 
 (function(){
-	angular.module('GradeBook', ['ngMdIcons','ui.router', 'ngMaterial', 'ngCookies']);
+	angular.module('GradeBook', ['ngMdIcons','ui.router', 'ngMaterial', 'ngCookies', 'chart.js']);
 
 })()
 

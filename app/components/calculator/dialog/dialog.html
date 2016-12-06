@@ -1,132 +1,145 @@
 <md-dialog aria-label="Mango (Fruit)">
-<form ng-cloak>
-  <md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>Grade Calculator</h2>
-    <span flex></span>
-  </div>
-</md-toolbar>
-<md-dialog-content>
-<div class="md-dialog-content dialog-size">
-  <h2>{{calculatorDialogVM.course.courseId}}: &nbsp
-    {{calculatorDialogVM.course.courseName}}</h2>
-    <div class="dont-like-this-padding" style="margin-top: 1cm;">
-      <div layout="row" layout-wrap>
-        <div flex="50">
-        <md-card style="margin-top: 5px; height:100%;">
-          <br>
-          <label align="center">Section weightage (%)</label>
-          <br>
-<canvas id="line" class="chart chart-line" chart-data="data"
-chart-labels="labels" chart-series="series" chart-options="options"
-chart-dataset-override="datasetOverride" chart-click="onClick"
-</canvas> 
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Grade Calculator</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content dialog-size">
+        <h2>{{calculatorDialogVM.course.courseId}}: &nbsp
+          {{calculatorDialogVM.course.courseName}}</h2>
+                              <canvas id="base" class="chart-bar"
+                    chart-data="data" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride" chart-legend="true">
+                    </canvas> 
+        <div ng-repeat="section in calculatorDialogVM.section">
+          <h3>
+            {{section.sectionName}}
+            {{section.weight}}%
+          </h3>
+          <div ng-repeat="grade in section.grades" layout="row">
+            <span flex = "5"></span>
+            {{grade.name}}
+            <span flex></span>
+            {{grade.grade}} /
+            {{grade.totalGrade}}
+          </div>
+        </div>
+        <div align ="right">
+          Total Points: {{calculatorDialogVM.totalOverallReceived}} / {{calculatorDialogVM.totalOverall}}
+        </div>
+        <div layout="column" style="margin-top: 20px;">
+          <md-card style="margin-top: 1px;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Grading Scale</span>
+                <md-list flex>
+                  <div layout="row">
+                    <div flex="30">
+                      <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale1">
+                        <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+                      </md-list-item>
+                    </div>
+                    <div flex="30">
+                      <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale2">
+                        <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+                      </md-list-item>
+                    </div>
+                    <div flex="30">
+                      <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale3">
+                        <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
+                      </md-list-item>
+                    </div>
+                  </div>
+                </md-list>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+        </div>
+        <div class="dont-like-this-padding" style="margin-top: 1cm;">
+          <div layout="row" layout-wrap>
+            <div flex="50">
+              <md-card style="margin-top: 5px; height:100%;">
+
+                <md-card-title>
+                  <md-card-title-text>
+                    <span class="md-headline">Grade:</span>
+                    <br>
+                    <h4><md-progress-linear md-mode="determinate" value="{{calculatorDialogVM.calculated}}"></md-progress-linear></h4>
+                    <br>
+                    <h3>Total Score: {{calculatorDialogVM.calculated}} / {{calculatorDialogVM.totalSection}}</h3>
+                    <br>
+                    <h3>Estimated Letter Grade: {{calculatorDialogVM.estimatedLetterGrade}}</h3>
+
+                  </md-card-title-text>
+                </md-card-title>
+              </md-card>
+            </div>
+            <div flex>
+              <md-card style="margin-top: 5px; height:100%;">
+                <md-card-title>
+                  <md-card-title-text>
+                    <div layout="column">
+                      <span class="md-headline">What do I need on my finals if I want a(n) __ in this course?</span>
+                      <h4>Finals has to be a seperate section and not entered yet.</h4>
+                      <div layout = "row"><div flex="50">
+                        <md-input-container>
+                          <label>Letter Grade</label>
+                          <md-select ng-model="lettergrade">
+                            <md-option ng-repeat="lettergrade in calculatorDialogVM.lettergrades" value = "{{lettergrade}}">{{lettergrade}}</md-option>
+                          </md-select>
+                        </md-input-container>
+                      </div>
+                      <md-input-container class="md-block">
+                        <label>Finals worth (%)</label>
+                        <input name="percentage" ng-model="estimateGrade.percentage" placeholder="20" required ng-pattern="/^[0-9]*$/">
+                      </md-input-container>
+                    </div>
+                    <md-button class="md-raised md-primary" ng-click="calculatorDialogVM.estimated(lettergrade, calculatorDialogVM.calculated, calculatorDialogVM.totalSection, estimateGrade.percentage)">Estimate!</md-button>
+                    <h4>{{calculatorDialogVM.results}}</h4>
+                  </div>
+                </md-card-title-text>
+              </md-card-title>
+            </md-card>
+          </div>
+        </div>
+        <div layout="column" style="margin-top: 20px;">
+          <md-card style="margin-top: 1px;">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Percent Calculation</span>
+                <div layout="column">
+                  <div>
+                    <h3>What do I need on my finals if I want a __ percent in this course?</h3>
+                  </div>
+                  <h5>Finals has to be a seperate section and not entered yet.</h5>
+                  <div layout = "row"><div flex="50">
+                    <md-input-container>
+                      <label>Percentage (%)</label>
+                      <input name="finalworth" ng-model="estimateGrade.finalworth" placeholder="80%" required ng-pattern="/^[0-9]*$/">
+                    </md-input-container>
+                  </div>
+                  <md-input-container class="md-block">
+                    <label>Finals worth (%)</label>
+                    <input name="percentage" ng-model="estimateGrade.percentage2" placeholder="20" required ng-pattern="/^[0-9]*$/">
+                  </md-input-container>
+                </div>
+                <md-button class="md-raised" ng-click="calculatorDialogVM.test3(estimateGrade.finalworth, calculatorDialogVM.calculated, calculatorDialogVM.totalSection, estimateGrade.percentage2)">Estimate!</md-button>
+                <h4>{{calculatorDialogVM.percentResults}}</h4>
+              </div>
+            </md-list>
+          </md-card-title-text>
+        </md-card-title>
       </md-card>
     </div>
-    <div flex>
-      <md-card style="margin-top: 5px; height:100%;">
-      <h3>hi</h3>
-    </md-card>
   </div>
-</div>
-</div>
-
-<div ng-repeat="section in calculatorDialogVM.section">
-  <h3>
-    {{section.sectionName}}
-    {{section.weight}}%
-  </h3>
-  <div ng-repeat="grade in section.grades" layout="row">
-    <span flex = "5"></span>
-    {{grade.name}}
-    <span flex></span>
-    {{grade.grade}} /
-    {{grade.totalGrade}}
-  </div>
-</div>
-<div align ="right">
-  Total Points: {{calculatorDialogVM.totalOverallReceived}} / {{calculatorDialogVM.totalOverall}}
-</div>
-<div layout="column" style="margin-top: 20px;">
-  <md-card style="margin-top: 1px;">
-  <md-card-title>
-  <md-card-title-text>
-  <span class="md-headline">Grading Scale</span>
-  <md-list flex>
-  <div layout="row">
-   <div flex="30">
-    <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale1">
-    <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
-  </md-list-item>
-</div>
-<div flex="30">
-  <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale2">
-  <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
-</md-list-item>
-</div>
-<div flex="30">
-  <md-list-item ng-repeat="item in calculatorDialogVM.gradeScale3">
-  <h4>{{item.letter}}&nbsp&nbsp:&nbsp&nbsp{{item.score}}</h4>
-</md-list-item>
-</div>
-</div>
-</md-list>
-</md-card-title-text>
-</md-card-title>
-</md-card>
-</div>
-<div class="dont-like-this-padding" style="margin-top: 1cm;">
-  <div layout="row" layout-wrap>
-    <div flex="50">
-      <md-card style="margin-top: 5px; height:100%;">
-      <img src="assets/img/icons/star.png" alt="some_text" style="width:50px;height:50px;align-self: center; margin-top: 10px;">
-      <md-card-title>
-      <md-card-title-text>
-      <span class="md-headline">Grade:</span>
-
-
-      <h4><md-progress-linear md-mode="determinate" value="{{calculatorDialogVM.calculated}}"></md-progress-linear></h4>
-      <h4>Total Score: {{calculatorDialogVM.calculated}} / {{calculatorDialogVM.totalSection}}</h4>
-      <h4>Estimated Letter Grade: {{calculatorDialogVM.estimatedLetterGrade}}</h4>
-
-    </md-card-title-text>
-  </md-card-title>
-</md-card>
-</div>
-<div flex>
-  <md-card style="margin-top: 5px; height:100%;">
-  <md-card-title>
-  <md-card-title-text>
-  <span class="md-headline">What do I need on my finals if I want a(n) __ in this course?</span>
-  <h5>Finals has to be a seperate section and not entered yet.</h5>
-  <div layout = "row"><div flex="50">
-    <md-input-container>
-    <label>Letter Grade</label>
-    <md-select ng-model="lettergrade">
-    <md-option ng-repeat="lettergrade in calculatorDialogVM.lettergrades" value = "{{lettergrade}}">{{lettergrade}}</md-option>
-  </md-select>
-</md-input-container>
-</div>
-<md-input-container class="md-block">
-<label>Finals worth (%)</label>
-<input name="percentage" ng-model="estimateGrade.percentage" placeholder="20" required ng-pattern="/^[0-9]*$/">
-</md-input-container>
-</div>
-<md-button class="md-raised md-primary" ng-click="calculatorDialogVM.estimated(lettergrade, calculatorDialogVM.calculated, calculatorDialogVM.totalSection, estimateGrade.percentage)">Estimate!</md-button>
-<h4>{{calculatorDialogVM.results}}</h4>
-</md-card-title-text>
-</md-card-title>
-</md-card>
-</div>
-</div>
-</div>
-</div>
 </md-dialog-content>
 <md-dialog-actions layout="row" layout-align="end end">
-<md-button href="http://mycourses.purdue.edu" target="_blank" md-accent md-align="right">
-More on BlackBoard
-</md-button>
-<span flex></span>
+  <md-button href="http://mycourses.purdue.edu" target="_blank" md-accent md-align="right">
+    More on BlackBoard
+  </md-button>
+  <span flex></span>
 </md-dialog-actions>
 </form>
 </md-dialog>

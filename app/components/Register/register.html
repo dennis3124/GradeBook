@@ -1,4 +1,4 @@
-﻿<div layout="row" class="ng-scope layout-row" ui-view="root">
+﻿<div layout="row" class="ng-scope layout-row" ui-view="root" style="height:100vh">
     <div class="full-image-background login-register-img layout-fill ng-scope layout-row" layout="row" layout-fill="">
         <div class="animate-wrapper layout-column flex" flex="" layout="column">
             <!-- uiView: -->
@@ -44,10 +44,14 @@
                             <div layout="row">
                                 <md-input-container class="md-block" flex="100">
                                     <label>Email</label>
-                                    <input required ng-model="registerVM.user.id" ng-pattern="/^.+@.+\..+$/" />
-                                    <div ng-messages="form.id.$error" md-auto-hide="true">
+                                    <input required ng-model="registerVM.user.id" ng-pattern="/^.+@.+\..+$/" ng-unique="registerVM.duplicateId" />
+                                    <div ng-messages="form.id.$error" ng-auto-hide="true">
                                         <div ng-message="required">Email is required.</div>
                                         <div ng-message="pattern">Must be a valid email address.</div>
+                                        <div ng-message="unique">Must be unique email</div>
+                                    </div>
+                                    <div ng-messages="uniqueId" ng-show="registerVM.duplicateId">
+                                        <div ng-message="">Unique</div>
                                     </div>
                                 </md-input-container>
 
@@ -59,7 +63,7 @@
                                 <md-input-container class="md-block" flex="100">
                                     <label>Password</label>
                                     <input type="password" required ng-model="registerVM.user.password" />
-                                    <div ng-messages="form.id.$error" md-auto-hide="true">
+                                    <div ng-messages="form.password.$error" md-auto-hide="true">
                                         <div ng-message="required">Password is required.</div>
                                     </div>
                                 </md-input-container>
@@ -67,6 +71,10 @@
                                 <!--<label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" ng-model="registerVM.user.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>-->
+                            </div>
+
+                            <div class="row" ng-show="registerVM.duplicateId">
+                                <h3 style="color:red">Email already in use</h3>
                             </div>
                             
                             <button class="md-raised full-width md-button sign-up margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 ng-scope md-ink-ripple" type="submit" ng-disabled="form.$invalid || registerVM.dataLoading" aria-label="Sign Up" disabled="disabled">Sign Up</button>

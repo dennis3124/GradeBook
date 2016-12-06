@@ -204,7 +204,7 @@
             for(var j = 0; j < vm.section[i].grades.length; j++){
               vm.section[i].total += parseInt(vm.section[i].grades[j].totalGrade);
               vm.section[i].totalReceived += parseInt(vm.section[i].grades[j].grade);
-              $scope.labels[i] = vm.section[i].sectionName;
+              //$scope.labels[i] = vm.section[i].sectionName;
   
 				//console.log(vm.section[i].total);
 				//console.log(vm.section[i].totalReceived);
@@ -215,7 +215,11 @@
 				//vm.actualPoints = parseFloat(vm.actualPoints + vm.calculated).toFixed(2);
 				//console.log(vm.actualPoints);
       }
-                  $scope.data[0].push(vm.section[i].total);
+              console.log("Testing graph");
+              console.log(vm.section[i].total);
+              console.log(vm.section[i].totalReceived);
+              $scope.labels[i] = vm.section[i].sectionName;
+              $scope.data[0].push(vm.section[i].total);
               $scope.data[1].push(vm.section[i].totalReceived);
                   //console.log(vm.section[i].totalReceived);
                   //console.log(vm.section[i].total);

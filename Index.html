@@ -1,70 +1,64 @@
 
 <!doctype html>
 <html ng-app="GradeBook">
-<head>
-  <meta charset="utf8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+<<<<<<< HEAD
+	<head>
+		<meta charset="utf8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+		
+		<!-- Load Angular with CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<!-- Loads UiRouter -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+		
 
-  <!-- Load Angular with CDN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <!-- Loads UiRouter -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+		<!-- Load Up Angular Material Style Sheet-->
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
+    <!-- Load up Angular ng-upload for file uploading -->
+		 <!-- Angular Material requires Angular.js Libraries -->	
+  		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-  <!-- Load Up Angular Material Style Sheet-->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  <!-- Angular Material requires Angular.js Libraries -->	
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/		angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  		<!-- Angular Material Library -->
+  		<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script> 
 
-  <!-- Angular Material Library -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script> 
+  		<!-- Angular ngCookies Library -->
+  		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
 
-  <!-- Angular ngCookies Library -->
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 
-  <!-- D3js -->
-  <script src="node_modules/d3-3.1.5/d3.js"></script>
-  <script src="node_modules/nvd3/build/nv.d3.js"></script>
-  <script src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
-  <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css"/>
+  		<!-- Load Angular Module -->
+		<script src="app/app.js"></script>
 
-  <!-- Angular-chart.js -->
-  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-  <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script> 
+  		<!-- Load Local Files -->
+  		<script src="app/components/home/home.route.js"></script>
+  		<script src="app/components/home/homeController.js"></script>
+  		<script src="app/components/courses/course.route.js"></script>
+  		<script src="app/components/courses/courseController.js"></script>
+  		<script src="app/components/semesters/semester.route.js"></script>
+  		<script src="app/components/semesters/semesterController.js"></script>
+  		<script src="app/components/grades/grade.route.js"></script>
+  		<script src="app/components/grades/gradeController.js"></script>
+      <script src="app/components/grades/sectionDialog/sectionDialogController.js"></script>
+      <script src="app/components/grades/sectionDialog/editDialogController.js"></script>
+      <script src="app/components/profile/profileController.js"></script>
+      <script src="app/components/profile/profile.routes.js"></script>
+  		<script src="app/shared/toolbar/toolbar.js"></script>
+  		<script src="app/shared/sidebar/sidebar.js"></script>
+  		<script src="app/app.config.js"></script>
+  		<script src="app/services/studentServices.js"></script>
+  		<script src="app/components/calculator/calculator.route.js"></script>
+  		<script src="app/components/calculator/calculatorController.js"></script>
+      <script src="app/components/courses/dialog/courseDialogController.js"></script>
+      <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
 
-
-  <!-- Jquery -->
-  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-
-  <!-- Load Angular Module -->
-  <script src="app/app.js"></script>
-
-  <!-- Load Local Files -->
-  <script src="app/components/home/home.route.js"></script>
-  <script src="app/components/home/homeController.js"></script>
-  <script src="app/components/courses/course.route.js"></script>
-  <script src="app/components/courses/courseController.js"></script>
-  <script src="app/components/semesters/semester.route.js"></script>
-  <script src="app/components/semesters/semesterController.js"></script>
-  <script src="app/components/grades/grade.route.js"></script>
-  <script src="app/components/grades/gradeController.js"></script>
-  <script src="app/components/grades/sectionDialog/sectionDialogController.js"></script>
-  <script src="app/components/profile/profileController.js"></script>
-  <script src="app/components/profile/profile.routes.js"></script>
-  <script src="app/shared/toolbar/toolbar.js"></script>
-  <script src="app/shared/sidebar/sidebar.js"></script>
-  <script src="app/app.config.js"></script>
-  <script src="app/services/studentServices.js"></script>
-  <script src="app/components/calculator/calculator.route.js"></script>
-  <script src="app/components/calculator/calculatorController.js"></script>
-  <script src="app/components/courses/dialog/courseDialogController.js"></script>
-  <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
-  <script src="app/components/gpa/gpa.route.js"></script>
-  <script src="app/components/calculator/dialog/calculatorDialogController.js"</script> 
-    <script src="app/components/calculator/dialog/calculatorDialog.route.js"</script>
+      <script src="app/components/gpa/gpa.route.js"></script>
+      <script src="app/components/calculator/dialog/calculatorDialogController.js"</script> 
+      <script src="app/components/calculator/dialog/calculatorDialog.route.js"</script>
       <script src="app/components/gpa/gpaController.js"></script>
       <script src="app/components/gpa/dialog/gpaDialogController.js"></script>
       <script src="app/components/help/helpController.js"></script>

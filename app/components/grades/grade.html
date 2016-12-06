@@ -16,14 +16,31 @@
               </h3>
             </div>
             <span flex></span>
-            <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()" aria-label="delete">
+            <md-menu>
+                    <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)" aria-label="more options button">
+                     <ng-md-icon icon="more_vert" size="30"></md-icon>
+                    </md-button>
+                    <md-menu-content>
+                      <md-menu-item>
+                      <md-button  ng-click="gradeVM.openEditDialog($event)" aria-label="edit button" ng-disabled="gradeVM.section.length==0">
+                       Edit
+                      </md-button>
+                      </md-menu-item>
+                      <md-menu-item>
+                      <md-button aria-label="delete button" ng-click="gradeVM.deleteCourse()">
+                        Delete
+                      </md-button>
+                      </md-menu-item>
+                    </md-menu-content>
+                  </md-menu>
+           <!--  <md-button class="md-icon-button course" ng-click="gradeVM.deleteCourse()" aria-label="delete">
               <ng-md-icon icon="delete" size="30"></ng-md-icon>
-            </md-button>
+            </md-button> -->
           </div>
      		</md-card-content>
-     		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom>
+     		<md-tabs md-selected="gradeVM.selectedTab" md-dynamic-height md-border-bottom md-center-tabs>
      			<md-tab label="overview">
-     				<md-content class="md-padding" layout="column">
+     				<md-content class="md-padding" layout="column" style="background-color:white">
      					  <div layout="row">
      						<span class="md-display-2">Overview</span>
      						<span flex></span>		
@@ -52,10 +69,18 @@
      				</md-content>
      			</md-tab>
      			<md-tab ng-repeat="section in gradeVM.section" label="{{section.sectionName}}">
-     					<md-content class="md-padding" layout="column">
+     					<md-content class="md-padding" layout="column" style="background-color:white">
      					<div ng-repeat="grade in section.grades" class="md-padding" ng-if="!grade.showInput">
      						<div layout="row">
-                  <md-menu>
+                  <span flex></span>
+     							<h3>{{grade.name}} </h3>
+                  <span flex></span>
+     							<h3> 
+    								{{grade.grade}} /
+    								{{grade.totalGrade}}
+    							</h3>	
+                  <span flex></span>
+                   <md-menu>
                     <md-button class="md-icon-button course" ng-click="$mdOpenMenu($event)" aria-label="more options button">
                      <md-icon md-svg-src="assets/img/icons/ellipsis.svg" size="30"></md-icon>
                     </md-button>
@@ -72,12 +97,6 @@
                       </md-menu-item>
                     </md-menu-content>
                   </md-menu>
-     							<h3>{{grade.name}} </h3>
-     							<span flex></span>
-     							<h3> 
-    								{{grade.grade}} /
-    								{{grade.totalGrade}}
-    							</h3>	
   							</div>
   							<md-divider ng-if="!$last"></md-divider>
 
@@ -124,15 +143,24 @@
      						</div>
               </form>
 
-             
+                 
 
      						<div layout="row">
-     							<h2>Add a Grade for {{section.sectionName}} </h2>
-     							<span flex></span>
+                  <span flex></span>
      							<md-button aria-label="addGrade" class="md-fab md-warn md-raised" ng-click="section.showInput = true">
+                  <md-tooltip>
+                        Add a grade for this section
+                  </md-tooltip>
         							<ng-md-icon  icon="add" size="24" style="fill: white"></ng-md-icon>
-      							</md-button>
-      						</div>
+      						</md-button>
+                  <md-button aria-label="DeleteSection" class="md-fab md-primary md-raised" ng-click="gradeVM.deleteSection(section._id)">
+                  <md-tooltip>
+                          Delete this Section
+                  </md-tooltip>
+                      <ng-md-icon  icon="delete" size="24" style="fill: white"></ng-md-icon>
+                  </md-button>
+                  <span flex></span>
+      					</div>
       						</form>
      					</md-content>
      			</md-tab>

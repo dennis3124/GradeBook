@@ -32,7 +32,7 @@
 
 <div class="specialBoxes">
   <div class='cardPadding' layout="row" layout-wrap>
-   <md-card style="width: 350px; height:200px">
+   <md-card style="width: 350px; height:200px"    >
     <md-card-header>
       <md-card-header-text>
         <span class="md-title"> Total Credit Hours </span>
@@ -57,7 +57,7 @@
       <span flex></span>
     </md-card-content>
     <div class="md-actions" layout-align="end center" layout="row">
-      <md-button ng-click="homeVM.flipped = !homeVM.flipped" >Show more</md-button>
+      <md-button ng-disabled="homeVM.requireAttention == 0" ng-click="homeVM.flipped = !homeVM.flipped" >Show more</md-button>
     </div>
   </md-card>
 
@@ -73,8 +73,8 @@
         <span style="color: #C62828;">  {{course.courseId}} </span>
         <span style="color: #C62828;">  {{course.letterGrade}} </span>
       </div>
-      <span flex></span>
     </md-card-content>
+     <span flex></span>
     <div class="md-actions" layout-align="end center" layout="row">
       <md-button ng-click="homeVM.flipped = !homeVM.flipped" >Show less </md-button>
     </div>

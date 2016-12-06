@@ -17,16 +17,37 @@
 				$state.go('root.home');
 			}
 
-			vm.update = function() {
+			vm.AppCtrl = function($scope){
+				$scope.currentNavItem = 'name';
+			}
+			vm.updatePassword = function() {
+				vm.dataLoading = true;
+				// vm.authData = UserService.Base64.encode(vm.students.username + ':' + vm.user.oldPassword);
+				// console.log(vm.authData);
+				vm.oldAuthData = $rootScope.globals.currentUser.authdata;
+				UserService.SetCredentials(vm.students.username, vm.user.oldPassword);
+				vm.newAuthData = $rootScope.globals.currentUser.authdata;
+				// vm.oldAuthData = vm.students.authdata;
+				if (vm.oldAuthData != vm.newAuthData) {
+					console.log('failure');
+					// $state.go('root.home');
+				}
+				else {
+					//STILL HAVE TO CHANGE API AND CREATE TOAST FOR FAILURE
+					UserService.SetCredentials(vm.students.username, vm.user.newPassword);
+					console.log('success');
+					$state.go('root.home');
+				}
+			}
+
+			vm.updateName = function() {
 				vm.dataLoading = true;
 				if (vm.user.name == null) {
 					vm.user.name = vm.students.name;
 				}
-				if (vm.user.id == null) {
-					vm.user.id = vm.students.id;
-				}
+				vm.user.id = vm.students.id;
 				console.log(vm.user);
-				if (vm.user.name == null && vm.user.id == null && vm.user.password == null) {
+				if (vm.user.name == null && vm.user.password == null) {
 					$state.go('root.home');
 				}
 				else {

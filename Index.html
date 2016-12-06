@@ -1,6 +1,7 @@
 
 <!doctype html>
 <html ng-app="GradeBook">
+<<<<<<< HEAD
 	<head>
 		<meta charset="utf8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
@@ -63,29 +64,32 @@
       <script src="app/components/help/helpController.js"></script>
       <script src="app/components/help/help.route.js"></script>
 
-        <script src="app/components/Login/loginController.js"></script>
-        <script src="app/components/Register/registerController.js"></script>
-        <script src="app/services/authenticationService.js"></script>
-        <script src="app/services/flashService.js"></script>
-        <script src="app/services/userService.js"></script>
-       <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
-
-  		<!-- Load CSS Files -->
-  		<link rel="stylesheet" type="text/css" href="assets/stylesheet/styles.css">
-	</head>
-	<body>
+      <script src="app/components/Login/loginController.js"></script>
+      <script src="app/components/Register/registerController.js"></script>
+      <script src="app/services/authenticationService.js"></script>
+      <script src="app/services/flashService.js"></script>
+      <script src="app/services/userService.js"></script>
+      <script src="app/components/feedback/feedbackController.js"></script>
+      <script src="app/components/feedback/feedback.route.js"></script>
+      <script src="app/components/semesters/dialog/semesterDialogController.js"></script>
 
 
+      <!-- Load CSS Files -->
+      <link rel="stylesheet" type="text/css" href="assets/stylesheet/styles.css">
+    </head>
+    <body>
 
-        <div ui-view="login"></div>
-        <div ui-view="register"></div>
-	<div layout="row" layout-fill>
-      <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
-      <div layout="column" flex>
+
+
+      <div ui-view="login"></div>
+      <div ui-view="register"></div>
+      <div layout="row" layout-fill>
+        <div style="background-color: rgb(63,81,181)" ui-view="sidebar"></div>
+        <div layout="column" flex>
           <div ui-view="toolbar"></div>
           <md-content flex ui-view="content"></md-content>
+        </div>
       </div>
-    </div>
 
-	</body>
-</html>
+    </body>
+    </html>

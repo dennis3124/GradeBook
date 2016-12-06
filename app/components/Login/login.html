@@ -37,8 +37,10 @@
 
                                 
                                 <button class="md-raised full-width md-button sign-up margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 ng-scope md-ink-ripple" type="submit" ng-disabled="form.$invalid || vm.dataLoading" aria-label="Sign In" disabled="disabled">Sign In</button>
+                                
                                 <a class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 md-button ng-scope md-ink-ripple" href="#/register" aria-label="Create an account? Register here." style="color: #3eddea">Create an account? Register here.</a>
                             </form>
+                        <button class="md-raised full-width md-button margin-left-0 margin-right-0 margin-top-10 margin-bottom-10 ng-scope md-ink-ripple" ng-disabled="vm.dataLoading" ng-click="loginVM.useWithoutAccount()" aria-label="Use without account">Use without account</button>
 </md-content>
                 </md-card>
             </div>

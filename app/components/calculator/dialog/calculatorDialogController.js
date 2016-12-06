@@ -29,7 +29,15 @@
           type: 'line'
         }
       ];
-
+      $scope.options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+      }
       studentService.getCourse(vm.courseUniqueId).then(function(data){
         vm.course = data.data;
         vm.course = vm.course[0];

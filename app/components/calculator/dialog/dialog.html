@@ -10,9 +10,6 @@
       <div class="md-dialog-content dialog-size">
         <h2>{{calculatorDialogVM.course.courseId}}: &nbsp
           {{calculatorDialogVM.course.courseName}}</h2>
-                              <canvas id="base" class="chart-bar"
-                    chart-data="data" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride" chart-legend="true">
-                    </canvas> 
         <div ng-repeat="section in calculatorDialogVM.section">
           <h3>
             {{section.sectionName}}

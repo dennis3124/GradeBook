@@ -6,38 +6,6 @@
       vm.semesterId = $cookies.get('semesterId');
       vm.semester = {};
 
-      // Chart stuff
-      $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
-
-      $scope.labels = [];
-      //$scope.data = [
-      //  [65, -59, 80, 81, -56, 55, -40],
-      //  [28, 48, -40, 19, 86, 27, 90]
-      //];
-      $scope.data = [[],[]]
-      $scope.datasetOverride = [
-        {
-          label: "Bar chart",
-          borderWidth: 1,
-          type: 'bar'
-        },
-        {
-          label: "Line chart",
-          borderWidth: 3,
-          hoverBackgroundColor: "rgba(255,99,132,0.4)",
-          hoverBorderColor: "rgba(255,99,132,1)",
-          type: 'line'
-        }
-      ];
-      $scope.options = {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-      }
       studentService.getCourse(vm.courseUniqueId).then(function(data){
         vm.course = data.data;
         vm.course = vm.course[0];
@@ -228,9 +196,9 @@
               console.log("Testing graph");
               console.log(vm.section[i].total);
               console.log(vm.section[i].totalReceived);
-              $scope.labels[i] = vm.section[i].sectionName;
-              $scope.data[0].push(vm.section[i].total);
-              $scope.data[1].push(vm.section[i].totalReceived);
+              //$scope.labels[i] = vm.section[i].sectionName;
+              //$scope.data[0].push(vm.section[i].total);
+              //$scope.data[1].push(vm.section[i].totalReceived);
                   //console.log(vm.section[i].totalReceived);
                   //console.log(vm.section[i].total);
                   //console.log(vm.section[i].weight);
@@ -244,7 +212,7 @@
 			//for (var n = 0; n < vm.section[i].grades.length; n++) {
 
        vm.actualPoints += parseFloat(vm.section[i].totalReceived/vm.section[i].total*vm.section[i].weight);
-			//}
+       //$scope.data.push(vm.actualPoints);
 			console.log(vm.actualPoints);
       if (isNaN(vm.actualPoints)) {
         vm.actualPoints = 0;

@@ -15,6 +15,23 @@
               <md-item-content layout="column">
                 <div layout="row">
                   <span flex></span>
+                  <h3 style="padding-top:10px"> Current Semester</h3>
+                  <span flex></span>
+                </div>
+                <div layout="row">
+                  <span flex></span>
+                  <span class="semesterName">{{semesterVM.currentSemester.name}} &nbsp {{semesterVM.currentSemester.year}}</span>
+                  <span flex></span>
+                </div>
+              </md-item-content>
+            </md-item>
+          </div>
+          <md-divider></md-divider>
+          <div flex>
+            <md-item>
+              <md-item-content layout="column">
+                <div layout="row">
+                  <span flex></span>
                   <h3 style="padding-top:10px"> Number of Semesters</h3>
                   <span flex></span>
                 </div>
@@ -26,8 +43,6 @@
               </md-item-content>
             </md-item>
           </div>
-          <md-divider></md-divider>
-          <span flex></span>
         </div>
       </md-card-content>
     </md-card>

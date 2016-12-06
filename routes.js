@@ -94,6 +94,18 @@ module.exports = function(app) {
 		})
 	})
 
+	app.post('/api/sections/update', function(req,res) {
+			for(var i = 0; i < req.body.length; i++) {
+				Section.update({_id: req.body[i]._id}, {$set: {
+					sectionName: req.body[i].sectionName,
+					weight: req.body[i].weight}}, function(err,data) {
+						if (err) {
+							res.send(err);
+						}
+					})
+			}
+	})
+
 	app.post('/api/semesters', function(req, res) {
 		Semesters.find({
 			studentId: req.body.studentId,
@@ -246,14 +258,14 @@ module.exports = function(app) {
 				if(err)
 					console.log(err);
 			})
-	})
+	});
 	app.delete('/api/grade/:sectionId', function(req,res) {
 		Grade.remove({
 			sectionId: req.params.sectionId},function(err){
 				if(err)
 					console.log(err);
 			})
-	})
+	});
 	app.delete('/api/single/grade/:_id', function(req,res) {
 		Grade.remove({
 			_id: req.params._id},function(err,data){
@@ -261,7 +273,22 @@ module.exports = function(app) {
 					console.log(err);
 				res.send(req.params_id);
 			})
-	})
+	});
+
+
+
+
+	app.delete('/api/section/id/:sectionId', function(req,res) {
+			Grade.remove({sectionId: req.params.sectionId},function(err,data) {
+				if(err)
+					console.log(err)
+			})
+			Section.remove({_id: req.params.sectionId}, function(err,data) {
+				if(err)
+					console.log(err)
+			})
+
+	});
 	app.delete('/api/semester/:semesterId', function(req,res) {
 
 		Semesters.remove({
@@ -532,6 +559,18 @@ module.exports = function(app) {
     app.put('/api/users/:id', function(req, res) {
     	Student.update({
     		name: req.body.name,
+    	}, function (err, data) {
+    		console.log(data);
+    		if (err) {
+    			res.send(err);
+    		}
+    		res.json(data);
+    	})
+    });
+
+    app.put('/api/users/password/:id', function(req, res) {
+    	Student.update({
+    		password: req.body.password,
     	}, function (err, data) {
     		console.log(data);
     		if (err) {

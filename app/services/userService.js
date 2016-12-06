@@ -50,6 +50,14 @@
             })
         }
 
+        function UpdatePassword(user) {
+            return $http.put('http://localhost:27017/api/users/password' + user.id, user).then(function (data) {
+                return data;
+            }).catch(function (err) {
+                console.log(err);
+            })
+        }
+
         function Delete(id) {
             return $http.delete('http://locahost:2l7017/api/users/' + id).then(function (data) {
                 return data;
@@ -67,7 +75,6 @@
         //}
 
         function Login(user) {
-            console.log(user);
             return $http.post('http://localhost:27017/api/authenticate', user).then(function (data) {
                 console.log(data);
                 return data;

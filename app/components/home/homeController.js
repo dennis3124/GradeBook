@@ -20,16 +20,19 @@
 
 
 			UserService.GetById($rootScope.globals.currentUser.username).then(function(data) {
-				$rootScope.globals.studentName = data.data[0].name;
-				vm.students.name = data.data[0].name;
+				if(data.data.length != 0) {
+						$rootScope.globals.studentName = data.data[0].name;
+						vm.students.name = vm.checkLetterCase(data.data[0].name);
 
+				}
 			})
 
 			studentService.getCurrentSemester($rootScope.globals.currentUser.username).then(function(data){
 				vm.currentSemester = data.data;
 				vm.currentSemester= vm.currentSemester[0];
-				console.log(vm.currentSemester);
-				vm.semesterId = vm.currentSemester._id;
+				if(typeof vm.currentSemester != 'undefined') {
+						vm.semesterId = vm.currentSemester._id;
+				}
 				//console.log(vm.semesterId);
 
 			}).then(function(data) {
@@ -37,8 +40,7 @@
 					vm.courses = data.data;
 					for(var i = 0; i < vm.courses.length; i++) {
 						vm.totalCreditHours+=parseInt(vm.courses[i].creditHours);
-						if(vm.courses[i].letterGrade!= 'A' && vm.courses[i].letterGrade!= 'B' && vm.courses[i].letterGrade!= 'C' 
-							&& vm.courses[i].letterGrade!= 'D' ) {
+						if(vm.courses[i].letterGrade== 'F' || vm.courses[i].letterGrade== 'E') {
 							vm.attentionCourse[vm.requireAttention] = vm.courses[i];
 							vm.requireAttention++;
 						}
@@ -47,7 +49,9 @@
 				})
 			})
 
-
+			vm.checkLetterCase = function(str) {
+			    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+			}	
 			vm.goToGrades = function(course) {
 				$cookies.put('courseUniqueId',course._id);
 				$state.go('root.grade');

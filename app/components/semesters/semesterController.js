@@ -1,12 +1,24 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('semesterController', ['$mdDialog', 'studentService', '$state','$cookies' ,function($mdDialog,studentService,$state,$cookies){
+		.controller('semesterController', ['$mdDialog', 'studentService', '$state','$cookies','$window' ,function($mdDialog,studentService,$state,$cookies,$window){
 			var vm = this;
 			vm.semesters = [];
 			vm.studentId = $cookies.get('studentId');
 			studentService.getSemesters(vm.studentId).then(function(data) {
 				vm.semesters = data.data;
-				//console.log(vm.semesters);
+				for (var i = 0; i < vm.semesters.length; i++) {
+					if(vm.semesters[i].name.toUpperCase()=='SPRING') {
+						vm.semesters[i].color = 'spring'
+					}
+					else if(vm.semesters[i].name.toUpperCase()=='SUMMER') {
+						vm.semesters[i].color = 'summer'
+					}
+					else if(vm.semesters[i].name.toUpperCase()=='WINTER') {
+						vm.semesters[i].color = 'winter'
+					}
+					
+				}
+				console.log(vm.semesters);
 			});
 
 			vm.goToSemester = function(semesterId) {
@@ -25,10 +37,7 @@
 						},
 						controllerAs: 'semesterDialogVM'
 					}).then(function(){
-						studentService.getSemesters(vm.studentId).then(function(data) {
-						vm.semesters = data.data;
-						//console.log(vm.semesters);
-						});
+						$window.location.reload();
 					})
 			}
 

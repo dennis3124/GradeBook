@@ -541,6 +541,18 @@ module.exports = function(app) {
     	})
     });
 
+    app.put('/api/users/password/:id', function(req, res) {
+    	Student.update({
+    		password: req.body.password,
+    	}, function (err, data) {
+    		console.log(data);
+    		if (err) {
+    			res.send(err);
+    		}
+    		res.json(data);
+    	})
+    });
+
     app.post('/api/authenticate', function (req, res) {
         Student.findOne({
             studentId: req.body.username

@@ -1,6 +1,6 @@
 (function(){
 	angular.module('GradeBook')
-		.controller('gradeController', ['$mdDialog', 'studentService', '$cookies', '$state', '$timeout' ,function($mdDialog,studentService, $cookies, $state, $timeout){
+		.controller('gradeController', ['$mdDialog', 'studentService', '$cookies', '$state', '$timeout', '$window' ,function($mdDialog,studentService, $cookies, $state, $timeout,$window){
 			var vm = this;
 			vm.courseUniqueId = $cookies.get('courseUniqueId'); 
 			vm.course = {};
@@ -17,7 +17,7 @@
 			})
 			studentService.getSection(vm.courseUniqueId).then(function(data){
 				vm.section = data.data;
-				//console.log(vm.section.length);
+				console.log(vm.section.length);
 				// console.log(vm.totalWeight);
 				for(var k = 0; k < vm.section.length; k++) {
 								vm.totalWeight+= parseInt(vm.section[k].weight);
@@ -71,11 +71,13 @@
 			}
 
 			vm.deleteGrades = function(sectionid) {
-				console.log(sectionid);
 				 studentService.deleteGrades(sectionid).then(function(data) {
-				 }).then(function() {
-
 				 })
+			}
+
+			vm.deleteSection = function(sectionid) {
+				studentService.deleteSection(sectionid);
+				$window.location.reload();
 			}
 			vm.actualPercentage = 0;
 			vm.actualGrade = 0;
@@ -161,14 +163,15 @@
 							courseUniqueId: vm.courseUniqueId
 						}
 					}).then(function(){
-						studentService.getSection(vm.courseUniqueId).then(function(data){
-							vm.section = data.data;
-							for(var i = 0; i < vm.section.length; i++) {
-								vm.section[i].showInput = false;
-								vm.setGrades(vm.section[i]._id,i);
-							}
-							//console.log(vm.section);
-						})
+							$window.location.reload();
+						// studentService.getSection(vm.courseUniqueId).then(function(data){
+						// 	vm.section = data.data;
+						// 	for(var i = 0; i < vm.section.length; i++) {
+						// 		vm.section[i].showInput = false;
+						// 		vm.setGrades(vm.section[i]._id,i);
+						// 	}
+						// 	//console.log(vm.section);
+						// })
 					})
 			}
 			vm.openDialog = function(event) {

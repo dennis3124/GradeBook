@@ -1,45 +1,43 @@
 <md-dialog>
-  <form name="SectionForm" ng-cloak>
+  <form name="EditForm" ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Modify Class</h2>
+        <h2>Modify Sections</h2>
         <span flex></span>
       </div>
     </md-toolbar>
+    <md-tabs md-dynamic-height>
+      <md-tab ng-repeat="section in editDialogVM.sections" label="{{section.sectionName}}">
+        <md-dialog-content>
+          <div class="md-dialog-content dialog-size">
+            <h2> Section Name </h2>
+            <md-input-container flex class="md-block">
+              <input name="SectionName"  placeholder="Enter Section Name e.g (Midterm, Quizes)" ng-model="section.sectionName" required >
+              <div ng-messages="EditForm.SectionName.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
 
-    <md-dialog-content layout="column">
-      <div layout="row">
-          <h2> Section Name </h2>
-          <span flex></span>
-          <h2> Weight </h2>
+            <h2> Weight </h2>
+            <md-input-container>
+              <input type="number" ng-pattern="/^[^-].*$/" name="SectionWeight" placeholder="Enter Weightage" ng-model="section.weight" string-to-number required >
+              <div ng-messages="EditForm.SectionWeight.$error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="pattern">Format: Must be greater than 0 </div>
+              </div>
+            </md-input-container>
+            <span>%</span>
+            <div flex></div>
+          </div>       
+        </md-dialog-content>
+      </md-tab>
+      <md-tab></md-tab>
+    </md-tabs>
 
-
-      </div>
-      <div class="md-dialog-content dialog-size" ng-repeat="section in editDialogVM.sections">
-          <md-input-container class="md-block">
-             <input name="SectionName"  placeholder="Enter Section Name e.g (Midterm, Quizes)" ng-model="section.sectionName" required >
-             <div ng-messages="SectionForm.SectionName.$error">
-               <div ng-message="required">This is required.</div>
-             </div>
-             <input type="number" ng-pattern="/^[^-].*$/" name="SectionWeight" placeholder="Enter Weightage" string-to-number ng-model="section.weight" required >
-             <div ng-messages="SectionForm.SectionWeight.$error">
-               <div ng-message="required">This is required.</div>
-               <div ng-message="pattern">Format: Must be greater than 0 </div>
-             </div>
-             <span>%</span>
-          </md-input-container>
-
-       <md-input-container>
-             
-          </md-input-container>
-          <
-          <div flex></div>
-        </div>
-    </md-dialog-content>
 
     <md-dialog-actions layout="row" layout-align="end end">
       <span flex="100"></span>
-      <md-button ng-disabled="!SectionForm.$valid" class="md-warn md-raised" md-align="center" ng-click="sectionDialogVM.submitSection()">
+      <md-button ng-disabled="!EditForm.$valid" class="md-warn md-raised" md-align="center" ng-click="editDialogVM.submitSection()">
         Submit
       </md-button>
       <span flex></span>

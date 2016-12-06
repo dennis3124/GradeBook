@@ -20,7 +20,7 @@
    
 			    UserService.GetById($rootScope.globals.currentUser.username).then(function(data) {
 			    	$rootScope.globals.studentName = data.data[0].name;
-			    	vm.students.name = data.data[0].name;
+			    	vm.students.name = vm.checkLetterCase(data.data[0].name);
 			    })
 
 			    vm.goHome = function() {
@@ -34,6 +34,9 @@
 					vm.checkdir(vm.dir);
 				})
 
+			vm.checkLetterCase = function(str) {
+				    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+			}	
 			vm.checkdir = function(dir) {
 				var index = dir.search("root");
 				if(index != -1) {
@@ -42,6 +45,9 @@
 				vm.dir = vm.dir.charAt(0).toUpperCase() + vm.dir.slice(1);
 				if(vm.dir == 'Course') {
 					vm.dir = 'Semester  >  Course';
+				}
+				else if (vm.dir == 'Home') {
+					vm.dir = 'Home  >  Current Semester';
 				}
 				else if (vm.dir == 'Grade') {
 					vm.dir = 'Semester  >  Course  >  Grade';

@@ -8,6 +8,17 @@ md-content.md-default-theme {
   background-color: #eee;
 }
 
+.spring {
+    color:rgb(255, 152, 0);
+}
+
+.summer {
+    color:rgb(244, 67, 54);
+}
+
+.winter {
+    color:rgb(33, 150, 243);
+}
 .section {
 
     padding-left: 5em;
@@ -19,6 +30,16 @@ md-content.md-default-theme {
 
 .dashboard-courses {
 
+}
+
+.semesterCount {
+    font-size:75px;
+    color: rgb(0, 150, 136);
+
+}
+
+.semesterCard {
+    min-height: 200px;
 }
 
 md-card {
